@@ -35,7 +35,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next)
     {
         if ($this->auth->check()) {
-            return redirect()->route('solicituds.index');
+            return redirect()->route('contratos.index');
         }
 
         return $next($request);

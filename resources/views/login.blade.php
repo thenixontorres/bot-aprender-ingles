@@ -6,7 +6,7 @@
 			<div class="panel panel-default panel-body">   
 				<div class="row">
 					<div class="col-md-12">
-						<h2 class="text-center">INICIAR SESION</h2>
+						<h2 class="text-center">Bienvenido</h2>
 					</div>
 				</div>
 				<hr>
@@ -14,8 +14,8 @@
 					<div class="col-md-10 col-md-offset-1">
 						{!! Form::open(['route' => 'auth.login', 'method' => 'POST', 'class' => 'form']) !!}
 							<div class="form-group">
-								{!! Form::label('email', 'E-Mail:') !!}
-								{!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Ingrese su E-Mail', 'required']) !!}
+								{!! Form::label('email', 'Correo:') !!}
+								{!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Ingrese su Correo', 'required']) !!}
 							</div>
 							<div class="form-group">
 								{!! Form::label('password', 'Contraseña:') !!}
