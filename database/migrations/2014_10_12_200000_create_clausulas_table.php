@@ -15,6 +15,7 @@ class CreateclausulasTable extends Migration
     {
         Schema::create('clausulas', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nombre');
             $table->string('clausulas');
             $table->timestamps();
             $table->softDeletes();

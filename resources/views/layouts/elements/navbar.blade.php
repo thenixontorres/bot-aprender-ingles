@@ -24,8 +24,10 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Individual</a></li>
-                                <li><a href="#">Colectivo</a></li>
+                                <li><a href="{{ route('contratos.individuales') }}">Ver Contratos Individuales</a></li>
+                                <li><a href="{{ route('contratos.colectivos') }}">Ver Contratos Colectivos</a></li>
+                                <li><a href="{{ route('contratos.individuales_create') }}">Registrar Contratos Individuales</a></li>
+                                <li><a href="{{ route('contratos.create') }}">Registrar Contratos Colectivos</a></li>
                             </ul>
                         </li>
             <li class="nav-li">

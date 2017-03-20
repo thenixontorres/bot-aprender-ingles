@@ -15,5 +15,32 @@ class test extends Seeder
         	'email'     => 'admin@example.com',
         	'password' 	=> bcrypt('admin'),
         ]);
+
+        DB::table('estados')->insert([
+            'estado'     => 'Miranda',
+        ]);
+
+        DB::table('municipios')->insert([
+            'municipio'     => 'Independencia',
+            'estado_id'  => '1',
+        ]);
+
+        DB::table('planes')->insert([
+            'plan'     => 'Oro',
+            'monto'  => '3000',
+            'informacion'  => 'Descripcion del plan',
+        ]);
+
+        DB::table('planes')->insert([
+            'plan'     => 'Plata',
+            'monto'  => '2000',
+            'informacion'  => 'Descripcion del plan',
+        ]);
+
+        DB::table('planes')->insert([
+            'plan'     => 'Bronce',
+            'monto'  => '1000',
+            'informacion'  => 'Descripcion del plan',
+        ]);
     }
 }

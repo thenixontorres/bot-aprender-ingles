@@ -21,6 +21,7 @@ class CreatepersonasTable extends Migration
             $table->string('sexo');
             $table->string('fecha_nac');
             $table->string('parentesco');
+            $table->string('telefono');
             $table->integer('municipio_id')->unsigned();
             $table->foreign('municipio_id')->references('id')->on('municipios');
             $table->string('direccion');

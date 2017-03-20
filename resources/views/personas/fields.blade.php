@@ -46,12 +46,6 @@
     {!! Form::text('contrato', null, ['class' => 'form-control']) !!}
 </div>
 
-<!-- Tipo Contrato Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('tipo_contrato', 'Tipo Contrato:') !!}
-    {!! Form::text('tipo_contrato', null, ['class' => 'form-control']) !!}
-</div>
-
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

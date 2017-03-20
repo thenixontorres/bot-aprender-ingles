@@ -27,6 +27,18 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('planes', 'planesController');
     Route::resource('modificacions', 'modificacionController');
     Route::resource('contratos', 'contratoController');
+    Route::get('/individuales', [
+            'uses'  =>  'contratoController@individuales',
+            'as'    =>  'contratos.individuales',
+    ]);
+    Route::get('/individuales_create', [
+            'uses'  =>  'contratoController@individuales_create',
+            'as'    =>  'contratos.individuales_create',
+    ]);
+    Route::get('/colectivos', [
+            'uses'  =>  'contratoController@colectivos',
+            'as'    =>  'contratos.colectivos',
+    ]);
     
 });
 

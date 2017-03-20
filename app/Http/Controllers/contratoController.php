@@ -12,6 +12,10 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\contrato;
+use App\Models\estado;
+use App\Models\municipio;
+use App\Models\planes;
+
 
 class contratoController extends InfyOmBaseController
 {
@@ -34,15 +38,23 @@ class contratoController extends InfyOmBaseController
         $this->contratoRepository->pushCriteria(new RequestCriteria($request));
         $contratos = $this->contratoRepository->all();
 
+
         return view('contratos.index')
             ->with('contratos', $contratos);
     }
 
     public function individuales(Request $request)
     {
-        $this->contratoRepository->pushCriteria(new RequestCriteria($request));
-        $contratos = $this->contratoRepository->all();
+        $contratos = contrato::where('tipo_contrato','Individual')->get();
+        
+        return view('contratos.index')
+            ->with('contratos', $contratos);
+    }
 
+    public function colectivos(Request $request)
+    {
+        $contratos = contrato::where('tipo_contrato','Colectivo')->get();
+        
         return view('contratos.index')
             ->with('contratos', $contratos);
     }
@@ -55,6 +67,17 @@ class contratoController extends InfyOmBaseController
     public function create()
     {
         return view('contratos.create');
+    }
+
+    public function individuales_create()
+    {   
+        $estados = estado::all();
+        $municipios = municipio::all();
+        $planes = planes::all();
+        return view('contratos.individuales_create')
+        ->with('planes', $planes)
+        ->with('municipios', $municipios)
+        ->with('estados', $estados);
     }
 
     /**
