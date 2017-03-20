@@ -3,29 +3,24 @@
     src: url(../fonts/mank_sans/MankSans.ttf) format("truetype");
 }
 
-@font-face {
-    font-family: "enso";
-    src: url(../fonts/Enso/enso.ttf) format("truetype");
-}
-
 body{ 
 	font-family: "MankSans";
 	padding-bottom: 30px;
-	background-color: #FFF;
+	background-color: #EAECF6;
 }
 
-.background{
-  background-image: url(../img/cne-bg.png);
-  background-position: center;
-  background-repeat: no-repeat;
+.jumbotron-and {
+    background: #08088A;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.row-header{
+    background-color: #08088A;
 }
 
 .panel{
   background-color:  rgba(255, 255, 255, 0.84);
-}
-
-h1, h2, h3, h4, h5, h6{
-    font-family: "enso";
 }
 
 hr{
@@ -51,15 +46,15 @@ a:hover{
 }
 .navbar-inverse {
    color: #fff;
-   background-color: #C80505;
-   border-color: #C80505;
+   background-color: #222;
+    border-color: #080808;
    border-radius: 0px;
 }
 
 .footer{
-	color: #fff;
-	background-color: #C80505;
-  border-color: #C80505;	
+	  color: #fff;
+    background-color: #222;
+    border-color: #080808;
 }
 
 .navbar-inverse .navbar-nav > li > a {

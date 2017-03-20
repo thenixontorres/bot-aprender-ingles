@@ -14,12 +14,15 @@
 
 Route::group(['middleware' => 'auth'], function () {
   
-  //Modulos exclusivos para Administradores
-  Route::group(['middleware' => 'Admin'], function () {
-
     Route::resource('users', 'userController');
+    Route::resource('personas', 'personaController');
+    Route::resource('empresas', 'empresaController');
+    Route::resource('clausulas', 'clausulaController');
+    Route::resource('pagos', 'pagoController');
+    Route::resource('planes', 'planesController');
+    Route::resource('modificacions', 'modificacionController');
+    Route::resource('contratos', 'contratoController');
     
-  });
 });
 
 // Login
@@ -36,16 +39,3 @@ Route::get('/logout', [
    'as'    => 'auth.logout'
 ]);
 
-Route::resource('personas', 'personaController');
-
-Route::resource('empresas', 'empresaController');
-
-Route::resource('clausulas', 'clausulaController');
-
-Route::resource('pagos', 'pagoController');
-
-Route::resource('planes', 'planesController');
-
-Route::resource('modificacions', 'modificacionController');
-
-Route::resource('contratos', 'contratoController');

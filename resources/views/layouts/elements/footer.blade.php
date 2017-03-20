@@ -3,15 +3,15 @@
 			<br>
 			<div class="row pad-footer">
 				<div class="col-xs-12 col-sm-6 col-md-6">
-					<p>Sistema de Informacion para el Segumiento y Control de Solicitudes, Actas y Constancias.</p>
+					<p>Desarrollado por:</p>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<ul>
 					 	<li>
-					 		<a class="text-footer-list footer-a" href="{{ asset('manuales/Manual-Usuario.pdf') }}" target="_blank"> Manual de Usuario </a>
+					 		Darleris Sanchez.
 					 	</li>
 					 	<li>
-					 		<a class="text-footer-list footer-a" href="{{ asset('manuales/Manual-Tecnico.pdf') }}" target="_blank"> Manual Tecnico </a>
+					 		Andy Bowen.
 					 	</li>
 					</ul>
 				</div>	
