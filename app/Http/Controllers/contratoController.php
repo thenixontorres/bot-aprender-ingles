@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Models\contrato;
 
 class contratoController extends InfyOmBaseController
 {
@@ -29,6 +30,15 @@ class contratoController extends InfyOmBaseController
      * @return Response
      */
     public function index(Request $request)
+    {
+        $this->contratoRepository->pushCriteria(new RequestCriteria($request));
+        $contratos = $this->contratoRepository->all();
+
+        return view('contratos.index')
+            ->with('contratos', $contratos);
+    }
+
+    public function individuales(Request $request)
     {
         $this->contratoRepository->pushCriteria(new RequestCriteria($request));
         $contratos = $this->contratoRepository->all();

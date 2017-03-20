@@ -15,10 +15,11 @@ class CreatepagosTable extends Migration
     {
         Schema::create('pagos', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('monto');
-            $table->text('numero_cuota');
-            $table->text('tipo_pago');
-            $table->integer('contrato_id');
+            $table->string('monto');
+            $table->string('numero_cuota');
+            $table->string('tipo_pago');
+            $table->integer('contrato_id')->unsigned();
+            $table->foreign('contrato_id')->references('id')->on('contratos');
             $table->timestamps();
             $table->softDeletes();
         });

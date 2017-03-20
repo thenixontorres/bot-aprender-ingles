@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateplanesTable extends Migration
+class CreateclausulasTable extends Migration
 {
 
     /**
@@ -13,11 +13,9 @@ class CreateplanesTable extends Migration
      */
     public function up()
     {
-        Schema::create('planes', function (Blueprint $table) {
+        Schema::create('clausulas', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('plan');
-            $table->text('monto');
-            $table->text('informacion');
+            $table->string('clausulas');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +28,6 @@ class CreateplanesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('planes');
+        Schema::drop('clausulas');
     }
 }

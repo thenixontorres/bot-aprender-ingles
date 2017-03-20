@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreatecontratosTable extends Migration
+class CreatemunicipiosTable extends Migration
 {
 
     /**
@@ -13,13 +13,11 @@ class CreatecontratosTable extends Migration
      */
     public function up()
     {
-        Schema::create('contratos', function (Blueprint $table) {
+        Schema::create('municipios', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('fecha_inicio');
-            $table->text('tipo_contrato');
-            $table->integer('clausula_id');
-            $table->integer('plan_id');
-            $table->text('tiempo_pago');
+            $table->string('municipio');
+            $table->integer('estado_id')->unsigned();
+            $table->foreign('estado_id')->references('id')->on('estados');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +30,6 @@ class CreatecontratosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('contratos');
+        Schema::drop('municipios');
     }
 }

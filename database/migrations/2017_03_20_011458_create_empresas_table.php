@@ -16,8 +16,10 @@ class CreateempresasTable extends Migration
         Schema::create('empresas', function (Blueprint $table) {
             $table->increments('id');
             $table->text('nombre');
-            $table->integer('municipio_id');
-            $table->integer('contrato_id');
+            $table->integer('municipio_id')->unsigned();
+            $table->foreign('municipio_id')->references('id')->on('municipios');
+            $table->integer('contrato_id')->unsigned();
+            $table->foreign('contrato_id')->references('id')->on('contratos');
             $table->timestamps();
             $table->softDeletes();
         });

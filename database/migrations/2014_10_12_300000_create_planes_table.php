@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreatemodificacionsTable extends Migration
+class CreateplanesTable extends Migration
 {
 
     /**
@@ -13,11 +13,11 @@ class CreatemodificacionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('modificacions', function (Blueprint $table) {
+        Schema::create('planes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('contrato_id')->unsigned();
-            $table->foreign('contrato_id')->references('id')->on('contratos');
-            $table->string('observacion');
+            $table->string('plan');
+            $table->string('monto');
+            $table->string('informacion');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +30,6 @@ class CreatemodificacionsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('modificacions');
+        Schema::drop('planes');
     }
 }

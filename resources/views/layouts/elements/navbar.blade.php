@@ -19,9 +19,15 @@
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav navbar-right">
 	       @if(Auth::user())        
-            <li class="nav-li">
-                <a class="nav-li text-center" href="{{ route('contratos.index') }}" id="contratos">Contratos</a>
-            </li>
+            <li class="dropdown">
+                            <a href="a donde se quiere direccionar" class="dropdown-toggle" data-toggle="dropdown" role="button">Contratos
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Individual</a></li>
+                                <li><a href="#">Colectivo</a></li>
+                            </ul>
+                        </li>
             <li class="nav-li">
                 <a class="nav-li text-center" href="#" id="receptors">Rutas</a>
             </li>
@@ -35,7 +41,7 @@
                 <a class="nav-li text-center" href="# " id="users">Cierre</a>
             </li>
             <li>
-                <a href="{{ route('auth.logout') }}"> Salid del Sistema </a>
+                <a href="{{ route('auth.logout') }}"> Salir del Sistema </a>
             </li>
             @endif
             </ul>           

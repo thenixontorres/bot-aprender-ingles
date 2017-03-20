@@ -14,6 +14,11 @@
 
 Route::group(['middleware' => 'auth'], function () {
   
+    Route::get('/home', [
+        'uses'  => 'homeController@index',
+        'as'    => 'home',
+    ]);
+
     Route::resource('users', 'userController');
     Route::resource('personas', 'personaController');
     Route::resource('empresas', 'empresaController');
@@ -39,3 +44,8 @@ Route::get('/logout', [
    'as'    => 'auth.logout'
 ]);
 
+
+
+Route::resource('estados', 'estadoController');
+
+Route::resource('municipios', 'municipioController');

@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateclausulasTable extends Migration
+class CreateestadosTable extends Migration
 {
 
     /**
@@ -13,9 +13,9 @@ class CreateclausulasTable extends Migration
      */
     public function up()
     {
-        Schema::create('clausulas', function (Blueprint $table) {
+        Schema::create('estados', function (Blueprint $table) {
             $table->increments('id');
-            $table->text('clausulas');
+            $table->string('estado');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,6 +28,6 @@ class CreateclausulasTable extends Migration
      */
     public function down()
     {
-        Schema::drop('clausulas');
+        Schema::drop('estados');
     }
 }
