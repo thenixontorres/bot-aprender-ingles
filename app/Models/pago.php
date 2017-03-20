@@ -59,6 +59,11 @@ class pago extends Model
 
     protected $dates = ['deleted_at'];
 
+    //BelongsTo----------------------------------
+    public function contrato()
+    {
+        return $this->BelongsTo('App\Models\contrato');
+    }
 
     public $fillable = [
         'monto',

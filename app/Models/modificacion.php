@@ -46,6 +46,11 @@ class modificacion extends Model
 
     public $table = 'modificacions';
     
+    //BelongsTo----------------------------------
+    public function contrato()
+    {
+        return $this->BelongsTo('App\Models\contrato');
+    }
 
     protected $dates = ['deleted_at'];
 

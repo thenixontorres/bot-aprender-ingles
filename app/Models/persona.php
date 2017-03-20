@@ -79,6 +79,16 @@ class persona extends Model
 
     protected $dates = ['deleted_at'];
 
+    //BelongsTo----------------------------------
+    public function contrato()
+    {
+        return $this->BelongsTo('App\Models\contrato');
+    }
+
+    public function municipio()
+    {
+        return $this->BelongsTo('App\Models\municipio');
+    }
 
     public $fillable = [
         'nombre',

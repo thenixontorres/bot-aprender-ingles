@@ -49,6 +49,22 @@ class municipio extends Model
 
     protected $dates = ['deleted_at'];
 
+    //BelongsTo----------------------------------
+    public function estado()
+    {
+        return $this->BelongsTo('App\Models\estado');
+    }
+
+    //hasMany----------------------------------
+    public function personas()
+    {
+        return $this->hasMany('App\Models\persona');
+    }
+
+    public function empresas()
+    {
+        return $this->hasMany('App\Models\empresa');
+    }
 
     public $fillable = [
         'municipio',

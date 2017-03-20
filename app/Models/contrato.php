@@ -63,8 +63,40 @@ class contrato extends Model
     public $table = 'contratos';
     
 
+
     protected $dates = ['deleted_at'];
 
+    //BelongsTo----------------------------------
+    public function clausula()
+    {
+        return $this->BelongsTo('App\Models\clausula');
+    }
+    
+    public function planes()
+    {
+        return $this->BelongsTo('App\Models\planes');
+    }
+
+    //hasMany----------------------------------
+    public function personas()
+    {
+        return $this->hasMany('App\Models\persona');
+    }
+
+    public function empresas()
+    {
+        return $this->hasMany('App\Models\empresa');
+    }
+
+    public function pagos()
+    {
+        return $this->hasMany('App\Models\pago');
+    }
+
+    public function modificacions()
+    {
+        return $this->hasMany('App\Models\modificacion');
+    }
 
     public $fillable = [
         'fecha_inicio',

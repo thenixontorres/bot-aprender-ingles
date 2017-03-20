@@ -50,6 +50,11 @@ class planes extends Model
 
     public $table = 'planes';
     
+     //hasMany----------------------------------
+    public function contratos()
+    {
+        return $this->hasMany('App\Models\contrato');
+    }    
 
     protected $dates = ['deleted_at'];
 

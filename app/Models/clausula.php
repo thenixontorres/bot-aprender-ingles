@@ -43,6 +43,12 @@ class clausula extends Model
 
     protected $dates = ['deleted_at'];
 
+     //hasMany----------------------------------
+    public function contratos()
+    {
+        return $this->hasMany('App\Models\contrato');
+    }
+
 
     public $fillable = [
         'clausulas'

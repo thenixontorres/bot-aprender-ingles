@@ -41,6 +41,12 @@ class estado extends Model
     public $table = 'estados';
     
 
+    //hasMany----------------------------------
+    public function municipios()
+    {
+        return $this->hasMany('App\Models\municipio');
+    }
+
     protected $dates = ['deleted_at'];
 
 
