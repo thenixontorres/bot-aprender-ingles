@@ -153,12 +153,53 @@
             	@endforeach
             	</p>
             </div>
-            <!--de la tabla persona -->
+            <!-- Beneficiarios -->
             <div class="form-group col-sm-12">
                 <hr>
                 <br>
                 {!! Form::label('beneficiarios', 'Datos de los Beneficiarios') !!}
-            </div>	
+            </div>
+            @foreach($contrato->personas as $persona)
+                @if($persona->parentesco != 'Titular')
+                
+                <!-- Nombre Field -->
+                <div class="form-group col-sm-4">
+                    {!! Form::label('beneficiario', 'Beneficiario:') !!}
+                    <p> 
+                        {!! $persona->nombre.' '.$persona->apellido.' C.I: '.$persona->cedula !!}
+                    </p>
+                </div>
+                <!-- Sexo Field -->
+                <div class="form-group col-sm-4">
+                    {!! Form::label('sexo', 'Sexo:') !!}
+                    <p> 
+                        {!! $persona->sexo !!}
+                    </p>
+                </div>
+                <!-- parentesco Field -->
+                <div class="form-group col-sm-4">
+                    {!! Form::label('parentesco', 'Parentesco:') !!}
+                    <p> 
+                        {!! $persona->parentesco !!}
+                    </p>
+                </div>
+                <!-- Fecha Nac Field -->
+                <div class="form-group col-sm-4">
+                    {!! Form::label('fecha_nac', 'Fecha de Nacimiento:') !!}
+                    <p> 
+                        {!! $persona->fecha_nac !!}
+                    </p>
+                </div>
+
+                <!-- telefono Nac Field -->
+                <div class="form-group col-sm-4">
+                    {!! Form::label('telefono', 'Telefono:') !!}
+                    <p> 
+                        {!! $persona->telefono !!}
+                    </p>
+                </div>
+	            @endif 
+            @endforeach   
 		</div>
 	</div>
 </div>		
