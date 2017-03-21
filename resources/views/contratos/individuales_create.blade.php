@@ -186,6 +186,8 @@
 
             <!-- Tipo Contrato Field -->
                 {!! Form::hidden('tipo_contrato', 'Individual', ['class' => 'form-control']) !!}
+            <!-- estado Field -->
+                {!! Form::hidden('estado', 'Activo', ['class' => 'form-control']) !!}    
 
             <!-- Clausula Id Field -->
             <div class="form-group col-sm-6">

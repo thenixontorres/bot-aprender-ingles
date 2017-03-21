@@ -96,10 +96,11 @@ class persona extends Model
         'cedula',
         'sexo',
         'fecha_nac',
+        'parentesco',
+        'telefono',
         'municipio_id',
         'direccion',
-        'contrato',
-        'tipo_contrato'
+        'contrato_id',
     ];
 
     /**
@@ -113,9 +114,11 @@ class persona extends Model
         'cedula' => 'string',
         'sexo' => 'string',
         'fecha_nac' => 'string',
+        'parentesco' => 'string',
+        'telefono' => 'string',
         'municipio_id' => 'integer',
         'direccion' => 'string',
-        'tipo_contrato' => 'string'
+        'contrato_id' => 'integer'
     ];
 
     /**
@@ -131,7 +134,6 @@ class persona extends Model
         'fecha_nac' => 'required',
         'municipio_id' => 'required',
         'direccion' => 'required',
-        'contrato' => 'required',
-        'tipo_contrato' => 'required'
+        'contrato_id' => 'required',
     ];
 }

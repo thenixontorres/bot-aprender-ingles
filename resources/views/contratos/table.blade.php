@@ -1,20 +1,25 @@
 <table class="table table-responsive" id="contratos-table">
     <thead>
+        <th>Titular</th>
         <th>Fecha Inicio</th>
-        <th>Tipo Contrato</th>
-        <th>Clausula Id</th>
-        <th>Plan Id</th>
+        <th>Plan</th>
         <th>Tiempo Pago</th>
+        <th>Estado</th>
         <th colspan="3">Action</th>
     </thead>
     <tbody>
     @foreach($contratos as $contrato)
-        <tr>
+        <tr>  
+            @foreach($contrato->personas as $persona)
+                @if($persona->parentesco == 'Titular')
+                    <td>{!! $persona->nombre.' '.$persona->apellido.' '.$persona->cedula !!}</td>
+                @endif 
+            @endforeach
+            
             <td>{!! $contrato->fecha_inicio !!}</td>
-            <td>{!! $contrato->tipo_contrato !!}</td>
-            <td>{!! $contrato->clausula_id !!}</td>
-            <td>{!! $contrato->plan_id !!}</td>
+            <td>{!! $contrato->plan->plan !!}</td>
             <td>{!! $contrato->tiempo_pago !!}</td>
+            <td>{!! $contrato->estado !!}</td>
             <td>
                 {!! Form::open(['route' => ['contratos.destroy', $contrato->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

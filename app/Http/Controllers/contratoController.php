@@ -102,6 +102,7 @@ class contratoController extends InfyOmBaseController
             $contrato->clausula_id = $request->clausula_id;
             $contrato->plan_id = $request->plan_id;
             $contrato->tiempo_pago = $request->tiempo_pago;
+            $contrato->estado = 'Activo';
             $contrato->save();
 
             $contrato_id = $contrato->id;

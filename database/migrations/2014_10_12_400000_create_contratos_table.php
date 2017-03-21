@@ -22,6 +22,7 @@ class CreatecontratosTable extends Migration
             $table->integer('plan_id')->unsigned();
             $table->foreign('plan_id')->references('id')->on('planes');
             $table->string('tiempo_pago');
+            $table->string('estado');
             $table->timestamps();
             $table->softDeletes();
         });

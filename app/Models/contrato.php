@@ -72,7 +72,7 @@ class contrato extends Model
         return $this->BelongsTo('App\Models\clausula');
     }
     
-    public function planes()
+    public function plan()
     {
         return $this->BelongsTo('App\Models\planes');
     }
@@ -103,7 +103,8 @@ class contrato extends Model
         'tipo_contrato',
         'clausula_id',
         'plan_id',
-        'tiempo_pago'
+        'tiempo_pago',
+        'estado',
     ];
 
     /**
@@ -116,7 +117,8 @@ class contrato extends Model
         'tipo_contrato' => 'string',
         'clausula_id' => 'integer',
         'plan_id' => 'integer',
-        'tiempo_pago' => 'string'
+        'tiempo_pago' => 'string',
+        'estado' => 'string',
     ];
 
     /**
@@ -129,6 +131,7 @@ class contrato extends Model
         'tipo_contrato' => 'required',
         'clausula_id' => 'required',
         'plan_id' => 'required',
-        'tiempo_pago' => 'required'
+        'tiempo_pago' => 'required',
+        'estado' => 'required'
     ];
 }
