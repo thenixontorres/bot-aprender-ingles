@@ -42,5 +42,10 @@ class test extends Seeder
             'monto'  => '1000',
             'informacion'  => 'Descripcion del plan',
         ]);
+
+        DB::table('clausulas')->insert([
+            'nombre'     => 'Clausular estandar',
+            'clausulas'  => '/clausulas/estandar.pdf',
+        ]);
     }
 }

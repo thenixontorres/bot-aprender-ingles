@@ -15,7 +15,8 @@ use App\Models\contrato;
 use App\Models\estado;
 use App\Models\municipio;
 use App\Models\planes;
-
+use App\Models\clausula;
+use App\Models\persona;
 
 class contratoController extends InfyOmBaseController
 {
@@ -74,10 +75,12 @@ class contratoController extends InfyOmBaseController
         $estados = estado::all();
         $municipios = municipio::all();
         $planes = planes::all();
+        $clausulas = clausula::all();
         return view('contratos.individuales_create')
         ->with('planes', $planes)
         ->with('municipios', $municipios)
-        ->with('estados', $estados);
+        ->with('estados', $estados)
+        ->with('clausulas', $clausulas);
     }
 
     /**
@@ -91,11 +94,34 @@ class contratoController extends InfyOmBaseController
     {
         $input = $request->all();
 
-        $contrato = $this->contratoRepository->create($input);
+        if ($request->tipo_contrato == 'Individual'){
+            $contrato = new contrato();    
+            $contrato->fecha_inicio = $request->fecha_inicio;
+            $contrato->tipo_contrato = $request->tipo_contrato;
+            $contrato->fecha_inicio = $request->fecha_inicio;
+            $contrato->clausula_id = $request->clausula_id;
+            $contrato->plan_id = $request->plan_id;
+            $contrato->tiempo_pago = $request->tiempo_pago;
+            $contrato->save();
 
-        Flash::success('contrato saved successfully.');
+            $contrato_id = $contrato->id;
 
-        return redirect(route('contratos.index'));
+            $persona = new persona();
+            $persona->nombre = $request->nombre; 
+            $persona->apellido = $request->apellido;
+            $persona->cedula = $request->cedula; 
+            $persona->sexo = $request->sexo;        
+            $persona->fecha_nac = $request->fecha_nac; 
+            $persona->parentesco = 'Titular';
+            $persona->telefono = $request->telefono;
+            $persona->municipio_id = $request->municipio_id;         
+            $persona->direccion = $request->direccion;
+            $persona->contrato_id = $contrato_id;
+            $persona->save();         
+
+            Flash::success('Contrato Individual registrado con exito.');
+            return redirect()->route('contratos.individuales');
+            }
     }
 
     /**

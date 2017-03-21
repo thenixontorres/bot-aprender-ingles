@@ -1,5 +1,12 @@
 @extends('layouts.app')
-
+@section('title','Nuevo Contrato')
+@section('css')
+    <!-- jquery ui -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jqueryui/jquery-ui.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jqueryui/jquery-ui.structure.css') }}">
+    <!--chosen -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/chosen/chosen.css') }}">
+@endsection
 @section('content')
     <div class="col-md-12 panel">   
     <div class="row">
@@ -48,7 +55,7 @@
             <!-- Fecha Nac Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('fecha_nac', 'Fecha de Nacimiento:') !!}
-                {!! Form::text('fecha_nac', null, ['class' => 'form-control']) !!}
+                {!! Form::text('fecha_nac', null, ['class' => 'form-control','id' => 'fecha_nacimiento']) !!}
             </div>
 
             <!-- telefono Nac Field -->
@@ -72,7 +79,7 @@
             <!-- Municipio Id Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('municipio_id', 'Municipio:') !!}
-                <select class="form-control" name="estado_id">
+                <select class="form-control" name="municipio_id">
                     @foreach($municipios as $municipio)
                         <option value="{{ $municipio->id }}">
                              {{ $municipio->municipio }}   
@@ -146,7 +153,7 @@
                     </div>
                     <div class="row text-center">
                     <div class="form-group col-sm-3">
-                    <input class="form-control radio" type="radio" name="plan_id" value="$plan->id">
+                    <input class="form-control radio" type="radio" name="plan_id" value="{!! $plan->id !!}">
                     </div>
                     <div class="form-group col-sm-2">
                     <input class="form-control radio" type="radio" name="tiempo_pago" value="Mensual">
@@ -160,13 +167,13 @@
                     <div class="form-group col-sm-3">
                     </div>
                     </div>
+                    <hr>
                     </div>
                 @endforeach 
                 </div>
             </div>   
             <!--de la tabla contrato -->
             <div class="form-group col-sm-12">
-                <hr>
                 <br>
                 {!! Form::label('titular', 'Datos del contrato') !!}
             </div>
@@ -174,41 +181,49 @@
             <!-- Fecha Inicio Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('fecha_inicio', 'Fecha Inicio:') !!}
-                {!! Form::text('fecha_inicio', null, ['class' => 'form-control']) !!}
+                {!! Form::text('fecha_inicio', null, ['class' => 'form-control', 'id' => 'fecha_inicio']) !!}
             </div>
 
             <!-- Tipo Contrato Field -->
-            <div class="form-group col-sm-6">
-                {!! Form::label('tipo_contrato', 'Tipo Contrato:') !!}
-                {!! Form::text('tipo_contrato', null, ['class' => 'form-control']) !!}
-            </div>
+                {!! Form::hidden('tipo_contrato', 'Individual', ['class' => 'form-control']) !!}
 
             <!-- Clausula Id Field -->
             <div class="form-group col-sm-6">
-                {!! Form::label('clausula_id', 'Clausula Id:') !!}
-                {!! Form::text('clausula_id', null, ['class' => 'form-control']) !!}
-            </div>
-
-            <!-- Plan Id Field -->
-            <div class="form-group col-sm-6">
-                {!! Form::label('plan_id', 'Plan Id:') !!}
-                {!! Form::text('plan_id', null, ['class' => 'form-control']) !!}
-            </div>
-
-            <!-- Tiempo Pago Field -->
-            <div class="form-group col-sm-6">
-                {!! Form::label('tiempo_pago', 'Tiempo Pago:') !!}
-                {!! Form::text('tiempo_pago', null, ['class' => 'form-control']) !!}
+                {!! Form::label('clausula_id', 'Clausulas:') !!}
+                <select class="form-control" name="clausula_id">
+                    @foreach($clausulas as $clausula)
+                        <option value="{{ $clausula->id }}">
+                             {{ $clausula->nombre }}   
+                        </option>
+                    @endforeach
+                </select>
             </div>
 
             <!-- Submit Field -->
             <div class="form-group col-sm-12">
-                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{!! route('contratos.index') !!}" class="btn btn-default">Cancel</a>
+                {!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
+                <a href="{!! route('contratos.individuales') !!}" class="btn btn-default">Cancelar</a>
             </div>
 
 
         {!! Form::close() !!}
     </div>
      </div>
+@endsection
+@section('scripts')
+    <!--Jqueyui -->
+    <script src="{{ asset('plugins/jqueryui/jquery-ui.js') }}"></script>
+
+    <script type="text/javascript">
+          $(function() {
+            $( "#fecha_inicio" ).datepicker({
+                dateFormat: "dd/mm/yy",
+            });
+          });
+          $(function() {
+            $( "#fecha_nacimiento" ).datepicker({
+                dateFormat: "dd/mm/yy",
+            });
+          });
+    </script>      
 @endsection
