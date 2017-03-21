@@ -67,7 +67,7 @@
             <div class="form-group col-sm-12">
                 <hr>
                 <br>
-                {!! Form::label('titular', 'Datos del titular') !!}
+                {!! Form::label('titular', 'Datos del Titular') !!}
             </div>
 
             <!-- Nombre Field -->
@@ -152,6 +152,12 @@
                 @endif 
             	@endforeach
             	</p>
+            </div>
+            <!--de la tabla persona -->
+            <div class="form-group col-sm-12">
+                <hr>
+                <br>
+                {!! Form::label('beneficiarios', 'Datos de los Beneficiarios') !!}
             </div>	
 		</div>
 	</div>

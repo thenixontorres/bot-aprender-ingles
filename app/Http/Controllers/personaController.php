@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Models\persona;
+use App\Models\contrato;
 
 class personaController extends InfyOmBaseController
 {
@@ -58,11 +60,24 @@ class personaController extends InfyOmBaseController
     {
         $input = $request->all();
 
-        $persona = $this->personaRepository->create($input);
+        $titular = persona::where('contrato_id',$request->contrato_id)->where('parentesco','Titular')->get();
+        $titular = $titular->first();
 
-        Flash::success('persona saved successfully.');
+        $persona = new persona();
+            $persona->nombre = $request->nombre; 
+            $persona->apellido = $request->apellido;
+            $persona->cedula = $request->cedula; 
+            $persona->sexo = $request->sexo;        
+            $persona->fecha_nac = $request->fecha_nac; 
+            $persona->parentesco = $request->parentesco;
+            $persona->telefono = $request->telefono;
+            $persona->municipio_id = $titular->municipio_id;
+            $persona->direccion = $titular->direccion;
+            $persona->contrato_id = $request->contrato_id;
+            $persona->save();    
+        Flash::success('Beneficiario Registrado con exito.');
 
-        return redirect(route('personas.index'));
+        return redirect()->back();
     }
 
     /**

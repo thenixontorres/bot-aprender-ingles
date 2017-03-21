@@ -132,8 +132,6 @@ class persona extends Model
         'cedula' => 'required',
         'sexo' => 'required',
         'fecha_nac' => 'required',
-        'municipio_id' => 'required',
-        'direccion' => 'required',
         'contrato_id' => 'required',
     ];
 }

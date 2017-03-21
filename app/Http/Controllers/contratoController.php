@@ -38,18 +38,25 @@ class contratoController extends InfyOmBaseController
     {
         $this->contratoRepository->pushCriteria(new RequestCriteria($request));
         $contratos = $this->contratoRepository->all();
-
+        $estados = estado::all();
+        $municipios = municipio::all();
 
         return view('contratos.index')
-            ->with('contratos', $contratos);
+        ->with('municipios', $municipios)
+        ->with('estados', $estados)
+        ->with('contratos', $contratos);
     }
 
     public function individuales(Request $request)
     {
         $contratos = contrato::where('tipo_contrato','Individual')->get();
+        $estados = estado::all();
+        $municipios = municipio::all();
         
         return view('contratos.index')
-            ->with('contratos', $contratos);
+        ->with('municipios', $municipios)
+        ->with('estados', $estados)
+        ->with('contratos', $contratos);
     }
 
     public function colectivos(Request $request)
