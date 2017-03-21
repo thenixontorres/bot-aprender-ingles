@@ -137,12 +137,16 @@ class contratoController extends InfyOmBaseController
         $contrato = $this->contratoRepository->findWithoutFail($id);
 
         if (empty($contrato)) {
-            Flash::error('contrato not found');
+            Flash::error('Contrato no encontrado');
 
-            return redirect(route('contratos.index'));
+            return redirect()->back();
         }
 
-        return view('contratos.show')->with('contrato', $contrato);
+        if ($contrato->tipo_contrato == 'Individual'){
+        return view('contratos.individuales_show')->with('contrato', $contrato);    
+        }else{
+        return view('contratos.colectivos_show')->with('contrato', $contrato);
+        }
     }
 
     /**

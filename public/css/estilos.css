@@ -45,10 +45,7 @@ a:hover{
   width: 300px;
 }
 .navbar-inverse {
-   color: #fff;
-   background-color: #222;
-    border-color: #080808;
-   border-radius: 0px;
+ border-radius: 0px;
 }
 
 .footer{
@@ -98,8 +95,8 @@ a:hover{
 }
 
 .navbar-nav > li:hover {
-  background-color: #9B0303;
-  border-color: #9B0303;
+  background-color: #050505;
+  border-color: #050505;
 
 }
 
