@@ -19,29 +19,41 @@
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav navbar-right">
 	       @if(Auth::user())        
-            <li class="dropdown">
-                            <a href="a donde se quiere direccionar" class="dropdown-toggle" data-toggle="dropdown" role="button">Contratos
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ route('contratos.individuales') }}">Ver Contratos Individuales</a></li>
-                                <li><a href="{{ route('contratos.colectivos') }}">Ver Contratos Colectivos</a></li>
-                                <li><a href="{{ route('contratos.individuales_create') }}">Registrar Contratos Individuales</a></li>
-                                <li><a href="{{ route('contratos.create') }}">Registrar Contratos Colectivos</a></li>
-                            </ul>
-                        </li>
-            <li class="nav-li">
+        <li class="dropdown">
+            <a href="·
+            #" class="dropdown-toggle" data-toggle="dropdown" role="button">Contratos
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="{{ route('contratos.individuales') }}">Ver Contratos Individuales</a></li>
+                <li><a href="{{ route('contratos.colectivos') }}">Ver Contratos Colectivos</a></li>
+                <li><a href="{{ route('contratos.individuales_create') }}">Registrar Contratos Individuales</a></li>
+                <li><a href="{{ route('contratos.create') }}">Registrar Contratos Colectivos</a></li>
+            </ul>
+        </li>
+        <li class="nav-li">
                 <a class="nav-li text-center" href="#" id="receptors">Rutas</a>
             </li>
             <li class="nav-li">
                 <a class="nav-li text-center" href="#" id="giros">Giros</a>
             </li>
             <li class="nav-li">
-                <a class="nav-li text-center" href="# " id="users">Opciones Avanzadas</a>
-            </li>
-            <li class="nav-li">
                 <a class="nav-li text-center" href="# " id="users">Cierre</a>
             </li>
+             
+            <li class="dropdown">
+            <a href="·
+            #" class="dropdown-toggle" data-toggle="dropdown" role="button">Opciones Avanzadas
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <!-- <li><a href="{{ route('clausulas.index') }}">Clausulas</a></li> -->
+                <li><a href="{{ route('estados.index') }}">Estados</a></li>
+                <li><a href="{{ route('municipios.index') }}">Municipios</a></li>
+                <li><a href="{{ route('planes.index') }}">Planes</a></li>
+                <li><a href="{{ route('planes.index') }}">Personas</a></li>
+            </ul>
+        </li>
             <li>
                 <a href="{{ route('auth.logout') }}"> Salir del Sistema </a>
             </li>

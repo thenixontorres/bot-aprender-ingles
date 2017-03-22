@@ -60,7 +60,7 @@ class estadoController extends InfyOmBaseController
 
         $estado = $this->estadoRepository->create($input);
 
-        Flash::success('estado saved successfully.');
+        Flash::success('Estado registrado con exito.');
 
         return redirect(route('estados.index'));
     }
@@ -97,7 +97,7 @@ class estadoController extends InfyOmBaseController
         $estado = $this->estadoRepository->findWithoutFail($id);
 
         if (empty($estado)) {
-            Flash::error('estado not found');
+            Flash::error('Estado editado con exito.');
 
             return redirect(route('estados.index'));
         }
