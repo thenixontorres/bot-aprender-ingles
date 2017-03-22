@@ -3,7 +3,7 @@
         <th>Plan</th>
         <th>Monto</th>
         <th>Informacion</th>
-        <th colspan="3">Action</th>
+        <th colspan="3">Accion</th>
     </thead>
     <tbody>
     @foreach($planes as $planes)
@@ -14,9 +14,7 @@
             <td>
                 {!! Form::open(['route' => ['planes.destroy', $planes->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
-                    <a href="{!! route('planes.show', [$planes->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
                     <a href="{!! route('planes.edit', [$planes->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-                    {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
                 </div>
                 {!! Form::close() !!}
             </td>

@@ -11,13 +11,13 @@
 </div>
 
 <!-- Informacion Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-12">
     {!! Form::label('informacion', 'Informacion:') !!}
-    {!! Form::text('informacion', null, ['class' => 'form-control']) !!}
+    {!! Form::textarea('informacion', null, ['class' => 'form-control']) !!}
 </div>
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('planes.index') !!}" class="btn btn-default">Cancel</a>
+    {!! Form::submit('Registrar', ['class' => 'btn btn-primary']) !!}
+    <a href="{!! route('planes.index') !!}" class="btn btn-default">Cancelar</a>
 </div>

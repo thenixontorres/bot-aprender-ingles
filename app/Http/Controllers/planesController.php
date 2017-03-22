@@ -60,7 +60,7 @@ class planesController extends InfyOmBaseController
 
         $planes = $this->planesRepository->create($input);
 
-        Flash::success('planes saved successfully.');
+        Flash::success('Plan registrado con exito.');
 
         return redirect(route('planes.index'));
     }
@@ -97,7 +97,7 @@ class planesController extends InfyOmBaseController
         $planes = $this->planesRepository->findWithoutFail($id);
 
         if (empty($planes)) {
-            Flash::error('planes not found');
+            Flash::error('Plan not found');
 
             return redirect(route('planes.index'));
         }
@@ -118,14 +118,14 @@ class planesController extends InfyOmBaseController
         $planes = $this->planesRepository->findWithoutFail($id);
 
         if (empty($planes)) {
-            Flash::error('planes not found');
+            Flash::error('Plan no encontrado.');
 
             return redirect(route('planes.index'));
         }
 
         $planes = $this->planesRepository->update($request->all(), $id);
 
-        Flash::success('planes updated successfully.');
+        Flash::success('Plan actualizado con exito.');
 
         return redirect(route('planes.index'));
     }
