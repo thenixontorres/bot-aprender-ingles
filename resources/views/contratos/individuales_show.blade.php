@@ -2,9 +2,11 @@
 @section('title','Contratos Individuales')
 @section('content')
 <div class="col-md-12 panel">   
-    <div class="row border">
+    <div class="row border gray">
+        <strong>
         <div class="col-md-2">SECCION "A"</div>
         <div class="col-md-10 text-right">IDENTIFICACION TITULAR Y GRUPO FAMILIAR</div>
+        </strong>
     </div>
     <br>
     <div class="row ">
@@ -75,9 +77,11 @@
         <?php $i++; ?>
         @endforeach       
     <br>  
-    <div class="row border">
+    <div class="row border gray">
+        <strong>
         <div class="col-md-2">SECCION "B"</div>
         <div class="col-md-10 text-right">COMPONENTES DE CADA SERVICIO Y COBERTURA TERRITORIAL</div>
+        </strong>
     </div>
     <br>
     <div class="row ">
@@ -94,9 +98,11 @@
         @endforeach
     </div>
     <br>
-     <div class="row border">
+     <div class="row border gray">
+        <strong>
         <div class="col-md-2">SECCION "C"</div>
         <div class="col-md-10 text-right">COMPONENTES Y CONDICIONES DE PAGO</div>
+        </strong>
     </div>
     <br>
     <div class="row ">

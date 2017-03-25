@@ -173,14 +173,30 @@ class contratoController extends InfyOmBaseController
     public function edit($id)
     {
         $contrato = $this->contratoRepository->findWithoutFail($id);
+        $estados = estado::all();
+        $municipios = municipio::all();
+        $planes = planes::all();
+        $clausulas = clausula::all();
 
         if (empty($contrato)) {
-            Flash::error('contrato not found');
+            Flash::error('Contrato no encontrado.');
 
-            return redirect(route('contratos.index'));
+            return redirect()->back();
         }
 
-        return view('contratos.edit')->with('contrato', $contrato);
+        if ($contrato->tipo_contrato == "Individual") {
+            return view('contratos.individuales_edit')->with('contrato', $contrato)
+            ->with('planes', $planes)
+            ->with('municipios', $municipios)
+            ->with('estados', $estados)
+            ->with('clausulas', $clausulas);   
+        }else{
+            return view('contratos.colectivos_edit')->with('contrato', $contrato)
+            ->with('planes', $planes)
+            ->with('municipios', $municipios)
+            ->with('estados', $estados)
+            ->with('clausulas', $clausulas);
+        }
     }
 
     /**
@@ -196,16 +212,26 @@ class contratoController extends InfyOmBaseController
         $contrato = $this->contratoRepository->findWithoutFail($id);
 
         if (empty($contrato)) {
-            Flash::error('contrato not found');
+            Flash::error('Contrato no encontrado');
 
-            return redirect(route('contratos.index'));
+            return redirect()->back();
         }
 
-        $contrato = $this->contratoRepository->update($request->all(), $id);
+        $contrato->numero = $request->numero; 
+        $contrato->monto_inicial = $request->monto_inicial;
+        $contrato->fecha_inicio = $request->fecha_inicio;
+        $contrato->clausula_id = $request->clausula_id;
+        $contrato->tiempo_pago = $request->tiempo_pago;
+        $contrato->estado = $request->estado;
+        $contrato->save();
 
-        Flash::success('contrato updated successfully.');
-
-        return redirect(route('contratos.index'));
+        if ($contrato->tipo_contrato == "Individual") {
+            Flash::success('Contrato actualizado con exito.');
+            return redirect(route('contratos.individuales'));
+        }else{
+            Flash::success('Contrato actualizado con exito.');
+            return redirect(route('contratos.colectivos'));
+        }
     }
 
     /**
