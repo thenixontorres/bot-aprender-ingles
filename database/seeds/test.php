@@ -24,6 +24,7 @@ class test extends Seeder
             'municipio'     => 'Independencia',
             'estado_id'  => '1',
         ]);
+       
 
         DB::table('planes')->insert([
             'plan'     => 'Oro',
@@ -42,6 +43,36 @@ class test extends Seeder
             'monto'  => '1000',
             'informacion'  => 'Descripcion del plan',
         ]);
+
+         DB::table('componentes')->insert([
+            'componente'     => 'Servicio Funerario',
+            'plan_id'  => '1',
+        ]); 
+
+        DB::table('componentes')->insert([
+            'componente'     => 'Traslado Local',
+            'plan_id'  => '1',
+        ]);  
+
+        DB::table('componentes')->insert([
+            'componente'     => 'Servicio Funerario',
+            'plan_id'  => '2',
+        ]); 
+
+        DB::table('componentes')->insert([
+            'componente'     => 'Traslado Local',
+            'plan_id'  => '2',
+        ]);         
+
+        DB::table('componentes')->insert([
+            'componente'     => 'Servicio Funerario',
+            'plan_id'  => '3',
+        ]); 
+
+        DB::table('componentes')->insert([
+            'componente'     => 'Traslado Local',
+            'plan_id'  => '3',
+        ]);  
 
         DB::table('clausulas')->insert([
             'nombre'     => 'Clausular estandar',

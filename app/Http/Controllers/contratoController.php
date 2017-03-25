@@ -100,10 +100,17 @@ class contratoController extends InfyOmBaseController
     public function store(CreatecontratoRequest $request)
     {
         $input = $request->all();
-
+        $planes = planes::where('id', $request->plan_id)->get();
+        $plan = $planes->first();
+        //el monto se guarda como string para que no cambie al editar el monto del plan
+        $monto_total = $plan->monto;  
         if ($request->tipo_contrato == 'Individual'){
             $contrato = new contrato();    
+            $contrato->numero = $request->numero;
+            $contrato->monto_inicial = $request->monto_inicial;
+            $contrato->monto_total = $monto_total;
             $contrato->fecha_inicio = $request->fecha_inicio;
+            $contrato->fecha_vencimiento = $request->fecha_vencimiento;
             $contrato->tipo_contrato = $request->tipo_contrato;
             $contrato->fecha_inicio = $request->fecha_inicio;
             $contrato->clausula_id = $request->clausula_id;

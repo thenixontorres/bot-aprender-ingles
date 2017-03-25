@@ -178,10 +178,28 @@
                 {!! Form::label('titular', 'Datos del contrato') !!}
             </div>
 
-            <!-- Fecha Inicio Field -->
+            <!-- Numero Field -->
             <div class="form-group col-sm-6">
+                {!! Form::label('numero', 'Numero de contrato:') !!}
+                {!! Form::text('numero', null, ['class' => 'form-control']) !!}
+            </div>
+
+            <!-- Monto Inicial Field -->
+            <div class="form-group col-sm-6">
+                {!! Form::label('monto_inicial', 'Monto Inicial:') !!}
+                {!! Form::text('monto_inicial', null, ['class' => 'form-control']) !!}
+            </div>
+
+            <!-- Fecha Inicio Field -->
+            <div class="form-group col-sm-4">
                 {!! Form::label('fecha_inicio', 'Fecha Inicio:') !!}
                 {!! Form::text('fecha_inicio', null, ['class' => 'form-control', 'id' => 'fecha_inicio']) !!}
+            </div>
+
+            <!-- Fecha Vencimiento Field -->
+            <div class="form-group col-sm-4">
+                {!! Form::label('fecha_vencimiento', 'Fecha Vencimiento:') !!}
+                {!! Form::text('fecha_vencimiento', null, ['class' => 'form-control', 'id' => 'fecha_vencimiento']) !!}
             </div>
 
             <!-- Tipo Contrato Field -->
@@ -190,7 +208,7 @@
                 {!! Form::hidden('estado', 'Activo', ['class' => 'form-control']) !!}    
 
             <!-- Clausula Id Field -->
-            <div class="form-group col-sm-6">
+            <div class="form-group col-sm-4">
                 {!! Form::label('clausula_id', 'Clausulas:') !!}
                 <select class="form-control" name="clausula_id">
                     @foreach($clausulas as $clausula)
@@ -219,6 +237,11 @@
     <script type="text/javascript">
           $(function() {
             $( "#fecha_inicio" ).datepicker({
+                dateFormat: "dd/mm/yy",
+            });
+          });
+          $(function() {
+            $( "#fecha_vencimiento" ).datepicker({
                 dateFormat: "dd/mm/yy",
             });
           });

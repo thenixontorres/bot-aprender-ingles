@@ -5,6 +5,7 @@
         <h1 class="pull-left">Contratos</h1>
         <table class="table table-responsive" id="contratos-table">
     <thead>
+        <th>Numero</th>
         <th>Titular</th>
         <th>Beneficiarios</th>
         <th>Fecha Inicio</th>
@@ -16,6 +17,9 @@
     <tbody>
     @foreach($contratos as $contrato)
         <tr>  
+            <td>
+                {!! $contrato->numero !!}
+            </td>
             @foreach($contrato->personas as $persona)
                 @if($persona->parentesco == 'Titular')
                     <td>{!! $persona->nombre.' '.$persona->apellido.' '.$persona->cedula !!}</td>
