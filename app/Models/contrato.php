@@ -99,10 +99,14 @@ class contrato extends Model
     }
 
     public $fillable = [
+        'numero',
         'fecha_inicio',
+        'fecha_vencimiento',
         'tipo_contrato',
         'clausula_id',
         'plan_id',
+        'monto_total',
+        'monto_inicial',
         'tiempo_pago',
         'estado',
     ];
@@ -113,10 +117,14 @@ class contrato extends Model
      * @var array
      */
     protected $casts = [
+        'numero' => 'string',
         'fecha_inicio' => 'string',
+        'fecha_vencimiento' => 'string',
         'tipo_contrato' => 'string',
         'clausula_id' => 'integer',
         'plan_id' => 'integer',
+        'monto_total' => 'string',
+        'monto_inicial' => 'string',
         'tiempo_pago' => 'string',
         'estado' => 'string',
     ];

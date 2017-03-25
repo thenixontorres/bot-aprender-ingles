@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @SWG\Definition(
- *      definition="planes",
- *      required={"plan", "monto", "informacion"},
+ *      definition="componente",
+ *      required={"componete", "plan_id"},
  *      @SWG\Property(
  *          property="id",
  *          description="id",
@@ -16,19 +16,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *          format="int32"
  *      ),
  *      @SWG\Property(
- *          property="plan",
- *          description="plan",
+ *          property="componete",
+ *          description="componete",
  *          type="string"
  *      ),
  *      @SWG\Property(
- *          property="monto",
- *          description="monto",
- *          type="string"
- *      ),
- *      @SWG\Property(
- *          property="informacion",
- *          description="informacion",
- *          type="string"
+ *          property="plan_id",
+ *          description="plan_id",
+ *          type="integer",
+ *          format="int32"
  *      ),
  *      @SWG\Property(
  *          property="created_at",
@@ -44,30 +40,25 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *      )
  * )
  */
-class planes extends Model
+class componente extends Model
 {
     use SoftDeletes;
 
-    public $table = 'planes';
+    public $table = 'componentes';
     
-     //hasMany----------------------------------
-    public function contratos()
-    {
-        return $this->hasMany('App\Models\contrato');
-    }  
 
-    public function componentes()
+    //BelongsTo----------------------------------
+    public function contrato()
     {
-        return $this->hasMany('App\Models\componente');
-    }   
+        return $this->BelongsTo('App\Models\contrato');
+    }
 
     protected $dates = ['deleted_at'];
 
 
     public $fillable = [
-        'plan',
-        'monto',
-        'informacion'
+        'componente',
+        'plan_id'
     ];
 
     /**
@@ -76,9 +67,8 @@ class planes extends Model
      * @var array
      */
     protected $casts = [
-        'plan' => 'string',
-        'monto' => 'string',
-        'informacion' => 'string'
+        'componente' => 'string',
+        'plan_id' => 'integer'
     ];
 
     /**
@@ -87,8 +77,7 @@ class planes extends Model
      * @var array
      */
     public static $rules = [
-        'plan' => 'required',
-        'monto' => 'required',
-        'informacion' => 'required'
+        'componente' => 'required',
+        'plan_id' => 'required'
     ];
 }

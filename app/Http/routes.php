@@ -61,3 +61,5 @@ Route::get('/logout', [
 Route::resource('estados', 'estadoController');
 
 Route::resource('municipios', 'municipioController');
+
+Route::resource('componentes', 'componenteController');
