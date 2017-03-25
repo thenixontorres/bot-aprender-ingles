@@ -1,209 +1,154 @@
-@extends('layouts.app')
+@extends('layouts.doc')
 @section('title','Contratos Individuales')
 @section('content')
 <div class="col-md-12 panel">   
-    <div class="row">
-        <div class="col-sm-12">
-     		<!--de la tabla contrato -->
-            <div class="form-group col-sm-12">
-                <hr>
-                <br>
-                {!! Form::label('contrato', 'Datos del contrato') !!}
-            </div>
-			
-
-			<!-- Created At Field -->
-			<div class="form-group col-sm-3">
-			    {!! Form::label('fecha_gestion', 'Fecha de Gestion:') !!}
-			    <p>{!! $contrato->created_at !!}</p>
-			</div>
-
-			<!-- Fecha Inicio Field -->
-			<div class="form-group col-sm-3">
-			    {!! Form::label('fecha_inicio', 'Fecha Inicio:') !!}
-			    <p>{!! $contrato->fecha_inicio !!}</p>
-			</div>
-
-			<!-- Tipo Contrato Field -->
-			<div class="form-group col-sm-3">
-			    {!! Form::label('tipo_contrato', 'Tipo de Contrato:') !!}
-			    <p>{!! $contrato->tipo_contrato !!}</p>
-			</div>
-
-			<!-- estado Contrato Field -->
-			<div class="form-group col-sm-3">
-			    {!! Form::label('estado', 'Estado del Contrato:') !!}
-			    <p>{!! $contrato->estado !!}</p>
-			</div>
-
-			<!--de la tabla planes -->
-            <div class="form-group col-sm-12">
-                <hr>
-                <br>
-                {!! Form::label('plan', 'Datos del plan') !!}
-            </div>
-            <!-- plan Id Field -->
-            <div class="form-group col-sm-4">
-                {!! Form::label('plan', 'Plan:') !!}
-                <p> 
-                    {!! $contrato->plan->plan !!}
-                </p>
-            </div>
-			
-			<!-- plan monto -->
-            <div class="form-group col-sm-4">
-                {!! Form::label('plan', 'Monto:') !!}
-                <p> 
-                    {!! $contrato->plan->monto !!}
-                </p>
-            </div>
-
-			<!-- Tiempo Pago Field -->
-			<div class="form-group col-sm-4">
-			    {!! Form::label('tiempo_pago', 'Tiempo Pago:') !!}
-			    <p>{!! $contrato->tiempo_pago !!}</p>
-			</div>
-        	<!--de la tabla persona -->
-            <div class="form-group col-sm-12">
-                <hr>
-                <br>
-                {!! Form::label('titular', 'Datos del Titular') !!}
-            </div>
-
-            <!-- Nombre Field -->
-            <div class="form-group col-sm-4">
-                {!! Form::label('titular', 'Titular:') !!}
-                <p> 
-                @foreach($contrato->personas as $persona)
+    <div class="row border">
+        <div class="col-md-2">SECCION "A"</div>
+        <div class="col-md-10 text-right">IDENTIFICACION TITULAR Y GRUPO FAMILIAR</div>
+    </div>
+    <br>
+    <div class="row ">
+        <div class="col-md-2 border">Titular:</div>
+        <div class="col-md-6 border">
+        @foreach($contrato->personas as $persona)
+            @if($persona->parentesco == 'Titular')
+                {!! $persona->nombre.' '.$persona->apellido !!}
+            @endif 
+        @endforeach    
+        </div>
+        <div class="col-md-2 border">Cedula:</div>
+        <div class="col-md-2 border">@foreach($contrato->personas as $persona)
                 @if($persona->parentesco == 'Titular')
-                    {!! $persona->nombre.' '.$persona->apellido.' C.I: '.$persona->cedula !!}
+                    {!! $persona->cedula !!}
                 @endif 
-            	@endforeach
-            	</p>
-            </div>
-
-            <!-- Sexo Field -->
-            <div class="form-group col-sm-4">
-                {!! Form::label('sexo', 'Sexo:') !!}
-                <p> 
-                @foreach($contrato->personas as $persona)
-                @if($persona->parentesco == 'Titular')
-                    {!! $persona->sexo !!}
-                @endif 
-            	@endforeach
-            	</p>
-            </div>
-   
-            <!-- Fecha Nac Field -->
-            <div class="form-group col-sm-4">
-                {!! Form::label('fecha_nac', 'Fecha de Nacimiento:') !!}
-                <p> 
-                @foreach($contrato->personas as $persona)
+        @endforeach</div>
+    </div>
+    <div class="row ">
+        <div class="col-md-2 border">Fecha de Nacimiento:</div>
+        <div class="col-md-2 border">
+        @foreach($contrato->personas as $persona)
                 @if($persona->parentesco == 'Titular')
                     {!! $persona->fecha_nac !!}
                 @endif 
-            	@endforeach
-            	</p>
-            </div>
-
-            <!-- telefono Nac Field -->
-            <div class="form-group col-sm-4">
-                {!! Form::label('telefono', 'Telefono:') !!}
-                <p> 
-                @foreach($contrato->personas as $persona)
+        @endforeach
+        </div>
+        <div class="col-md-2 border">Edad:</div>
+        <div class="col-md-2 border"> --- </div>
+        <div class="col-md-2 border">Tlf Habitacion:</div>
+        <div class="col-md-2 border">
+        @foreach($contrato->personas as $persona)
                 @if($persona->parentesco == 'Titular')
                     {!! $persona->telefono !!}
                 @endif 
-            	@endforeach
-            	</p>
-            </div>
-
-            <!-- Estado Id Field -->
-            <div class="form-group col-sm-4">
-                {!! Form::label('estado_id', 'Estado:') !!}
-                <p> 
-                @foreach($contrato->personas as $persona)
+        @endforeach
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-md-4 border">Direccion de Habitacion:</div>
+        <div class="col-md-8 border">
+        @foreach($contrato->personas as $persona)
                 @if($persona->parentesco == 'Titular')
-                    {!! $persona->municipio->estado->estado !!}
+                    {!! 'Estado '.$persona->municipio->estado->estado.', Municipio '.$persona->municipio->municipio.', '.$persona->direccion !!}
                 @endif 
-            	@endforeach
-            	</p>
+        @endforeach
+        </div>
+    </div>
+    <br>
+    <div class="row ">
+        <div class="col-md-1 border">N°</div>
+        <div class="col-md-4 border"> Beneficiarios </div>
+        <div class="col-md-2 border">Cedula  </div>
+        <div class="col-md-1 border">Edad</div>
+        <div class="col-md-2 border">Parentesco </div>
+        <div class="col-md-2 border">Fecha nac </div>
+    </div>
+    <?php $i=1; ?>
+        @foreach($contrato->personas as $persona)
+     <div class="row ">
+        <div class="col-md-1 border"> {!! $i !!} </div>
+        <div class="col-md-4 border"> {!! $persona->nombre.' '.$persona->apellido !!} </div>
+        <div class="col-md-2 border"> {!! $persona->cedula!!}  </div>
+        <div class="col-md-1 border"> --- </div>
+        <div class="col-md-2 border">{!! $persona->parentesco !!} </div>
+        <div class="col-md-2 border">{!! $persona->fecha_nac !!} </div>
+    </div>
+        <?php $i++; ?>
+        @endforeach       
+    <br>  
+    <div class="row border">
+        <div class="col-md-2">SECCION "B"</div>
+        <div class="col-md-10 text-right">COMPONENTES DE CADA SERVICIO Y COBERTURA TERRITORIAL</div>
+    </div>
+    <br>
+    <div class="row ">
+        <div class="col-md-4 border">Plan:</div>
+        <div class="col-md-8 border">
+        {!! $contrato->plan->plan !!}
+        </div>
+    </div>
+     <div class="row border">
+        @foreach($contrato->plan->componentes as $componente)
+            <div class="col-md-6">
+            <p>{!! $componente->componente !!}</p>
             </div>
-
-            <!-- Municipio Id Field -->
-            <div class="form-group col-sm-4">
-                {!! Form::label('municipio_id', 'Municipio:') !!}
-                <p> 
-                @foreach($contrato->personas as $persona)
-                @if($persona->parentesco == 'Titular')
-                    {!! $persona->municipio->municipio !!}
-                @endif 
-            	@endforeach
-            	</p>
-            </div>
-
-            <!-- Direccion Field -->
-            <div class="form-group col-sm-12">
-                <p> 
-                {!! Form::label('direccion', 'Direccion:') !!}
-                @foreach($contrato->personas as $persona)
-                @if($persona->parentesco == 'Titular')
-                    {!! $persona->direccion !!}
-                @endif 
-            	@endforeach
-            	</p>
-            </div>
-            <!-- Beneficiarios -->
-            <div class="form-group col-sm-12">
-                <hr>
-                <br>
-                {!! Form::label('beneficiarios', 'Datos de los Beneficiarios') !!}
-            </div>
-            @foreach($contrato->personas as $persona)
-                @if($persona->parentesco != 'Titular')
-                
-                <!-- Nombre Field -->
-                <div class="form-group col-sm-4">
-                    {!! Form::label('beneficiario', 'Beneficiario:') !!}
-                    <p> 
-                        {!! $persona->nombre.' '.$persona->apellido.' C.I: '.$persona->cedula !!}
-                    </p>
-                </div>
-                <!-- Sexo Field -->
-                <div class="form-group col-sm-4">
-                    {!! Form::label('sexo', 'Sexo:') !!}
-                    <p> 
-                        {!! $persona->sexo !!}
-                    </p>
-                </div>
-                <!-- parentesco Field -->
-                <div class="form-group col-sm-4">
-                    {!! Form::label('parentesco', 'Parentesco:') !!}
-                    <p> 
-                        {!! $persona->parentesco !!}
-                    </p>
-                </div>
-                <!-- Fecha Nac Field -->
-                <div class="form-group col-sm-4">
-                    {!! Form::label('fecha_nac', 'Fecha de Nacimiento:') !!}
-                    <p> 
-                        {!! $persona->fecha_nac !!}
-                    </p>
-                </div>
-
-                <!-- telefono Nac Field -->
-                <div class="form-group col-sm-4">
-                    {!! Form::label('telefono', 'Telefono:') !!}
-                    <p> 
-                        {!! $persona->telefono !!}
-                    </p>
-                </div>
-	            @endif 
-            @endforeach   
-		</div>
-	</div>
+        @endforeach
+    </div>
+    <br>
+     <div class="row border">
+        <div class="col-md-2">SECCION "C"</div>
+        <div class="col-md-10 text-right">COMPONENTES Y CONDICIONES DE PAGO</div>
+    </div>
+    <br>
+    <div class="row ">
+        <div class="col-md-2 border">Monto Total:</div>
+        <div class="col-md-1 border">Cuotas</div>
+        <div class="col-md-2 border">Cuota {!! $contrato->tiempo_pago !!}</div>
+        <div class="col-md-2 border">Fecha Emision</div>
+        <div class="col-md-2 border">Fecha Vencimiento:</div>
+        <div class="col-md-1 border">Afiliados</div>
+        <div class="col-md-2 border">Dir Cobro</div>
+    </div>
+    <div class="row ">
+        <div class="col-md-2 border">{!! $contrato->monto_total !!}</div>
+        <div class="col-md-1 border">
+        <?php  
+        if($contrato->tiempo_pago == "Quincenal"){
+            $cuotas = 24;
+        }elseif($contrato->tiempo_pago == "Semanal"){
+            $cuotas = 12;
+         }else{
+            $cuotas = 6;
+         }      
+         ?>
+        {!! $cuotas!!}</div>
+        <div class="col-md-2 border">
+        <?php 
+        $cuota_mensual = $contrato->monto_total/$cuotas;
+        $cuota_mensual= number_format($cuota_mensual,'2',',',' ');
+        ?>    
+        {!! $cuota_mensual !!}</div>
+        <div class="col-md-2 border">{!! $contrato->created_at!!}</div>
+        <div class="col-md-2 border">{!! $contrato->fecha_vencimiento !!}</div>
+        <div class="col-md-1 border">{{ $i-1 }}</div>
+        <div class="col-md-2 border">Casa</div>
+    </div>
+    <br>
+    <div class="row ">
+        <div class="col-md-8 border">
+        <p>NOTA:</p>
+        <p>1. Favor los pagos funerarios en cheques hacerlo a nombre de: Servicios Funerarios y Previsivos Virgen de Coromoto C.A </p>
+        <p>2. La primera cuota se cobrara a los treinta (30) dias de la firma de este convenio.</p>
+        <p>3. Se cobrara un recargo en caso de cheque devuelto.</p>
+        <p>4. Este convenio no tendra validez si presenta enmienda o datos falsos.</p>
+        </div>
+        <div class="col-md-4 border text-center">
+        <br>    
+        <p>Aprobado Por</p>
+        <p>Servicios Funerarios y </p>
+        <p>Previsivos Virgen de </p>
+        <p>Coromoto C.A </p>
+        <p>______________________</p>
+        </div>
+    </div>
 </div>		
-<div class="form-group">
-	<a href="{!! route('contratos.individuales') !!}" class="btn btn-default">Volver</a>
-</div>
 @endsection

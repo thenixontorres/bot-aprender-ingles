@@ -46,32 +46,32 @@ class test extends Seeder
 
          DB::table('componentes')->insert([
             'componente'     => 'Servicio Funerario',
-            'plan_id'  => '1',
+            'planes_id'  => '1',
         ]); 
 
         DB::table('componentes')->insert([
             'componente'     => 'Traslado Local',
-            'plan_id'  => '1',
+            'planes_id'  => '1',
         ]);  
 
         DB::table('componentes')->insert([
             'componente'     => 'Servicio Funerario',
-            'plan_id'  => '2',
+            'planes_id'  => '2',
         ]); 
 
         DB::table('componentes')->insert([
             'componente'     => 'Traslado Local',
-            'plan_id'  => '2',
+            'planes_id'  => '2',
         ]);         
 
         DB::table('componentes')->insert([
             'componente'     => 'Servicio Funerario',
-            'plan_id'  => '3',
+            'planes_id'  => '3',
         ]); 
 
         DB::table('componentes')->insert([
             'componente'     => 'Traslado Local',
-            'plan_id'  => '3',
+            'planes_id'  => '3',
         ]);  
 
         DB::table('clausulas')->insert([

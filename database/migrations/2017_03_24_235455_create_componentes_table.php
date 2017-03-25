@@ -16,8 +16,8 @@ class CreatecomponentesTable extends Migration
         Schema::create('componentes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('componente');
-            $table->integer('plan_id')->unsigned();
-            $table->foreign('plan_id')->references('id')->on('planes');
+            $table->integer('planes_id')->unsigned();
+            $table->foreign('planes_id')->references('id')->on('planes');
             $table->timestamps();
             $table->softDeletes();
         });

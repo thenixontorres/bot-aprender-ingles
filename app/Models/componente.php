@@ -58,7 +58,7 @@ class componente extends Model
 
     public $fillable = [
         'componente',
-        'plan_id'
+        'planes_id'
     ];
 
     /**
@@ -68,7 +68,7 @@ class componente extends Model
      */
     protected $casts = [
         'componente' => 'string',
-        'plan_id' => 'integer'
+        'planes_id' => 'integer'
     ];
 
     /**
@@ -78,6 +78,6 @@ class componente extends Model
      */
     public static $rules = [
         'componente' => 'required',
-        'plan_id' => 'required'
+        'planes_id' => 'required'
     ];
 }

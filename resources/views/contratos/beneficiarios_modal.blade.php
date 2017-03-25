@@ -55,8 +55,8 @@
 		                	<option value="Madre">Madre</option>
 		                	<option value="Padre">Padre</option>
 		                	<option value="Hijo">Hijo</option>
-		                	<option value="Madre">Hermano</option>
-		                	<option value="Madre">Hermano</option>
+		                	<option value="Hermano">Hermano</option>
+		                	<option value="Conyuge">Conyuge</option>
 		                </select>
 		            </div> 
 		            <!--contrato_id field -->
