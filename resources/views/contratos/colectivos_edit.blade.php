@@ -120,7 +120,7 @@
         <!-- Submit Field -->
             <div class="form-group col-sm-12">
                 {!! Form::submit('Actualizar', ['class' => 'btn btn-primary']) !!}
-                <a href="{!! route('contratos.colectivos') !!}" class="btn btn-default">Cancelar</a>
+                <a href="{!! route('contratos.individuales') !!}" class="btn btn-default">Cancelar</a>
             </div>
         {!! Form::close() !!}
     </div>

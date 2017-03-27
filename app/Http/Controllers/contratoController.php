@@ -17,6 +17,7 @@ use App\Models\municipio;
 use App\Models\planes;
 use App\Models\clausula;
 use App\Models\persona;
+use App\Models\empresa;
 
 class contratoController extends InfyOmBaseController
 {
@@ -53,7 +54,7 @@ class contratoController extends InfyOmBaseController
         $estados = estado::all();
         $municipios = municipio::all();
         
-        return view('contratos.index')
+        return view('contratos.individuales_index')
         ->with('municipios', $municipios)
         ->with('estados', $estados)
         ->with('contratos', $contratos);
@@ -62,8 +63,12 @@ class contratoController extends InfyOmBaseController
     public function colectivos(Request $request)
     {
         $contratos = contrato::where('tipo_contrato','Colectivo')->get();
+        $estados = estado::all();
+        $municipios = municipio::all();
         
-        return view('contratos.index')
+        return view('contratos.colectivos_index')
+            ->with('municipios', $municipios)
+            ->with('estados', $estados)
             ->with('contratos', $contratos);
     }
 
@@ -90,6 +95,19 @@ class contratoController extends InfyOmBaseController
         ->with('clausulas', $clausulas);
     }
 
+    public function colectivos_create()
+    {   
+        $estados = estado::all();
+        $municipios = municipio::all();
+        $planes = planes::all();
+        $clausulas = clausula::all();
+        return view('contratos.colectivos_create')
+        ->with('planes', $planes)
+        ->with('municipios', $municipios)
+        ->with('estados', $estados)
+        ->with('clausulas', $clausulas);
+    }
+
     /**
      * Store a newly created contrato in storage.
      *
@@ -103,25 +121,27 @@ class contratoController extends InfyOmBaseController
         $planes = planes::where('id', $request->plan_id)->get();
         $plan = $planes->first();
         //el monto se guarda como string para que no cambie al editar el monto del plan
-        $monto_total = $plan->monto;  
-        if ($request->tipo_contrato == 'Individual'){
-            $contrato = new contrato();    
-            $contrato->numero = $request->numero;
-            $contrato->monto_inicial = $request->monto_inicial;
-            $contrato->monto_total = $monto_total;
-            $contrato->fecha_inicio = $request->fecha_inicio;
-            $contrato->fecha_vencimiento = $request->fecha_vencimiento;
-            $contrato->tipo_contrato = $request->tipo_contrato;
-            $contrato->fecha_inicio = $request->fecha_inicio;
-            $contrato->clausula_id = $request->clausula_id;
-            $contrato->plan_id = $request->plan_id;
-            $contrato->tiempo_pago = $request->tiempo_pago;
-            $contrato->estado = 'Activo';
-            $contrato->save();
+        $monto_total = $plan->monto; 
 
-            $contrato_id = $contrato->id;
+        //Crear el contrato 
 
-            $persona = new persona();
+        $contrato = new contrato();    
+        $contrato->numero = $request->numero;
+        $contrato->monto_inicial = $request->monto_inicial;
+        $contrato->monto_total = $monto_total;
+        $contrato->fecha_inicio = $request->fecha_inicio;
+        $contrato->fecha_vencimiento = $request->fecha_vencimiento;
+        $contrato->tipo_contrato = $request->tipo_contrato;
+        $contrato->fecha_inicio = $request->fecha_inicio;
+        $contrato->clausula_id = $request->clausula_id;
+        $contrato->plan_id = $request->plan_id;
+        $contrato->tiempo_pago = $request->tiempo_pago;
+        $contrato->estado = 'Activo';
+        $contrato->save();
+
+        $contrato_id = $contrato->id;
+
+        $persona = new persona();
             $persona->nombre = $request->nombre; 
             $persona->apellido = $request->apellido;
             $persona->cedula = $request->cedula; 
@@ -132,10 +152,24 @@ class contratoController extends InfyOmBaseController
             $persona->municipio_id = $request->municipio_id;         
             $persona->direccion = $request->direccion;
             $persona->contrato_id = $contrato_id;
-            $persona->save();         
+            $persona->save();
+
+        if ($request->tipo_contrato == 'Individual'){          
 
             Flash::success('Contrato Individual registrado con exito.');
             return redirect()->route('contratos.individuales');
+            }else{
+
+            $empresa = new empresa();
+            $empresa->nombre = $request->empresa_nombre; 
+            $empresa->telefono = $request->empresa_telefono;
+            $empresa->municipio_id = $request->empresa_municipio_id;         
+            $empresa->direccion = $request->empresa_direccion;
+            $empresa->contrato_id = $contrato_id;
+            $empresa->save();         
+
+            Flash::success('Contrato Colectivo registrado con exito.');
+            return redirect()->route('contratos.colectivos');    
             }
     }
 

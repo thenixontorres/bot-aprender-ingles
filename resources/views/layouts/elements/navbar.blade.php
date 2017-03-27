@@ -28,7 +28,7 @@
                 <li><a href="{{ route('contratos.individuales') }}">Ver Contratos Individuales</a></li>
                 <li><a href="{{ route('contratos.colectivos') }}">Ver Contratos Colectivos</a></li>
                 <li><a href="{{ route('contratos.individuales_create') }}">Registrar Contratos Individuales</a></li>
-                <li><a href="{{ route('contratos.create') }}">Registrar Contratos Colectivos</a></li>
+                <li><a href="{{ route('contratos.colectivos_create') }}">Registrar Contratos Colectivos</a></li>
             </ul>
         </li>
         <li class="nav-li">
