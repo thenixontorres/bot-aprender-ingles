@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('title','Contratos Individuales')
 @section('content')
-	<div class="col-md-12 panel">   
-        <h1 class="pull-left">Contratos</h1>
-        <table class="table table-responsive" id="contratos-table">
+	<h1 class="pull-left">Contratos</h1>
+    <div class="col-md-12 panel">   
+        <table class="table table-responsive" id="table">
     <thead>
         <th>Numero</th>
         <th>Titular</th>
@@ -12,7 +12,7 @@
         <th>Plan</th>
         <th>Tiempo Pago</th>
         <th>Estado</th>
-        <th colspan="3">Action</th>
+        <th>Accion</th>
     </thead>
     <tbody>
     @foreach($contratos as $contrato)
@@ -74,5 +74,22 @@ function beneficiarios(id) {
             });
           });
     </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#table').DataTable({
+            "language": {
+                "lengthMenu": "Ver _MENU_ entradas por pagina",
+                "zeroRecords": "No se encontraron resultados",
+                "info": "Viendo la pagina _PAGE_ de _PAGES_",
+                "infoEmpty": "No hay informacion",
+                "search": "Buscar: ",
+                "paginate": {
+                    "previous": "Anterior ",
+                    "next": " Proximo",
+                }
+            }
+        });
+    } );
+</script> 
 @endsection
 

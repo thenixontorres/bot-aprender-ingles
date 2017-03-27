@@ -39,7 +39,7 @@
             <!-- Cedula Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('cedula', 'Cedula:') !!}
-                {!! Form::text('cedula', null, ['class' => 'form-control']) !!}
+                {!! Form::text('cedula', null, ['class' => 'form-control','pattern' => '[0-9]{7,8}']) !!}
             </div>
 
             <!-- Sexo Field -->
@@ -181,7 +181,7 @@
             <!-- Numero Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('numero', 'Numero de contrato:') !!}
-                {!! Form::text('numero', null, ['class' => 'form-control']) !!}
+                {!! Form::text('numero', null, ['class' => 'form-control','pattern' => '[0-9]{1,8}']) !!}
             </div>
 
             <!-- Monto Inicial Field -->

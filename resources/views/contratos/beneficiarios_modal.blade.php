@@ -22,7 +22,7 @@
 		            <!-- Cedula Field -->
 		            <div class="form-group col-sm-6">
 		                {!! Form::label('cedula', 'Cedula:') !!}
-		                {!! Form::text('cedula', null, ['class' => 'form-control']) !!}
+		                {!! Form::text('cedula', null, ['class' => 'form-control','pattern' => '[0-9]{7,8}']) !!}
 		            </div>
 
 		            <!-- Sexo Field -->
