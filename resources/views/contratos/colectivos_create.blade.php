@@ -27,25 +27,25 @@
             <!-- Nombre Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('nombre', 'Nombre:') !!}
-                {!! Form::text('nombre', null, ['class' => 'form-control']) !!}
+                {!! Form::text('nombre', null, ['class' => 'form-control','pattern' => '[a-zA-Z ]{4,30}', 'placeholder' => 'Nombre Completo']) !!}
             </div>
 
             <!-- Apellido Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('apellido', 'Apellido:') !!}
-                {!! Form::text('apellido', null, ['class' => 'form-control']) !!}
+                {!! Form::text('apellido', null, ['class' => 'form-control','pattern' => '[a-zA-Z ]{4,30}', 'placeholder' => 'Apellido Completo']) !!}
             </div>
 
             <!-- Cedula Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('cedula', 'Cedula:') !!}
-                {!! Form::text('cedula', null, ['class' => 'form-control','pattern' => '[0-9]{7,8}']) !!}
+                {!! Form::text('cedula', null, ['class' => 'form-control','pattern' => '[0-9]{7,8}', 'placeholder' => 'Solo Numeros']) !!}
             </div>
 
             <!-- Sexo Field -->
             <div class="form-group col-sm-3">
                 {!! Form::label('sexo', 'Masculino:') !!}
-                <input class="form-control radio" type="radio" name="sexo" value="Masculino">
+                <input class="form-control radio" type="radio" checked name="sexo" value="Masculino">
             </div>
             <div class="form-group col-sm-3">    
                 {!! Form::label('sexo', 'Femenino:') !!} 
@@ -55,13 +55,13 @@
             <!-- Fecha Nac Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('fecha_nac', 'Fecha de Nacimiento:') !!}
-                {!! Form::text('fecha_nac', null, ['class' => 'form-control','id' => 'fecha_nacimiento']) !!}
+                {!! Form::text('fecha_nac', null, ['class' => 'form-control','id' => 'fecha_nacimiento','placeholder' => 'DD/MM/AAAA']) !!}
             </div>
 
             <!-- telefono Nac Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('telefono', 'Telefono:') !!}
-                {!! Form::text('telefono', null, ['class' => 'form-control']) !!}
+                {!! Form::text('telefono', null, ['class' => 'form-control','pattern' => '[0-9]{11}','placeholder' => 'Solo Numeros']) !!}
             </div>
 
             <!-- Estado Id Field -->
@@ -91,26 +91,26 @@
             <!-- Direccion Field -->
             <div class="form-group col-sm-12">
                 {!! Form::label('direccion', 'Direccion:') !!}
-                {!! Form::textarea('direccion', null, ['class' => 'form-control']) !!}
+                {!! Form::textarea('direccion', null, ['class' => 'form-control','placeholder'=>'Parroquia,  Avenida, Casa.']) !!}
             </div>
 
-            <!--de la tabla persona -->
+            <!--de la tabla empresa -->
             <div class="form-group col-sm-12">
                 <hr>
                 <br>
-                {!! Form::label('empresa', 'Datos de la emppresa:') !!}
+                {!! Form::label('empresa', 'Datos de la Empresa:') !!}
             </div>
 
             <!-- empresa Nombre Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('empresa_nombre', 'Nombre de la empresa:') !!}
-                {!! Form::text('empresa_nombre', null, ['class' => 'form-control']) !!}
+                {!! Form::text('empresa_nombre', null, ['class' => 'form-control','pattern' => '[a-zA-Z ]{4,30}', 'placeholder' => 'Nombre Completo de la Empresa']) !!}
             </div>
 
             <!-- empresa telefono Nac Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('empresa_telefono', 'Telefono:') !!}
-                {!! Form::text('empresa_telefono', null, ['class' => 'form-control']) !!}
+                {!! Form::text('empresa_telefono', null, ['class' => 'form-control','pattern' => '[0-9]{11}', 'placeholder' => 'Solo Numeros']) !!}
             </div>
 
             <!-- Estado Id Field -->
@@ -140,7 +140,7 @@
             <!-- Direccion Field -->
             <div class="form-group col-sm-12">
                 {!! Form::label('empresa_direccion', 'Direccion de la empresa:') !!}
-                {!! Form::textarea('empresa_direccion', null, ['class' => 'form-control']) !!}
+                {!! Form::textarea('empresa_direccion', null, ['class' => 'form-control','placeholder' => 'Parroquia, Avenida, Casa']) !!}
             </div>
             <!--de la tabla planes -->
             <div class="form-group col-sm-12">
@@ -223,31 +223,31 @@
             <!--de la tabla contrato -->
             <div class="form-group col-sm-12">
                 <br>
-                {!! Form::label('titular', 'Datos del contrato') !!}
+                {!! Form::label('Contrato', 'Datos del contrato') !!}
             </div>
 
             <!-- Numero Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('numero', 'Numero de contrato:') !!}
-                {!! Form::text('numero', null, ['class' => 'form-control']) !!}
+                {!! Form::text('numero', null, ['class' => 'form-control','pattern' => '[0-9]{1,8}', 'placeholder' => 'Solo Numeros']) !!}
             </div>
 
             <!-- Monto Inicial Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('monto_inicial', 'Monto Inicial:') !!}
-                {!! Form::text('monto_inicial', null, ['class' => 'form-control']) !!}
+                {!! Form::text('monto_inicial', null, ['class' => 'form-control','pattern' => '[0-9]{1,30}', 'placeholder' => 'Solo Numeros']) !!}
             </div>
 
             <!-- Fecha Inicio Field -->
             <div class="form-group col-sm-4">
                 {!! Form::label('fecha_inicio', 'Fecha Inicio:') !!}
-                {!! Form::text('fecha_inicio', null, ['class' => 'form-control', 'id' => 'fecha_inicio']) !!}
+                {!! Form::text('fecha_inicio', null, ['class' => 'form-control', 'id' => 'fecha_inicio','placeholder' => 'DD/MM/AAAA']) !!}
             </div>
 
             <!-- Fecha Vencimiento Field -->
             <div class="form-group col-sm-4">
                 {!! Form::label('fecha_vencimiento', 'Fecha Vencimiento:') !!}
-                {!! Form::text('fecha_vencimiento', null, ['class' => 'form-control', 'id' => 'fecha_vencimiento']) !!}
+                {!! Form::text('fecha_vencimiento', null, ['class' => 'form-control', 'id' => 'fecha_vencimiento','placeholder' => 'DD/MM/AAAA']) !!}
             </div>
 
             <!-- Tipo Contrato Field -->

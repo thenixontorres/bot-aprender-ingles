@@ -10,25 +10,25 @@
                    	<!-- Nombre Field -->
 		            <div class="form-group col-sm-6">
 		                {!! Form::label('nombre', 'Nombre:') !!}
-		                {!! Form::text('nombre', null, ['class' => 'form-control']) !!}
+		                {!! Form::text('nombre', null, ['class' => 'form-control','pattern' => '[a-zA-Z ]{4,30}', 'placeholder' => 'Nombre Completo']) !!}
 		            </div>
 
 		            <!-- Apellido Field -->
 		            <div class="form-group col-sm-6">
 		                {!! Form::label('apellido', 'Apellido:') !!}
-		                {!! Form::text('apellido', null, ['class' => 'form-control']) !!}
+		                {!! Form::text('apellido', null, ['class' => 'form-control','pattern' => '[a-zA-Z ]{4,30}', 'placeholder' => 'Nombre Completo']) !!}
 		            </div>
 
 		            <!-- Cedula Field -->
 		            <div class="form-group col-sm-6">
 		                {!! Form::label('cedula', 'Cedula:') !!}
-		                {!! Form::text('cedula', null, ['class' => 'form-control','pattern' => '[0-9]{7,8}']) !!}
+		                {!! Form::text('cedula', null, ['class' => 'form-control','pattern' => '[0-9]{7,8}', 'placeholder' => 'Solo Numeros']) !!}
 		            </div>
 
 		            <!-- Sexo Field -->
 		            <div class="form-group col-sm-3">
 		                {!! Form::label('sexo', 'Masculino:') !!}
-		                <input class="form-control radio" type="radio" name="sexo" value="Masculino">
+		                <input class="form-control radio" type="radio" name="sexo" checked value="Masculino">
 		            </div>
 		            <div class="form-group col-sm-3">    
 		                {!! Form::label('sexo', 'Femenino:') !!} 
@@ -38,13 +38,13 @@
 		            <!-- Fecha Nac Field -->
 		            <div class="form-group col-sm-6">
 		                {!! Form::label('fecha_nac', 'Fecha de Nacimiento:') !!}
-		                {!! Form::text('fecha_nac', null, ['class' => 'form-control','id' => 'fecha_nacimiento']) !!}
+		                {!! Form::text('fecha_nac', null, ['class' => 'form-control','id' => 'fecha_nacimiento','placeholder' => 'DD/MM/AAAA']) !!}
 		            </div>
 
 		            <!-- telefono Nac Field -->
 		            <div class="form-group col-sm-6">
 		                {!! Form::label('telefono', 'Telefono:') !!}
-		                {!! Form::text('telefono', null, ['class' => 'form-control']) !!}
+		                {!! Form::text('telefono', null, ['class' => 'form-control','pattern' => '[0-9]{11}', 'placeholder' => 'Solo Numeros']) !!}
 		            </div>
 
 
