@@ -12,7 +12,11 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\persona;
-use App\Models\contrato;
+use App\Models\estado;
+use App\Models\municipio;
+use App\Models\planes;
+use App\Models\clausula;
+use App\Models\empresa;
 
 class personaController extends InfyOmBaseController
 {
@@ -112,12 +116,16 @@ class personaController extends InfyOmBaseController
         $persona = $this->personaRepository->findWithoutFail($id);
 
         if (empty($persona)) {
-            Flash::error('persona not found');
+            Flash::error('Persona no encontrada.');
 
-            return redirect(route('personas.index'));
+            return redirect()->back();
         }
-
-        return view('personas.edit')->with('persona', $persona);
+        $estados = estado::all();
+        $municipios = municipio::all();
+        return view('personas.edit')
+        ->with('municipios', $municipios)
+        ->with('estados', $estados)
+        ->with('persona', $persona);
     }
 
     /**
@@ -133,16 +141,19 @@ class personaController extends InfyOmBaseController
         $persona = $this->personaRepository->findWithoutFail($id);
 
         if (empty($persona)) {
-            Flash::error('persona not found');
+            Flash::error('Persona no encontrada.');
 
-            return redirect(route('personas.index'));
+            return redirect()->back();
         }
 
         $persona = $this->personaRepository->update($request->all(), $id);
 
-        Flash::success('persona updated successfully.');
-
-        return redirect(route('personas.index'));
+        Flash::success('Persona actualizada con exito.');
+        if ($persona->contrato->tipo_contrato == "Individual") {
+            return redirect(route('contratos.individuales'));
+        }else{
+            return redirect(route('contratos.colectivos'));
+        }     
     }
 
     /**

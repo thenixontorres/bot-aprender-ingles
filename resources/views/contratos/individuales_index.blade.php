@@ -22,7 +22,7 @@
             </td>
             @foreach($contrato->personas as $persona)
                 @if($persona->parentesco == 'Titular')
-                    <td>{!! $persona->nombre.' '.$persona->apellido.' '.$persona->cedula !!}</td>
+                    <td>{!! $persona->nombre.' '.$persona->apellido.' '.$persona->cedula !!} <a href="{!! route('personas.edit', [$persona->id]) !!}" target="_blank" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a> </td>
                 @endif 
             @endforeach
             <td>
