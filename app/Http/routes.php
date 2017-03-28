@@ -45,6 +45,16 @@ Route::group(['middleware' => 'auth'], function () {
             'as'    =>  'contratos.colectivos_create',
     ]);
 
+    Route::get('/rutas', [
+            'uses'  =>  'contratoController@rutas',
+            'as'    =>  'contratos.rutas',
+    ]);
+
+    Route::post('/buscar_rutas', [
+            'uses'  =>  'contratoController@buscar_rutas',
+            'as'    =>  'contratos.buscar_rutas',
+    ]);
+
     Route::get('/dropdown/{option}/', [
             'uses'  =>  'municipioController@dropdown',
             'as'    =>  'dropdown',

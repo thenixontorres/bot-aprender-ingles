@@ -242,7 +242,32 @@ class contratoController extends InfyOmBaseController
      * @param UpdatecontratoRequest $request
      *
      * @return Response
+
      */
+    public function rutas(){
+        $estados = estado::all();
+        $municipios = municipio::all();
+        $titulares = null;
+        return view('rutas.index')
+        ->with('estados',$estados)
+        ->with('municipios',$municipios)
+        ->with('titulares',$titulares);
+    }
+
+    public function buscar_rutas(Request $request){
+        $estados = estado::all();
+        $municipios = municipio::all();
+        $request = $request->all();
+        $municipio_id = $request['municipio_id'];
+        
+        $titulares = persona::where('parentesco','Titular')->where('municipio_id',$municipio_id)->get();
+
+        return view('rutas.index')
+        ->with('estados',$estados)
+        ->with('municipios',$municipios)
+        ->with('titulares',$titulares);
+    }
+
     public function update($id, UpdatecontratoRequest $request)
     {
         $contrato = $this->contratoRepository->findWithoutFail($id);

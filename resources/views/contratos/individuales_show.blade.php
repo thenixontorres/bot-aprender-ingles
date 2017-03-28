@@ -44,7 +44,6 @@
             $año_ac = $año_ac-1;
         }
         $edad = $año_ac-$fecha_nac[2]; 
-        echo $año_ac;
         ?>
 
         </div>
@@ -85,7 +84,21 @@
         <div class="col-md-1 border"> {!! $i !!} </div>
         <div class="col-md-4 border"> {!! $persona->nombre.' '.$persona->apellido !!} </div>
         <div class="col-md-2 border"> {!! $persona->cedula!!}  </div>
-        <div class="col-md-1 border"> --- </div>
+        <?php 
+        $fecha_nac = explode('/',$persona->fecha_nac);
+        $dia_ac = date('d');
+        $mes_ac = date('m');
+        $año_ac = date('Y');
+
+        if(($fecha_nac[1] == $mes_ac) && ($fecha_nac[1] > $dia_ac)){
+            $año_ac = $año_ac-1;
+        }
+        if($fecha_nac[1] > $mes_ac){
+            $año_ac = $año_ac-1;
+        }
+        $edad = $año_ac-$fecha_nac[2]; 
+        ?>
+        <div class="col-md-1 border"> {{ $edad }} </div>
         <div class="col-md-2 border">{!! $persona->parentesco !!} </div>
         <div class="col-md-2 border">{!! $persona->fecha_nac !!} </div>
     </div>

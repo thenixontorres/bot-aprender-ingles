@@ -32,7 +32,7 @@
             </ul>
         </li>
         <li class="nav-li">
-                <a class="nav-li text-center" href="#" id="receptors">Rutas</a>
+                <a class="nav-li text-center" href="{{ route('contratos.rutas') }}" id="receptors">Rutas</a>
             </li>
             <li class="nav-li">
                 <a class="nav-li text-center" href="#" id="giros">Giros</a>
