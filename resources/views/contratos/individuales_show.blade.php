@@ -31,11 +31,26 @@
         @foreach($contrato->personas as $persona)
                 @if($persona->parentesco == 'Titular')
                     {!! $persona->fecha_nac !!}
+                    <?php $fecha_nac = explode('/',$persona->fecha_nac);
+                    ?>
                 @endif 
         @endforeach
+
+        <?php  
+        if(($fecha_nac[1] == $mes_ac) && ($fecha_nac[1] > $dia_ac)){
+            $año_ac = $año_ac-1;
+        }
+        if($fecha_nac[1] > $mes_ac){
+            $año_ac = $año_ac-1;
+        }
+        $edad = $año_ac-$fecha_nac[2]; 
+        echo $año_ac;
+        ?>
+
         </div>
         <div class="col-md-2 border">Edad:</div>
-        <div class="col-md-2 border"> --- </div>
+        
+        <div class="col-md-2 border"> {!! $edad !!} </div>
         <div class="col-md-2 border">Tlf Habitacion:</div>
         <div class="col-md-2 border">
         @foreach($contrato->personas as $persona)

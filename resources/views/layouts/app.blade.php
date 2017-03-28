@@ -5,6 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>@yield('title')</title>
+	<!--Jquery -->
+	<script src="{{ asset('plugins/jquery/jquery-2.1.4.js') }}"></script>
 	<!-- Bootstrap -->
 	<link rel="stylesheet" type="text/css" href="{{ asset('plugins/bootstrap/css/bootstrap.css') }}">
 	<!-- Iconos -->
@@ -41,8 +43,6 @@
 			</div>
 	</div>
 		@include('layouts.elements.footer')	
-	<!--Jquery -->
-	<script src="{{ asset('plugins/jquery/jquery-2.1.4.js') }}"></script>
 	<!--bootstrap -->
 	<script src="{{ asset('plugins/bootstrap/js/bootstrap.js') }}"></script>
 	<!--Data tables -->

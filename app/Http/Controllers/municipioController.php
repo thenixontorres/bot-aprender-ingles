@@ -11,6 +11,9 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Models\municipio;
+use App\Models\estado;
+
 
 class municipioController extends InfyOmBaseController
 {
@@ -91,7 +94,14 @@ class municipioController extends InfyOmBaseController
      * @param  int $id
      *
      * @return Response
+
      */
+
+    public function dropdown($option){
+        $municipios = municipio::where('estado_id',$option)->get();
+        return $municipios;
+    }
+
     public function edit($id)
     {
         $municipio = $this->municipioRepository->findWithoutFail($id);

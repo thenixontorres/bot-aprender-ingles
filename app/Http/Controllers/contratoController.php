@@ -189,11 +189,13 @@ class contratoController extends InfyOmBaseController
 
             return redirect()->back();
         }
-
+        $dia_ac = date('d');
+        $mes_ac = date('m');
+        $año_ac = date('Y');
         if ($contrato->tipo_contrato == 'Individual'){
-        return view('contratos.individuales_show')->with('contrato', $contrato);    
+        return view('contratos.individuales_show')->with('contrato', $contrato)->with('dia_ac', $dia_ac)->with('mes_ac', $mes_ac)->with('año_ac', $año_ac);    
         }else{
-        return view('contratos.colectivos_show')->with('contrato', $contrato);
+        return view('contratos.colectivos_show')->with('contrato', $contrato)->with('dia_ac', $dia_ac)->with('mes_ac', $mes_ac)->with('año_ac', $año_ac);
         }
     }
 

@@ -20,28 +20,28 @@
             <hr>
 
         <!-- Numero Field -->
-        <div class="form-group col-sm-6">
-            {!! Form::label('numero', 'Numero de contrato:') !!}
-            {!! Form::text('numero', null, ['class' => 'form-control']) !!}
-        </div>
+            <div class="form-group col-sm-6">
+                {!! Form::label('numero', 'Numero de contrato:') !!}
+                {!! Form::text('numero', null, ['class' => 'form-control','pattern' => '[0-9]{1,8}', 'placeholder' => 'Solo Numeros']) !!}
+            </div>
 
         <!-- Monto Inicial Field -->
-        <div class="form-group col-sm-6">
-            {!! Form::label('monto_inicial', 'Monto Inicial:') !!}
-            {!! Form::text('monto_inicial', null, ['class' => 'form-control']) !!}
-        </div>
+            <div class="form-group col-sm-6">
+                {!! Form::label('monto_inicial', 'Monto Inicial:') !!}
+                {!! Form::text('monto_inicial', null, ['class' => 'form-control','pattern' => '[0-9]{1,30}', 'placeholder' => 'Solo Numeros']) !!}
+            </div>
 
         <!-- Fecha Inicio Field -->
-        <div class="form-group col-sm-6">
-            {!! Form::label('fecha_inicio', 'Fecha Inicio:') !!}
-            {!! Form::text('fecha_inicio', null, ['class' => 'form-control', 'id' => 'fecha_inicio']) !!}
-        </div>
+            <div class="form-group col-sm-6">
+                {!! Form::label('fecha_inicio', 'Fecha Inicio:') !!}
+                {!! Form::text('fecha_inicio', null, ['class' => 'form-control', 'id' => 'fecha_inicio','placeholder' => 'DD/MM/AAAA']) !!}
+            </div>
 
-        <!-- Fecha Vencimiento Field -->
-        <div class="form-group col-sm-6">
-            {!! Form::label('fecha_vencimiento', 'Fecha Vencimiento:') !!}
-            {!! Form::text('fecha_vencimiento', null, ['class' => 'form-control', 'id' => 'fecha_vencimiento']) !!}
-        </div>
+            <!-- Fecha Vencimiento Field -->
+            <div class="form-group col-sm-6">
+                {!! Form::label('fecha_vencimiento', 'Fecha Vencimiento:') !!}
+                {!! Form::text('fecha_vencimiento', null, ['class' => 'form-control', 'id' => 'fecha_vencimiento','placeholder' => 'DD/MM/AAAA']) !!}
+            </div>
 
         <!-- Tipo Contrato Field -->
             {!! Form::hidden('tipo_contrato', 'Individual', ['class' => 'form-control']) !!}
