@@ -1,23 +1,58 @@
-<!-- Nombre Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('nombre', 'Nombre:') !!}
-    {!! Form::text('nombre', null, ['class' => 'form-control']) !!}
-</div>
+<!-- empresa Nombre Field -->
+            <div class="form-group col-sm-6">
+                {!! Form::label('empresa_nombre', 'Nombre de la empresa:') !!}
+                {!! Form::text('nombre', null, ['class' => 'form-control','pattern' => '[a-zA-Z ]{4,30}', 'placeholder' => 'Nombre Completo de la Empresa']) !!}
+            </div>
 
-<!-- Municipio Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('municipio_id', 'Municipio Id:') !!}
-    {!! Form::text('municipio_id', null, ['class' => 'form-control']) !!}
-</div>
+            <!-- empresa telefono Nac Field -->
+            <div class="form-group col-sm-6">
+                {!! Form::label('empresa_telefono', 'Telefono:') !!}
+                {!! Form::text('telefono', null, ['class' => 'form-control','pattern' => '[0-9]{11}', 'placeholder' => 'Solo Numeros']) !!}
+            </div>
 
-<!-- Contrato Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('contrato_id', 'Contrato Id:') !!}
-    {!! Form::text('contrato_id', null, ['class' => 'form-control']) !!}
-</div>
+            <!-- Estado Id Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('estado_id', 'Estado:') !!}
+        <select class="form-control" name="estado_id">
+            @foreach($estados as $estado)
+                @if($estado->id == $empresa->municipio->estado->id)
+                <option selected value="{{ $estado->id }}">
+                     {{ $estado->estado }}   
+                </option>
+                @else
+                <option value="{{ $estado->id }}">
+                     {{ $estado->estado }}   
+                </option>    
+                @endif 
+            @endforeach
+        </select>
+    </div>
+    <!-- Municipio Id Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('municipio_id', 'Municipio:') !!}
+        <select class="form-control" name="municipio_id">
+            @foreach($municipios as $municipio)
+                 @if($municipio->id == $empresa->municipio->id)
+                <option selected value="{{ $municipio->id }}">
+                     {{ $municipio->municipio }}   
+                </option>
+                @else
+                <option value="{{ $municipio->id }}">
+                     {{ $municipio->municipio }}   
+                </option>    
+                @endif 
+            @endforeach
+        </select>
+    </div>
 
+            <!-- Direccion Field -->
+            <div class="form-group col-sm-12">
+                {!! Form::label('empresa_direccion', 'Direccion de la empresa:') !!}
+                {!! Form::textarea('direccion', null, ['class' => 'form-control','placeholder' => 'Parroquia, Avenida, Casa']) !!}
+            </div>
+            <!-- contrato -->
+        {!! Form::hidden('contrato_id', null, ['class' => 'form-control','placeholder'=>'Contrato.']) !!}
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('empresas.index') !!}" class="btn btn-default">Cancel</a>
+    {!! Form::submit('Actualizar', ['class' => 'btn btn-primary']) !!}
 </div>

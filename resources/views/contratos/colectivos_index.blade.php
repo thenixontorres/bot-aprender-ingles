@@ -30,7 +30,7 @@
                 </td>
                 <td>
                  @foreach($contrato->empresas as $empresa)
-                        {!! $empresa->nombre !!}
+                        {!! $empresa->nombre !!} <a href="{!! route('empresas.edit', [$empresa->id]) !!}" target="_blank" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
                 @endforeach
                 </td>
             <td>{!! $contrato->fecha_inicio !!}</td>

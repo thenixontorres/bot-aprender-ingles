@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Models\estado;
+use App\Models\municipio;
 
 class empresaController extends InfyOmBaseController
 {
@@ -97,12 +99,16 @@ class empresaController extends InfyOmBaseController
         $empresa = $this->empresaRepository->findWithoutFail($id);
 
         if (empty($empresa)) {
-            Flash::error('empresa not found');
+            Flash::error('Empresa no encontrada');
 
-            return redirect(route('empresas.index'));
+            return redirect()>back();
         }
-
-        return view('empresas.edit')->with('empresa', $empresa);
+        $estados = estado::all();
+        $municipios = municipio::all();
+        return view('empresas.edit')
+        ->with('municipios', $municipios)
+        ->with('estados', $estados)
+        ->with('empresa', $empresa);
     }
 
     /**
@@ -118,16 +124,16 @@ class empresaController extends InfyOmBaseController
         $empresa = $this->empresaRepository->findWithoutFail($id);
 
         if (empty($empresa)) {
-            Flash::error('empresa not found');
+            Flash::error('Empresa no encontrada.');
 
-            return redirect(route('empresas.index'));
+            return redirect(route('contratos.colectivos'));
         }
 
         $empresa = $this->empresaRepository->update($request->all(), $id);
 
-        Flash::success('empresa updated successfully.');
+        Flash::success('Empresa actualizada con  exito.');
 
-        return redirect(route('empresas.index'));
+        return redirect(route('contratos.colectivos'));
     }
 
     /**
