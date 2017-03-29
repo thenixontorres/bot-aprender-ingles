@@ -5,9 +5,6 @@
 
         <h1 class="pull-left">Estados</h1>
         <a class="btn btn-primary pull-right" style="margin-top: 25px" href="{!! route('estados.create') !!}">Registrar</a>
-
-        <div class="clearfix"></div>
-
         @include('estados.table')
 </div>        
 @endsection

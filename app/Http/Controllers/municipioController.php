@@ -46,8 +46,10 @@ class municipioController extends InfyOmBaseController
      * @return Response
      */
     public function create()
-    {
-        return view('municipios.create');
+    {   
+        $estados = estado::all();
+        return view('municipios.create')
+        ->with('estados',$estados);
     }
 
     /**
@@ -63,7 +65,7 @@ class municipioController extends InfyOmBaseController
 
         $municipio = $this->municipioRepository->create($input);
 
-        Flash::success('municipio saved successfully.');
+        Flash::success('Municipio registrado con exito.');
 
         return redirect(route('municipios.index'));
     }
@@ -111,8 +113,9 @@ class municipioController extends InfyOmBaseController
 
             return redirect(route('municipios.index'));
         }
-
-        return view('municipios.edit')->with('municipio', $municipio);
+        $estados = estado::all();
+        return view('municipios.edit')->with('municipio', $municipio)->with('estados',$estados);
+;
     }
 
     /**
@@ -135,7 +138,7 @@ class municipioController extends InfyOmBaseController
 
         $municipio = $this->municipioRepository->update($request->all(), $id);
 
-        Flash::success('municipio updated successfully.');
+        Flash::success('Municipio Actualizado con exito.');
 
         return redirect(route('municipios.index'));
     }

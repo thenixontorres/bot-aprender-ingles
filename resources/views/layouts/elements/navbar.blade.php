@@ -51,7 +51,6 @@
                 <li><a href="{{ route('estados.index') }}">Estados</a></li>
                 <li><a href="{{ route('municipios.index') }}">Municipios</a></li>
                 <li><a href="{{ route('planes.index') }}">Planes</a></li>
-                <li><a href="{{ route('planes.index') }}">Personas</a></li>
             </ul>
         </li>
             <li>

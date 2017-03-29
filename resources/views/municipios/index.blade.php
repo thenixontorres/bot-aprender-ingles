@@ -1,15 +1,9 @@
 @extends('layouts.app')
-
+@section('title','Municipios')
 @section('content')
-        <h1 class="pull-left">municipios</h1>
-        <a class="btn btn-primary pull-right" style="margin-top: 25px" href="{!! route('municipios.create') !!}">Add New</a>
-
-        <div class="clearfix"></div>
-
-        @include('flash::message')
-
-        <div class="clearfix"></div>
-
+<div class="col-md-12 panel">   
+        <h1 class="pull-left">Municipios</h1>
+        <a class="btn btn-primary pull-right" style="margin-top: 25px" href="{!! route('municipios.create') !!}">Registrar</a>
         @include('municipios.table')
-        
+</div>        
 @endsection

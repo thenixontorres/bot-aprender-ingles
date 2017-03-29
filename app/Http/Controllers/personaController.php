@@ -169,15 +169,15 @@ class personaController extends InfyOmBaseController
         $persona = $this->personaRepository->findWithoutFail($id);
 
         if (empty($persona)) {
-            Flash::error('persona not found');
+            Flash::error('Beneficiario no encontrado.');
 
-            return redirect(route('personas.index'));
+            return redirect()->back();
         }
 
         $this->personaRepository->delete($id);
 
-        Flash::success('persona deleted successfully.');
+        Flash::success('Persona borrada con exito.');
 
-        return redirect(route('personas.index'));
+        return redirect(route('contratos.individuales'));
     }
 }
