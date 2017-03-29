@@ -69,7 +69,7 @@ class pago extends Model
         'monto',
         'numero_cuota',
         'tipo_pago',
-        'contrato_id'
+        'contrato_id',
     ];
 
     /**

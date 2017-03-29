@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Models\contrato;
+use App\Models\pago;
 
 class pagoController extends InfyOmBaseController
 {
@@ -43,7 +45,7 @@ class pagoController extends InfyOmBaseController
      * @return Response
      */
     public function create()
-    {
+    {   
         return view('pagos.create');
     }
 
@@ -60,9 +62,9 @@ class pagoController extends InfyOmBaseController
 
         $pago = $this->pagoRepository->create($input);
 
-        Flash::success('pago saved successfully.');
+        Flash::success('Pago Registrado con Exito.');
 
-        return redirect(route('pagos.index'));
+        return redirect()->back();
     }
 
     /**
@@ -74,15 +76,24 @@ class pagoController extends InfyOmBaseController
      */
     public function show($id)
     {
-        $pago = $this->pagoRepository->findWithoutFail($id);
-
-        if (empty($pago)) {
-            Flash::error('pago not found');
-
-            return redirect(route('pagos.index'));
+        $contrato_id = $id;
+        
+        $contrato = contrato::where('id',$contrato_id)->get();
+        $contrato = $contrato->first();
+        
+        if ($contrato->tiempo_pago == "Mensual") {
+           $cuotas = '6';
+        }elseif ($contrato->tiempo_pago == "Quincenal") {
+            $cuotas = '12';
+        }else{
+            $cuotas = '24';
         }
 
-        return view('pagos.show')->with('pago', $pago);
+        $pagos = pago::where('contrato_id',$contrato_id)->get();
+        return view('pagos.show')
+        ->with('pagos', $pagos)
+        ->with('cuotas', $cuotas)
+        ->with('contrato', $contrato);
     }
 
     /**
