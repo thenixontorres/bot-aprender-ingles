@@ -1,72 +1,35 @@
-<!-- Id Field -->
-<div class="form-group">
-    {!! Form::label('id', 'Id:') !!}
-    <p>{!! $persona->id !!}</p>
-</div>
-
-<!-- Nombre Field -->
-<div class="form-group">
-    {!! Form::label('nombre', 'Nombre:') !!}
-    <p>{!! $persona->nombre !!}</p>
-</div>
-
-<!-- Apellido Field -->
-<div class="form-group">
-    {!! Form::label('apellido', 'Apellido:') !!}
-    <p>{!! $persona->apellido !!}</p>
-</div>
-
-<!-- Cedula Field -->
-<div class="form-group">
-    {!! Form::label('cedula', 'Cedula:') !!}
-    <p>{!! $persona->cedula !!}</p>
-</div>
-
-<!-- Sexo Field -->
-<div class="form-group">
-    {!! Form::label('sexo', 'Sexo:') !!}
-    <p>{!! $persona->sexo !!}</p>
-</div>
-
-<!-- Fecha Nac Field -->
-<div class="form-group">
-    {!! Form::label('fecha_nac', 'Fecha Nac:') !!}
-    <p>{!! $persona->fecha_nac !!}</p>
-</div>
-
-<!-- Municipio Id Field -->
-<div class="form-group">
-    {!! Form::label('municipio_id', 'Municipio Id:') !!}
-    <p>{!! $persona->municipio_id !!}</p>
-</div>
-
-<!-- Direccion Field -->
-<div class="form-group">
-    {!! Form::label('direccion', 'Direccion:') !!}
-    <p>{!! $persona->direccion !!}</p>
-</div>
-
-<!-- Contrato Field -->
-<div class="form-group">
-    {!! Form::label('contrato', 'Contrato:') !!}
-    <p>{!! $persona->contrato !!}</p>
-</div>
-
-<!-- Tipo Contrato Field -->
-<div class="form-group">
-    {!! Form::label('tipo_contrato', 'Tipo Contrato:') !!}
-    <p>{!! $persona->tipo_contrato !!}</p>
-</div>
-
-<!-- Created At Field -->
-<div class="form-group">
-    {!! Form::label('created_at', 'Created At:') !!}
-    <p>{!! $persona->created_at !!}</p>
-</div>
-
-<!-- Updated At Field -->
-<div class="form-group">
-    {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{!! $persona->updated_at !!}</p>
-</div>
-
+<table class="table table-responsive" id="personas-table">
+    <thead>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Cedula</th>
+        <th>Sexo</th>
+        <th>Fecha de Nacimiento</th>
+        <th>Telefono</th>
+        <th>Parentesco</th>
+        <th colspan="3">Accion</th>
+    </thead>
+    <tbody>
+    @foreach($personas as $persona)
+        @if($persona->parentesco != 'Titular')
+            <tr>
+                <td>{!! $persona->nombre !!}</td>
+                <td>{!! $persona->apellido !!}</td>
+                <td>{!! $persona->cedula !!}</td>
+                <td>{!! $persona->sexo !!}</td>
+                <td>{!! $persona->fecha_nac !!}</td>
+                <td>{!! $persona->telefono !!}</td>
+                <td>{!! $persona->parentesco !!}</td>
+                <td>
+                    {!! Form::open(['route' => ['personas.destroy', $persona->id], 'method' => 'delete']) !!}
+                    <div class='btn-group'>
+                        <a href="{!! route('personas.edit', [$persona->id]) !!}" target="_blank" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                        {!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('¿Borrar este beneficiario?')"]) !!}
+                    </div>
+                    {!! Form::close() !!}
+                </td>
+            </tr>
+        @endif    
+    @endforeach
+    </tbody>
+</table>

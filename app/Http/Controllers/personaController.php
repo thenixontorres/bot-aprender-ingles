@@ -17,6 +17,7 @@ use App\Models\municipio;
 use App\Models\planes;
 use App\Models\clausula;
 use App\Models\empresa;
+use App\Models\contrato;
 
 class personaController extends InfyOmBaseController
 {
@@ -93,15 +94,15 @@ class personaController extends InfyOmBaseController
      */
     public function show($id)
     {
-        $persona = $this->personaRepository->findWithoutFail($id);
+        $personas = persona::where('contrato_id', $id)->get();
 
-        if (empty($persona)) {
-            Flash::error('persona not found');
+        if (empty($personas)) {
+            Flash::error('Este contrato no tiene personas.');
 
-            return redirect(route('personas.index'));
+            return redirect()->back();
         }
 
-        return view('personas.show')->with('persona', $persona);
+        return view('personas.show')->with('personas', $personas);
     }
 
     /**

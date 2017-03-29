@@ -31,6 +31,7 @@
             echo $cantidad-1;
             ?>
              <a href="#" data-toggle="modal" data-target="#beneficiarios" class='btn btn-default btn-xs' onclick="beneficiarios({{ $contrato->id }});"><i class="glyphicon glyphicon-plus"></i>
+             <a href="{!! route('personas.show', [$contrato->id]) !!}" target='_blank' class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
             </a>
             </td>
             <td>{!! $contrato->fecha_inicio !!}</td>
