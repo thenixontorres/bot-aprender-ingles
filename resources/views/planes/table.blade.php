@@ -3,6 +3,7 @@
         <th>Plan</th>
         <th>Monto</th>
         <th>Informacion</th>
+        <th>Componentes</th>
         <th colspan="3">Accion</th>
     </thead>
     <tbody>
@@ -11,6 +12,12 @@
             <td>{!! $planes->plan !!}</td>
             <td>{!! $planes->monto !!}</td>
             <td>{!! $planes->informacion !!}</td>
+            <td>
+            @foreach($planes->componentes as $componente)
+                {!! $componente->componente !!} 
+                <a href="{!! route('componentes.edit', [$componente->id]) !!}" target="_blank" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit" ></i></a>
+            @endforeach
+            </td>
             <td>
                 {!! Form::open(['route' => ['planes.destroy', $planes->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>

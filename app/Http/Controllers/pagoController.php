@@ -159,15 +159,15 @@ class pagoController extends InfyOmBaseController
         $pago = $this->pagoRepository->findWithoutFail($id);
 
         if (empty($pago)) {
-            Flash::error('pago not found');
+            Flash::error('Pago not encontrado');
 
-            return redirect(route('pagos.index'));
+            return redirect()->back();
         }
 
         $this->pagoRepository->delete($id);
 
-        Flash::success('pago deleted successfully.');
+        Flash::success('Pago borrado con exito.');
 
-        return redirect(route('pagos.index'));
+        return redirect(route('pagos.show',[$pago->contrato->id]));
     }
 }

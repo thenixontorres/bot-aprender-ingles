@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Models\componente;
+use App\Models\planes;
 
 class componenteController extends InfyOmBaseController
 {
@@ -125,9 +127,9 @@ class componenteController extends InfyOmBaseController
 
         $componente = $this->componenteRepository->update($request->all(), $id);
 
-        Flash::success('componente updated successfully.');
+        Flash::success('Componente actualizado con exito.');
 
-        return redirect(route('componentes.index'));
+        return redirect(route('planes.index'));
     }
 
     /**
