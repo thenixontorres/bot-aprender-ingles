@@ -1,29 +1,41 @@
-<!-- Monto Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('monto', 'Monto:') !!}
-    {!! Form::text('monto', null, ['class' => 'form-control']) !!}
-</div>
+    <div class="form-group col-sm-12">
+        {!! Form::label('monto', 'Monto:') !!}
+        {!! Form::text('monto', null, ['class' => 'form-control','pattern' => '[0-9]{1,30}', 'placeholder' => 'Solo Numeros']) !!}
+    </div>
 
-<!-- Numero Cuota Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('numero_cuota', 'Numero Cuota:') !!}
-    {!! Form::text('numero_cuota', null, ['class' => 'form-control']) !!}
-</div>
+    <!-- Numero Cuota Field -->
+    <div class="form-group col-sm-12">
+        {!! Form::label('numero_cuota', 'Numero de Cuota:') !!}
+        <select class="form-control" name="numero_cuota">
+        @for ($i=0; $i < $cuotas; $i++)
+            @if($pago->numero_cuota == $i)
+            <option selected value="{{ $i+1 }}"> {{ $i+1 }} </option>
+            @else
+            <option value="{{ $i+1 }}"> {{ $i+1 }} </option>
+            @endif
+        @endfor 
+        </select> 
+    </div>
 
-<!-- Tipo Pago Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('tipo_pago', 'Tipo Pago:') !!}
-    {!! Form::text('tipo_pago', null, ['class' => 'form-control']) !!}
-</div>
+    <!-- Tipo Pago Field -->
+    <div class="form-group col-sm-12">
+        {!! Form::label('tipo_pago', 'Tipo de Pago:') !!}
+        <select class="form-control" name="tipo_pago">
+            @if($pago->tipo_pago == "Banco")
+            <option selected value="Banco"> Banco </option>
+            <option value="Oficina"> Oficina </option>
+            @else
+            <option value="Banco"> Banco </option>
+            <option selected value="Oficina"> Oficina </option>
+            @endif
+        </select> 
+    </div>
 
-<!-- Contrato Id Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('contrato_id', 'Contrato Id:') !!}
-    {!! Form::text('contrato_id', null, ['class' => 'form-control']) !!}
-</div>
+    <!--contrato_id field -->
+    {!! Form::hidden('contrato_id', null, ['class' => 'form-control']) !!}
+
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
-    {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-    <a href="{!! route('pagos.index') !!}" class="btn btn-default">Cancel</a>
+    {!! Form::submit('Actualizar', ['class' => 'btn btn-primary']) !!}
 </div>

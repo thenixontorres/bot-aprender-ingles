@@ -108,12 +108,18 @@ class pagoController extends InfyOmBaseController
         $pago = $this->pagoRepository->findWithoutFail($id);
 
         if (empty($pago)) {
-            Flash::error('pago not found');
+            Flash::error('Pago no encontrado.');
 
-            return redirect(route('pagos.index'));
+            return redirect()->back();
         }
-
-        return view('pagos.edit')->with('pago', $pago);
+        if ($pago->contrato->tiempo_pago == "Mensual") {
+           $cuotas = '6';
+        }elseif ($pago->contrato->tiempo_pago == "Quincenal") {
+            $cuotas = '12';
+        }else{
+            $cuotas = '24';
+        }
+        return view('pagos.edit')->with('pago', $pago)->with('cuotas', $cuotas);
     }
 
     /**
@@ -129,16 +135,16 @@ class pagoController extends InfyOmBaseController
         $pago = $this->pagoRepository->findWithoutFail($id);
 
         if (empty($pago)) {
-            Flash::error('pago not found');
+            Flash::error('Pago no encontrado.');
 
-            return redirect(route('pagos.index'));
+            return redirect(route('pagos.show',[$pago->contrato->id]));
         }
 
         $pago = $this->pagoRepository->update($request->all(), $id);
 
-        Flash::success('pago updated successfully.');
+        Flash::success('Pago actualizado con exito.');
 
-        return redirect(route('pagos.index'));
+        return redirect(route('pagos.show',[$pago->contrato->id]));
     }
 
     /**
