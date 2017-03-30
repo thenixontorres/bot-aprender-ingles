@@ -151,8 +151,8 @@ class componenteController extends InfyOmBaseController
 
         $this->componenteRepository->delete($id);
 
-        Flash::success('componente deleted successfully.');
+        Flash::success('Componente borrado con exito.');
 
-        return redirect(route('componentes.index'));
+        return redirect(route('planes.index'));
     }
 }
