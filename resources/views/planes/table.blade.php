@@ -24,6 +24,7 @@
             <td>
                 <div class='btn-group'>
                     <a href="{!! route('planes.edit', [$planes->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+                    <a href="#" data-toggle="modal" data-target="#componentes_modal" class='btn btn-default btn-xs' onclick="componentes({{ $planes->id }});"><i class="glyphicon glyphicon-plus"></i></a>
                 </div>
             </td>
         </tr>

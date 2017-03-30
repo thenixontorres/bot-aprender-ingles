@@ -62,9 +62,9 @@ class componenteController extends InfyOmBaseController
 
         $componente = $this->componenteRepository->create($input);
 
-        Flash::success('componente saved successfully.');
+        Flash::success('Componente registrado con exito.');
 
-        return redirect(route('componentes.index'));
+        return redirect(route('planes.index'));
     }
 
     /**
