@@ -18,6 +18,7 @@ class CreatepagosTable extends Migration
             $table->string('monto');
             $table->string('numero_cuota');
             $table->string('tipo_pago');
+            $table->string('concepto');
             $table->integer('contrato_id')->unsigned();
             $table->foreign('contrato_id')->references('id')->on('contratos');
             $table->timestamps();

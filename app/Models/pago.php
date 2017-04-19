@@ -70,6 +70,7 @@ class pago extends Model
         'numero_cuota',
         'tipo_pago',
         'contrato_id',
+        'concepto',
     ];
 
     /**
@@ -81,7 +82,8 @@ class pago extends Model
         'monto' => 'string',
         'numero_cuota' => 'string',
         'tipo_pago' => 'string',
-        'contrato_id' => 'integer'
+        'contrato_id' => 'integer',
+        'concepto' => 'string'
     ];
 
     /**
@@ -90,8 +92,6 @@ class pago extends Model
      * @var array
      */
     public static $rules = [
-        'monto' => 'required',
-        'numero_cuota' => 'required',
         'tipo_pago' => 'required',
         'contrato_id' => 'required'
     ];

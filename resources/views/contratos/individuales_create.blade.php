@@ -205,15 +205,9 @@
             </div>
 
             <!-- Fecha Inicio Field -->
-            <div class="form-group col-sm-4">
+            <div class="form-group col-sm-6">
                 {!! Form::label('fecha_inicio', 'Fecha Inicio:') !!}
                 {!! Form::text('fecha_inicio', null, ['class' => 'form-control', 'id' => 'fecha_inicio','placeholder' => 'DD/MM/AAAA']) !!}
-            </div>
-
-            <!-- Fecha Vencimiento Field -->
-            <div class="form-group col-sm-4">
-                {!! Form::label('fecha_vencimiento', 'Fecha Vencimiento:') !!}
-                {!! Form::text('fecha_vencimiento', null, ['class' => 'form-control', 'id' => 'fecha_vencimiento','placeholder' => 'DD/MM/AAAA']) !!}
             </div>
 
             <!-- Tipo Contrato Field -->
@@ -222,7 +216,7 @@
                 {!! Form::hidden('estado', 'Activo', ['class' => 'form-control']) !!}    
 
             <!-- Clausula Id Field -->
-            <div class="form-group col-sm-4">
+            <div class="form-group col-sm-6">
                 {!! Form::label('clausula_id', 'Clausulas:') !!}
                 <select class="form-control" name="clausula_id">
                     @foreach($clausulas as $clausula)

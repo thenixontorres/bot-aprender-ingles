@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 28, 2017 at 09:23 PM
+-- Generation Time: Mar 29, 2017 at 09:48 PM
 -- Server version: 5.6.28-0ubuntu0.15.04.1
 -- PHP Version: 5.6.4-4ubuntu6.4
 
@@ -55,19 +55,20 @@ CREATE TABLE IF NOT EXISTS `componentes` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `componentes`
 --
 
 INSERT INTO `componentes` (`id`, `componente`, `planes_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Servicio Funerario', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
-(2, 'Traslado Local', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
+(1, 'Servicio Funerario', 1, '0000-00-00 00:00:00', '2017-03-30 05:37:30', NULL),
+(2, 'Traslado Local', 1, '0000-00-00 00:00:00', '2017-03-30 05:42:29', '2017-03-30 05:42:29'),
 (3, 'Servicio Funerario', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (4, 'Traslado Local', 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
 (5, 'Servicio Funerario', 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
-(6, 'Traslado Local', 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL);
+(6, 'Traslado Local', 3, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL),
+(7, 'Otra cosa', 1, '2017-03-30 06:23:21', '2017-03-30 06:23:28', '2017-03-30 06:23:28');
 
 -- --------------------------------------------------------
 
@@ -238,7 +239,15 @@ CREATE TABLE IF NOT EXISTS `pagos` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `deleted_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `pagos`
+--
+
+INSERT INTO `pagos` (`id`, `monto`, `numero_cuota`, `tipo_pago`, `contrato_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, '500', '1', 'Oficina', 6, '2017-03-30 01:20:04', '2017-03-30 05:21:33', '2017-03-30 05:21:33'),
+(2, '600', '1', 'Oficina', 4, '2017-03-30 01:31:38', '2017-03-30 01:31:38', NULL);
 
 -- --------------------------------------------------------
 
@@ -431,7 +440,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `componentes`
 --
 ALTER TABLE `componentes`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `contratos`
 --
@@ -461,7 +470,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 -- AUTO_INCREMENT for table `pagos`
 --
 ALTER TABLE `pagos`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `personas`
 --

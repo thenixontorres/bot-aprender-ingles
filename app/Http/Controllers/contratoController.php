@@ -123,6 +123,23 @@ class contratoController extends InfyOmBaseController
         //el monto se guarda como string para que no cambie al editar el monto del plan
         $monto_total = $plan->monto; 
 
+        //calcular el mes de vencimiento
+        $fecha_inicio = $request->fecha_inicio;
+        $fecha_inicio = explode("/", $fecha_inicio);
+        $dia_inicio = $fecha_inicio[0];
+        $mes_inicio = $fecha_inicio[1];
+        $ano_fin = $fecha_inicio[2];
+
+        $mes_fin = $mes_inicio+5;
+
+        if($mes_fin >  12){
+            $mes_fin = $mes_fin-12;
+            $ano_fin = $ano_fin+1;
+        }
+
+        $fecha_vencimiento =  array($dia_inicio, $mes_fin, $ano_fin);  
+        $fecha_vencimiento = implode("/", $fecha_vencimiento);
+
         //Crear el contrato 
 
         $contrato = new contrato();    
@@ -130,7 +147,7 @@ class contratoController extends InfyOmBaseController
         $contrato->monto_inicial = $request->monto_inicial;
         $contrato->monto_total = $monto_total;
         $contrato->fecha_inicio = $request->fecha_inicio;
-        $contrato->fecha_vencimiento = $request->fecha_vencimiento;
+        $contrato->fecha_vencimiento = $fecha_vencimiento;
         $contrato->tipo_contrato = $request->tipo_contrato;
         $contrato->fecha_inicio = $request->fecha_inicio;
         $contrato->clausula_id = $request->clausula_id;

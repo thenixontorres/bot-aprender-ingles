@@ -8,12 +8,15 @@
             <div class="modal-body">
                 {!! Form::open(['route' => 'pagos.store']) !!}
                    	<!-- Monto Field -->
+			<!--
 			<div class="form-group col-sm-12">
 			    {!! Form::label('monto', 'Monto:') !!}
 			    {!! Form::text('monto', null, ['class' => 'form-control','pattern' => '[0-9]{1,30}', 'placeholder' => 'Solo Numeros']) !!}
 			</div>
+			-->
 
 			<!-- Numero Cuota Field -->
+			<!--
 			<div class="form-group col-sm-12">
 			    {!! Form::label('numero_cuota', 'Numero de Cuota:') !!}
 			    <select class="form-control" name="numero_cuota">
@@ -22,7 +25,7 @@
 				@endfor	
 			    </select> 
 			</div>
-
+			-->
 			<!-- Tipo Pago Field -->
 			<div class="form-group col-sm-12">
 			    {!! Form::label('tipo_pago', 'Tipo de Pago:') !!}
@@ -32,14 +35,14 @@
 			    </select> 
 			</div>
 
-		            <!--contrato_id field -->
-                    <div class="form-group">
-                         <input class="form-control" required="required" name="contrato_id" type="hidden" id="contrato_id" value="?">
-                    </div>
-                    <div class="form-group">
-                        {!! Form::submit('Agregar', ['class' => 'btn btn-default']) !!}
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
-                    </div>
+            <!--contrato_id field -->
+            <div class="form-group">
+                 <input class="form-control" required="required" name="contrato_id" type="hidden" id="contrato_id" value="?">
+            </div>
+            <div class="form-group">
+                {!! Form::submit('Agregar', ['class' => 'btn btn-default']) !!}
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+            </div>
                 {!! Form::close() !!}
             </div>
         </div>

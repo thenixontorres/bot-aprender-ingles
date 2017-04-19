@@ -55,6 +55,11 @@ Route::group(['middleware' => 'auth'], function () {
             'as'    =>  'contratos.buscar_rutas',
     ]);
 
+    Route::post('/buscar_giros', [
+            'uses'  =>  'contratoController@buscar_giros',
+            'as'    =>  'contratos.buscar_giros',
+    ]);
+
     Route::get('/dropdown/{option}/', [
             'uses'  =>  'municipioController@dropdown',
             'as'    =>  'dropdown',
