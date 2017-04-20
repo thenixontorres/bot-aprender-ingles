@@ -18,6 +18,7 @@ use App\Models\planes;
 use App\Models\clausula;
 use App\Models\persona;
 use App\Models\empresa;
+use App\Models\pago;
 
 class contratoController extends InfyOmBaseController
 {
@@ -261,6 +262,96 @@ class contratoController extends InfyOmBaseController
      * @return Response
 
      */
+
+    public function giros(){
+        $pagos = pago::all();
+        $min = 3000;
+        $max = 0;
+        foreach ($pagos as $pago) {
+           $concepto =  explode("/", $pago->concepto);
+           if ($concepto[2] < $min) {
+                $min = $concepto[2];
+            }
+
+            if ($concepto[2] > $max) {
+                $max = $concepto[2];
+            }
+
+        }
+
+        $meses = array(
+            ['mes' => 'Enero', 'valor' =>'01'],
+            ['mes' => 'Febrero', 'valor' =>'02'],
+            ['mes' => 'Marzo', 'valor' =>'03'],
+            ['mes' => 'Abril', 'valor' =>'04'],
+            ['mes' => 'Mayo', 'valor' =>'05'],
+            ['mes' => 'Junio', 'valor' =>'06'],
+            ['mes' => 'Julio', 'valor' =>'07'],
+            ['mes' => 'Agosto', 'valor' =>'08'],
+            ['mes' => 'Septiembre', 'valor' =>'09'],
+            ['mes' => 'Octubre', 'valor' =>'10'],
+            ['mes' => 'Noviebre', 'valor' =>'11'],
+            ['mes' => 'Diciembre', 'valor' =>'12'],
+        );
+                
+
+        $giros = null;
+        return view('giros.index')
+        ->with('giros',$giros)
+        ->with('min',$min)
+        ->with('max',$max)
+        ->with('meses', $meses);
+    }
+
+    public function buscar_giros(Request $request){
+        
+        $min = 3000;
+        $max = 0;
+        
+        $mes = $request['mes'];
+        $ano = $request['ano'];
+
+        $giros = array();
+        $pagos = pago::all();
+
+        foreach ($pagos as $pago) {    
+
+        $concepto =  explode("/", $pago->concepto);
+            if ($concepto[2] > $min) {
+                $min = $concepto[2];
+            }
+
+            if ($concepto[2] > $max) {
+                $max = $concepto[2];
+            }
+            if ($concepto[1] == $mes && $concepto[2] == $ano) {
+                $giros = array_add($giros, 'pago', $pago
+                    );
+            }
+        }
+
+         $meses = array(
+            ['mes' => 'Enero', 'valor' =>'01'],
+            ['mes' => 'Febrero', 'valor' =>'02'],
+            ['mes' => 'Marzo', 'valor' =>'03'],
+            ['mes' => 'Abril', 'valor' =>'04'],
+            ['mes' => 'Mayo', 'valor' =>'05'],
+            ['mes' => 'Junio', 'valor' =>'06'],
+            ['mes' => 'Julio', 'valor' =>'07'],
+            ['mes' => 'Agosto', 'valor' =>'08'],
+            ['mes' => 'Septiembre', 'valor' =>'09'],
+            ['mes' => 'Octubre', 'valor' =>'10'],
+            ['mes' => 'Noviebre', 'valor' =>'11'],
+            ['mes' => 'Diciembre', 'valor' =>'12'],
+        ); 
+        dd($giros);    
+        return view('giros.index')
+        ->with('giros',$giros)
+        ->with('min',$min)
+        ->with('max',$max)
+        ->with('meses', $meses);
+    }
+
     public function rutas(){
         $estados = estado::all();
         $municipios = municipio::all();
@@ -295,9 +386,27 @@ class contratoController extends InfyOmBaseController
             return redirect()->back();
         }
 
+        //calcular el mes de vencimiento
+        $fecha_inicio = $request->fecha_inicio;
+        $fecha_inicio = explode("/", $fecha_inicio);
+        $dia_inicio = $fecha_inicio[0];
+        $mes_inicio = $fecha_inicio[1];
+        $ano_fin = $fecha_inicio[2];
+
+        $mes_fin = $mes_inicio+5;
+
+        if($mes_fin >  12){
+            $mes_fin = $mes_fin-12;
+            $ano_fin = $ano_fin+1;
+        }
+
+        $fecha_vencimiento =  array($dia_inicio, $mes_fin, $ano_fin);  
+        $fecha_vencimiento = implode("/", $fecha_vencimiento);
+
         $contrato->numero = $request->numero; 
         $contrato->monto_inicial = $request->monto_inicial;
         $contrato->fecha_inicio = $request->fecha_inicio;
+        $contrato->fecha_vencimiento = $fecha_vencimiento;
         $contrato->clausula_id = $request->clausula_id;
         $contrato->tiempo_pago = $request->tiempo_pago;
         $contrato->estado = $request->estado;

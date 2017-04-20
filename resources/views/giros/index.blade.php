@@ -4,33 +4,29 @@
 <div class="col-md-12 panel">   
 	<div class="row">
 	        <div class="col-sm-12">
-	            <h1 class="pull-left">Buscar Rutas</h1>
+	            <h1 class="pull-left">Buscar Giros</h1>
 	        </div>
 	</div>
 	<div class="row">
-	    {!! Form::open(['route' => 'contratos.buscar_rutas']) !!}
-
-	        <!-- Estado Id Field -->
+	    {!! Form::open(['route' => 'contratos.buscar_giros']) !!}
+	        <!-- Mes Field -->
 	        <div class="form-group col-sm-12">
-	            {!! Form::label('estado_id', 'Estado:') !!}
-	            <select class="form-control" name="estado_id">
-	                @foreach($estados as $estado)
-	                    <option value="{{ $estado->id }}">
-	                         {{ $estado->estado }}   
-	                    </option>
-	                @endforeach
+	            {!! Form::label('mes', 'Mes:') !!}
+	            <select class="form-control" name="mes">
+	                @foreach ($meses as $mes)
+	                	<option value ="{{ $mes['valor']}}" >{{ $mes['mes']}} </option>
+	                @endforeach 
 	            </select>
 	        </div>
 
-	        <!-- Municipio Id Field -->
+	        <!-- Año Field -->
 	        <div class="form-group col-sm-12">
-	            {!! Form::label('municipio_id', 'Municipio:') !!}
-	            <select class="form-control" name="municipio_id">
-	                @foreach($municipios as $municipio)
-	                    <option value="{{ $municipio->id }}">
-	                         {{ $municipio->municipio }}   
-	                    </option>
-	                @endforeach
+	            {!! Form::label('ano', 'Ano:') !!}
+	            <select class="form-control" name="ano">
+	                @while($min <= $max)
+	                	<option value="{{ $min }}">{{ $min }}</option>
+	                	<?php $min++; ?> 
+	                @endwhile		 
 	            </select>
 	        </div>
 	   <!-- Submit Field -->
@@ -40,7 +36,7 @@
 	    {!! Form::close() !!} 
 	</div>
     <hr>
-	@if ($titulares != null)
+	@if ($giros != null)
 	<div class="row">
         <div class="col-sm-12">
             <h1 class="pull-left">Resultados:</h1>
@@ -56,22 +52,7 @@
 		        <th>Direccion</th>
 		    </thead>
 		    <tbody>
-            @foreach($titulares as $titular)
-            <tr>  
-                <td>
-                    {!! $titular->contrato->numero !!}
-                </td>
-                <td>
-                    {!! $titular->contrato->tipo_contrato !!}
-                </td>
-                <td>
-                 {!! $titular->nombre.' '.$titular->apellido.' '.$titular->cedula !!}
-                </td>
-            <td>{!! $titular->municipio->estado->estado.', '.$titular->municipio->municipio.', '.$titular->direccion !!}</td>
-                {!! Form::close() !!}
-            </td>
-	        </tr>
-	    	@endforeach
+         
     		</tbody>
 			</table>
         </div>

@@ -35,7 +35,7 @@
                 <a class="nav-li text-center" href="{{ route('contratos.rutas') }}" id="receptors">Rutas</a>
             </li>
             <li class="nav-li">
-                <a class="nav-li text-center" href="#" id="giros">Giros</a>
+                <a class="nav-li text-center" href="{{ route('contratos.giros') }}" id="giros">Giros</a>
             </li>
             <li class="nav-li">
                 <a class="nav-li text-center" href="# " id="users">Cierre</a>

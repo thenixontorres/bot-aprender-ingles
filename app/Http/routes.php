@@ -55,6 +55,11 @@ Route::group(['middleware' => 'auth'], function () {
             'as'    =>  'contratos.buscar_rutas',
     ]);
 
+    Route::get('/giros', [
+            'uses'  =>  'contratoController@giros',
+            'as'    =>  'contratos.giros',
+    ]);
+
     Route::post('/buscar_giros', [
             'uses'  =>  'contratoController@buscar_giros',
             'as'    =>  'contratos.buscar_giros',

@@ -32,15 +32,9 @@
             </div>
 
         <!-- Fecha Inicio Field -->
-            <div class="form-group col-sm-6">
+            <div class="form-group col-sm-12">
                 {!! Form::label('fecha_inicio', 'Fecha Inicio:') !!}
                 {!! Form::text('fecha_inicio', null, ['class' => 'form-control', 'id' => 'fecha_inicio','placeholder' => 'DD/MM/AAAA']) !!}
-            </div>
-
-            <!-- Fecha Vencimiento Field -->
-            <div class="form-group col-sm-6">
-                {!! Form::label('fecha_vencimiento', 'Fecha Vencimiento:') !!}
-                {!! Form::text('fecha_vencimiento', null, ['class' => 'form-control', 'id' => 'fecha_vencimiento','placeholder' => 'DD/MM/AAAA']) !!}
             </div>
 
         <!-- Tipo Contrato Field -->
