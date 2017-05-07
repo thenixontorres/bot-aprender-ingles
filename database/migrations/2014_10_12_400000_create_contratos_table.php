@@ -27,6 +27,10 @@ class CreatecontratosTable extends Migration
             $table->string('monto_total');
             $table->string('monto_inicial');
             $table->string('estado');
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('ruta_id')->unsigned();
+            $table->foreign('ruta_id')->references('id')->on('rutas');
             $table->timestamps();
             $table->softDeletes();
         });

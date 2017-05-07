@@ -19,6 +19,8 @@ use App\Models\clausula;
 use App\Models\persona;
 use App\Models\empresa;
 use App\Models\pago;
+use App\Models\ruta;
+use Auth;
 
 class contratoController extends InfyOmBaseController
 {
@@ -41,10 +43,12 @@ class contratoController extends InfyOmBaseController
         $this->contratoRepository->pushCriteria(new RequestCriteria($request));
         $contratos = $this->contratoRepository->all();
         $estados = estado::all();
+        $rutas = ruta::all();
         $municipios = municipio::all();
 
         return view('contratos.index')
         ->with('municipios', $municipios)
+        ->with('rutas', $rutas)
         ->with('estados', $estados)
         ->with('contratos', $contratos);
     }
@@ -54,10 +58,12 @@ class contratoController extends InfyOmBaseController
         $contratos = contrato::where('tipo_contrato','Individual')->get();
         $estados = estado::all();
         $municipios = municipio::all();
-        
+        $rutas = ruta::all();
+
         return view('contratos.individuales_index')
         ->with('municipios', $municipios)
         ->with('estados', $estados)
+        ->with('rutas', $rutas)
         ->with('contratos', $contratos);
     }
 
@@ -66,8 +72,10 @@ class contratoController extends InfyOmBaseController
         $contratos = contrato::where('tipo_contrato','Colectivo')->get();
         $estados = estado::all();
         $municipios = municipio::all();
-        
+        $rutas = ruta::all();
+
         return view('contratos.colectivos_index')
+            ->with('rutas', $rutas)
             ->with('municipios', $municipios)
             ->with('estados', $estados)
             ->with('contratos', $contratos);
@@ -89,7 +97,10 @@ class contratoController extends InfyOmBaseController
         $municipios = municipio::all();
         $planes = planes::all();
         $clausulas = clausula::all();
+        $rutas = ruta::all();
+
         return view('contratos.individuales_create')
+        ->with('rutas', $rutas)
         ->with('planes', $planes)
         ->with('municipios', $municipios)
         ->with('estados', $estados)
@@ -102,7 +113,10 @@ class contratoController extends InfyOmBaseController
         $municipios = municipio::all();
         $planes = planes::all();
         $clausulas = clausula::all();
+        $rutas = ruta::all();
+
         return view('contratos.colectivos_create')
+        ->with('rutas', $rutas)
         ->with('planes', $planes)
         ->with('municipios', $municipios)
         ->with('estados', $estados)
@@ -142,7 +156,6 @@ class contratoController extends InfyOmBaseController
         $fecha_vencimiento = implode("/", $fecha_vencimiento);
 
         //Crear el contrato 
-
         $contrato = new contrato();    
         $contrato->numero = $request->numero;
         $contrato->monto_inicial = $request->monto_inicial;
@@ -155,6 +168,8 @@ class contratoController extends InfyOmBaseController
         $contrato->plan_id = $request->plan_id;
         $contrato->tiempo_pago = $request->tiempo_pago;
         $contrato->estado = 'Activo';
+        $contrato->ruta_id = $request->ruta_id;
+        $contrato->user_id = Auth::user()->id;
         $contrato->save();
 
         $contrato_id = $contrato->id;
@@ -231,6 +246,7 @@ class contratoController extends InfyOmBaseController
         $municipios = municipio::all();
         $planes = planes::all();
         $clausulas = clausula::all();
+        $rutas = ruta::all();
 
         if (empty($contrato)) {
             Flash::error('Contrato no encontrado.');
@@ -240,12 +256,14 @@ class contratoController extends InfyOmBaseController
 
         if ($contrato->tipo_contrato == "Individual") {
             return view('contratos.individuales_edit')->with('contrato', $contrato)
+            ->with('rutas', $rutas)
             ->with('planes', $planes)
             ->with('municipios', $municipios)
             ->with('estados', $estados)
             ->with('clausulas', $clausulas);   
         }else{
             return view('contratos.colectivos_edit')->with('contrato', $contrato)
+            ->with('rutas', $rutas)
             ->with('planes', $planes)
             ->with('municipios', $municipios)
             ->with('estados', $estados)
@@ -410,6 +428,8 @@ class contratoController extends InfyOmBaseController
         $contrato->clausula_id = $request->clausula_id;
         $contrato->tiempo_pago = $request->tiempo_pago;
         $contrato->estado = $request->estado;
+        $contrato->ruta_id = $request->ruta_id;
+        $contrato->user_id = Auth::user()->id;
         $contrato->save();
 
         if ($contrato->tipo_contrato == "Individual") {

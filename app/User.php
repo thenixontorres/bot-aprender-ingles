@@ -28,7 +28,7 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = ['nombre','apellido','cedula','email', 'password', 'tipo'];
+    protected $fillable = ['nombre','apellido','cedula','telefono','email', 'password', 'tipo'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -42,15 +42,27 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany('App\Models\solicitud');
     }
 
+    public function contratos()
+    {
+        return $this->hasMany('App\Models\contrato');
+    }
+
     public static $rules = [
-        'nombre' => 'required',
-        'apellido' => 'required',
-        'cedula' => 'required',
         'email' => 'required',
     ];
 
     public function admin()
     {
         return $this->type === "Admin";
+    }
+
+    public function vendedor()
+    {
+        return $this->type === "Vendedor";
+    }
+
+    public function cobrador()
+    {
+        return $this->type === "Cobrador";
     }
 }

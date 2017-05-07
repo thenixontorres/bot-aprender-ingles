@@ -12,8 +12,13 @@ class test extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-        	'email'     => 'admin@example.com',
+        	'nombre' => 'test',
+            'apellido' => 'test',
+            'cedula' => '12345678',
+            'telefono' => '04160000000',
+            'email'     => 'admin@example.com',
         	'password' 	=> bcrypt('admin'),
+            'tipo' 	=> 'Admin',
         ]);
 
         DB::table('estados')->insert([
@@ -77,6 +82,10 @@ class test extends Seeder
         DB::table('clausulas')->insert([
             'nombre'     => 'Clausular estandar',
             'clausulas'  => '/clausulas/estandar.pdf',
+        ]);
+
+        DB::table('rutas')->insert([
+            'direccion'     => 'Direccion de prueba.',
         ]);
     }
 }

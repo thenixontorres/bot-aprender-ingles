@@ -111,6 +111,23 @@
                     @endif 
             </select>
         </div>
+        <!-- Ruta Id Field -->
+            <div class="form-group col-sm-12">
+                {!! Form::label('ruta_id', 'Ruta:') !!}
+                <select class="form-control" name="ruta_id">
+                    @foreach($rutas as $ruta)
+                        @if ($ruta->id == 'contrato->ruta->id')
+                        <option selected value="{{ $ruta->id }}">
+                             {{ $ruta->direccion }}   
+                        </option>
+                        @else
+                        <option value="{{ $ruta->id }}">
+                             {{ $ruta->direccion }}   
+                        </option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
         <!-- Submit Field -->
             <div class="form-group col-sm-12">
                 {!! Form::submit('Actualizar', ['class' => 'btn btn-primary']) !!}

@@ -13,6 +13,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\componente;
 use App\Models\planes;
+use App\Models\ruta;
 
 class componenteController extends InfyOmBaseController
 {

@@ -93,3 +93,5 @@ Route::resource('estados', 'estadoController');
 Route::resource('municipios', 'municipioController');
 
 Route::resource('componentes', 'componenteController');
+
+Route::resource('rutas', 'rutaController');

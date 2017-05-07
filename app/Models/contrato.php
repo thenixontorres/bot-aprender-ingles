@@ -77,6 +77,16 @@ class contrato extends Model
         return $this->BelongsTo('App\Models\planes');
     }
 
+    public function user()
+    {
+        return $this->BelongsTo('App\User');
+    }
+
+    public function ruta()
+    {
+        return $this->BelongsTo('App\Models\ruta');
+    }
+
     //hasMany----------------------------------
     public function personas()
     {
@@ -97,6 +107,8 @@ class contrato extends Model
     {
         return $this->hasMany('App\Models\modificacion');
     }
+
+    
 
     public $fillable = [
         'numero',
