@@ -151,7 +151,6 @@ class contrato extends Model
         'tipo_contrato' => 'required',
         'clausula_id' => 'required',
         'plan_id' => 'required',
-        'tiempo_pago' => 'required',
         'estado' => 'required'
     ];
 }

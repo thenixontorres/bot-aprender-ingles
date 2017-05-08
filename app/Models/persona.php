@@ -101,6 +101,7 @@ class persona extends Model
         'municipio_id',
         'direccion',
         'contrato_id',
+        'observacion',
     ];
 
     /**
@@ -118,7 +119,8 @@ class persona extends Model
         'telefono' => 'string',
         'municipio_id' => 'integer',
         'direccion' => 'string',
-        'contrato_id' => 'integer'
+        'contrato_id' => 'integer',
+        'observacion' => 'string'
     ];
 
     /**

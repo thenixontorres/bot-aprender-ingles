@@ -150,72 +150,41 @@
             </div>
             <div class="col-sm-12">
                 <div class="row text-center">
-                <strong>
-                <div class="form-group col-sm-3">
-                Plan
-                </div>
-                <div class="form-group col-sm-2">
-                Mensual (6 cuotas)
-                </div>
-                <div class="form-group col-sm-2">
-                Semanal (12 cuotas)
-                </div>
-                <div class="form-group col-sm-2">
-                Quicenal (24 cuotas)
-                </div>
-                <div class="form-group col-sm-3">
-                Monto total
-                </div>
-                </strong>
+                    <strong>
+                        <div class="form-group col-sm-3">
+                        Plan
+                        </div>
+                        <div class="form-group col-sm-3">
+                        Mensual (6 cuotas)
+                        </div>
+                        <div class="form-group col-sm-3">
+                        Monto total
+                        </div>
+                        <div class="form-group col-sm-3">
+                        Elelgir
+                        </div>
+                    </strong>
                 </div>
                 @foreach($planes as $plan)
                     <div class="form-group col-sm-12">
-                    <div class="row text-center">
-                    <div class="form-group col-sm-3">
-                    {!! $plan->plan !!}
-                    </div>
-                    <div class="form-group col-sm-2">
-                    <?php  
-                    $mensual = $plan->monto/6;
-                    $mensual = number_format($mensual, 2, '.', ''); 
-                    ?>
-                    {!! 'Bs: '.$mensual !!}
-                    </div>
-                    <div class="form-group col-sm-2">
-                    <?php  
-                    $semanal = $plan->monto/12;
-                    $semanal = number_format($semanal, 2, '.', ''); 
-                    ?>
-                    {!! 'Bs: '.$semanal !!}
-                    </div>
-                    <div class="form-group col-sm-2">
-                    <?php  
-                    $quincenal = $plan->monto/24;
-                    $quincenal = number_format($quincenal, 2, '.', ''); 
-                    ?>
-                    {!! 'Bs: '.$quincenal !!}
-                    </div>
-                    <div class="form-group col-sm-3">
-                    {!! 'Bs: '.$plan->monto !!}
-                    </div>
-                    </div>
-                    <div class="row text-center">
-                    <div class="form-group col-sm-3">
-                    <input class="form-control radio" type="radio" name="plan_id" value="{!! $plan->id !!}">
-                    </div>
-                    <div class="form-group col-sm-2">
-                    <input class="form-control radio" type="radio" name="tiempo_pago" value="Mensual">
-                    </div>
-                    <div class="form-group col-sm-2">
-                    <input class="form-control radio" type="radio" name="tiempo_pago" value="Semanal">
-                    </div>
-                    <div class="form-group col-sm-2">
-                    <input class="form-control radio" type="radio" name="tiempo_pago" value="Quincenal">
-                    </div>
-                    <div class="form-group col-sm-3">
-                    </div>
-                    </div>
-                    <hr>
+                        <div class="row text-center">
+                            <div class="form-group col-sm-3">
+                                {!! $plan->plan !!}
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <?php  
+                                $mensual = $plan->monto/6;
+                                $mensual = number_format($mensual, 2, '.', ''); 
+                                ?>
+                                <input type="text" name="cuotas" value="{{ $mensual }}"> 
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <input type="text" name="monto_total" value="{{ $plan->monto }}">
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <input class="form-control radio" type="radio" name="plan_id" value="{!! $plan->id !!}">
+                            </div>
+                        </div>  
                     </div>
                 @endforeach 
                 </div>
@@ -302,5 +271,10 @@
                 dateFormat: "dd/mm/yy",
             });
           });
+
+        function cuota(monto_total) {
+        var cuota = document.getElementById('cuota');
+        cuota.value = monto_total/6;                
+        }  
     </script>      
 @endsection

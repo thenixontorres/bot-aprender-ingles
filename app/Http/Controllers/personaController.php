@@ -77,6 +77,9 @@ class personaController extends InfyOmBaseController
             $persona->parentesco = $request->parentesco;
             $persona->telefono = $request->telefono;
             $persona->municipio_id = $titular->municipio_id;
+            if($request->observacion != null){
+                $persona->observacion = $request->observacion;
+            }
             $persona->direccion = $titular->direccion;
             $persona->contrato_id = $request->contrato_id;
             $persona->save();    

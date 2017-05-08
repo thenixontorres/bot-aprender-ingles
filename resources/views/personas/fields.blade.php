@@ -95,6 +95,11 @@
         {!! Form::label('direccion', 'Direccion:') !!}
         {!! Form::textarea('direccion', null, ['class' => 'form-control','placeholder'=>'Parroquia,  Avenida, Casa.']) !!}
     </div>
+    <!-- observacion -->
+    <div class="form-group col-sm-12">
+        {!! Form::label('observacion', 'Observacion:') !!}
+        {!! Form::textarea('observacion', null, ['class' => 'form-control']) !!}
+    </div>
     @if ($persona->parentesco == 'Titular')
     <!-- parentesco -->
         {!! Form::hidden('parentesco', null, ['class' => 'form-control','placeholder'=>'Parentesco']) !!}

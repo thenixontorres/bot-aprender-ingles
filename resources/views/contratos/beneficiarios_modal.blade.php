@@ -59,6 +59,11 @@
 		                	<option value="Conyuge">Conyuge</option>
 		                </select>
 		            </div> 
+					<!-- Observacion Field -->
+		            <div class="form-group col-sm-12">
+		                {!! Form::label('observacion', 'Observaciones:') !!}
+		                <input type="textarea" class="form-control" name="observacion">
+		            </div> 
 		            <!--contrato_id field -->
                     <div class="form-group">
                          <input class="form-control" required="required" name="contrato_id" type="hidden" id="contrato_id" value="?">

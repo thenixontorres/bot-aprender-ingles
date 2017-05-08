@@ -53,45 +53,8 @@
                 @endforeach
             </select>
         </div>
-        <!-- Tiempo pago Field -->
-        <div class="form-group col-sm-3">
-            {!! Form::label('tiempo_pago', 'Tiempo Pago:') !!}
-            <select class="form-control" name="tiempo_pago">
-                    @if ($contrato->tiempo_pago == 'Mensual')
-                    <option value="Mensual" selected>
-                    Mensual
-                    </option>
-                    <option value="Quincenal">
-                    Quincenal
-                    </option>
-                    <option value="Semanal">
-                    Semanal
-                    </option>
-                    @elseif ($contrato->tiempo_pago == 'Quincenal')
-                    <option value="Mensual" >
-                    Mensual
-                    </option>
-                    <option selected value="Quincenal">
-                    Quincenal
-                    </option>
-                    <option value="Semanal">
-                    Semanal
-                    </option>
-                    @else
-                    <option value="Mensual" >
-                    Mensual
-                    </option>
-                    <option value="Quincenal">
-                    Quincenal
-                    </option>
-                    <option selected value="Semanal">
-                    Semanal
-                    </option>
-                    @endif 
-            </select>
-        </div>
         <!-- Estado Field -->
-        <div class="form-group col-sm-3">
+        <div class="form-group col-sm-6">
             {!! Form::label('estado', 'Estado:') !!}
             <select class="form-control" name="estado">
                     @if ($contrato->estado == 'Activo')

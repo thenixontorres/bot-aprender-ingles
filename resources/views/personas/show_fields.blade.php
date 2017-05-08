@@ -7,6 +7,7 @@
         <th>Fecha de Nacimiento</th>
         <th>Telefono</th>
         <th>Parentesco</th>
+        <th>Observacion</th>
         <th colspan="3">Accion</th>
     </thead>
     <tbody>
@@ -20,6 +21,7 @@
                 <td>{!! $persona->fecha_nac !!}</td>
                 <td>{!! $persona->telefono !!}</td>
                 <td>{!! $persona->parentesco !!}</td>
+                <td>{!! $persona->observacion !!}</td>
                 <td>
                     {!! Form::open(['route' => ['personas.destroy', $persona->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
