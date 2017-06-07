@@ -12,80 +12,14 @@ class test extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-        	'nombre' => 'test',
-            'apellido' => 'test',
-            'cedula' => '12345678',
-            'telefono' => '04160000000',
+        	'username' => 'test',
             'email'     => 'admin@example.com',
         	'password' 	=> bcrypt('admin'),
-            'tipo' 	=> 'Admin',
-        ]);
-
-        DB::table('estados')->insert([
-            'estado'     => 'Miranda',
-        ]);
-
-        DB::table('municipios')->insert([
-            'municipio'     => 'Independencia',
-            'estado_id'  => '1',
-        ]);
-       
-
-        DB::table('planes')->insert([
-            'plan'     => 'Oro',
-            'monto'  => '3000',
-            'informacion'  => 'Descripcion del plan',
-        ]);
-
-        DB::table('planes')->insert([
-            'plan'     => 'Plata',
-            'monto'  => '2000',
-            'informacion'  => 'Descripcion del plan',
-        ]);
-
-        DB::table('planes')->insert([
-            'plan'     => 'Bronce',
-            'monto'  => '1000',
-            'informacion'  => 'Descripcion del plan',
-        ]);
-
-         DB::table('componentes')->insert([
-            'componente'     => 'Servicio Funerario',
-            'planes_id'  => '1',
-        ]); 
-
-        DB::table('componentes')->insert([
-            'componente'     => 'Traslado Local',
-            'planes_id'  => '1',
-        ]);  
-
-        DB::table('componentes')->insert([
-            'componente'     => 'Servicio Funerario',
-            'planes_id'  => '2',
-        ]); 
-
-        DB::table('componentes')->insert([
-            'componente'     => 'Traslado Local',
-            'planes_id'  => '2',
-        ]);         
-
-        DB::table('componentes')->insert([
-            'componente'     => 'Servicio Funerario',
-            'planes_id'  => '3',
-        ]); 
-
-        DB::table('componentes')->insert([
-            'componente'     => 'Traslado Local',
-            'planes_id'  => '3',
-        ]);  
-
-        DB::table('clausulas')->insert([
-            'nombre'     => 'Clausular estandar',
-            'clausulas'  => '/clausulas/estandar.pdf',
-        ]);
-
-        DB::table('rutas')->insert([
-            'direccion'     => 'Direccion de prueba.',
+            'telefono' => '0000-000-0000',
+            'cedula' => '00000000',
+            'apellido' => 'admin',
+            'nombre' => 'admin',
+            'tipo' => 'admin'
         ]);
     }
 }

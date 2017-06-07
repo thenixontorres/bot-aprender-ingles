@@ -1,12 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-        <h1 class="pull-left">rutas</h1>
-        <a class="btn btn-primary pull-right" style="margin-top: 25px" href="{!! route('rutas.create') !!}">Add New</a>
+        <h1 class="pull-left">Rutas</h1>
+        <a class="btn btn-primary pull-right" style="margin-top: 25px" href="{!! route('rutas.create') !!}">Registrar</a>
 
         <div class="clearfix"></div>
-
-        @include('flash::message')
 
         <div class="clearfix"></div>
 

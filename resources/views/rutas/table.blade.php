@@ -1,7 +1,8 @@
+<div class="col-md-12 panel">   
 <table class="table table-responsive" id="rutas-table">
     <thead>
         <th>Direccion</th>
-        <th colspan="3">Action</th>
+        <th colspan="3">Accion</th>
     </thead>
     <tbody>
     @foreach($rutas as $ruta)
@@ -20,3 +21,4 @@
     @endforeach
     </tbody>
 </table>
+</div>

@@ -32,7 +32,7 @@
             </ul>
         </li>
         <li class="nav-li">
-                <a class="nav-li text-center" href="#" id="receptors">Rutas</a>
+                <a class="nav-li text-center" href="{{ route('rutas.index')}}" id="receptors">Rutas</a>
             </li>
             <li class="nav-li">
                 <a class="nav-li text-center" href="{{ route('contratos.giros') }}" id="giros">Giros</a>
@@ -51,6 +51,7 @@
                 <li><a href="{{ route('estados.index') }}">Estados</a></li>
                 <li><a href="{{ route('municipios.index') }}">Municipios</a></li>
                 <li><a href="{{ route('planes.index') }}">Planes</a></li>
+                <li><a href="{{ route('clausulas.create') }}">Agregar Clausulas</a></li>
             </ul>
         </li>
             <li>

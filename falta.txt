@@ -1,0 +1,3 @@
+modulo para registrar vendedores y cobradores (ninguno accede al sistema)
+select dinamico.
+modulo rutas.

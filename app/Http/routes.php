@@ -23,6 +23,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('personas', 'personaController');
     Route::resource('empresas', 'empresaController');
     Route::resource('clausulas', 'clausulaController');
+
+    Route::post('/clausulas/store', [
+        'uses'  => 'clausulaController@store',
+        'as'    => 'clausulas.store',
+    ]);
+
     Route::resource('pagos', 'pagoController');
     Route::resource('planes', 'planesController');
     Route::resource('modificacions', 'modificacionController');
@@ -45,15 +51,14 @@ Route::group(['middleware' => 'auth'], function () {
             'as'    =>  'contratos.colectivos_create',
     ]);
 
-    Route::get('/rutas', [
-            'uses'  =>  'contratoController@rutas',
-            'as'    =>  'contratos.rutas',
-    ]);
+    
+    Route::resource('estados', 'estadoController');
 
-    Route::post('/buscar_rutas', [
-            'uses'  =>  'contratoController@buscar_rutas',
-            'as'    =>  'contratos.buscar_rutas',
-    ]);
+    Route::resource('municipios', 'municipioController');
+
+    Route::resource('componentes', 'componenteController');
+
+    Route::resource('rutas', 'rutaController');
 
     Route::get('/giros', [
             'uses'  =>  'contratoController@giros',
@@ -87,11 +92,3 @@ Route::get('/logout', [
 ]);
 
 
-
-Route::resource('estados', 'estadoController');
-
-Route::resource('municipios', 'municipioController');
-
-Route::resource('componentes', 'componenteController');
-
-Route::resource('rutas', 'rutaController');

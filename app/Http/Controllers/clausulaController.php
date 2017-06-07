@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Models\clausula;
 
 class clausulaController extends InfyOmBaseController
 {
@@ -30,6 +31,7 @@ class clausulaController extends InfyOmBaseController
      */
     public function index(Request $request)
     {
+        dd('hola');
         $this->clausulaRepository->pushCriteria(new RequestCriteria($request));
         $clausulas = $this->clausulaRepository->all();
 
@@ -57,12 +59,20 @@ class clausulaController extends InfyOmBaseController
     public function store(CreateclausulaRequest $request)
     {
         $input = $request->all();
+        $pdf = $request->file('clausulas');
+        $nombre = $request->nombre.'.'.$pdf->getClientOriginalExtension();
+        $ruta = public_path().'/clausulas/';
+        $pdf->move($ruta, $nombre);
 
-        $clausula = $this->clausulaRepository->create($input);
+        $clausula = new clausula();
+        $clausula->nombre = $request->nombre;
+        $clausula->clausulas = '/clausulas/'.$nombre;
+        $clausula->save();
+        //$clausula = $this->clausulaRepository->create($input);
 
         Flash::success('clausula saved successfully.');
 
-        return redirect(route('clausulas.index'));
+        return redirect(route('home'));
     }
 
     /**

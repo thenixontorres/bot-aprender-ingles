@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
+use App\Models\contrato;
 
 class rutaController extends InfyOmBaseController
 {
@@ -142,11 +143,16 @@ class rutaController extends InfyOmBaseController
         $ruta = $this->rutaRepository->findWithoutFail($id);
 
         if (empty($ruta)) {
-            Flash::error('ruta not found');
+            Flash::error('Ruta no encontrada.');
 
             return redirect(route('rutas.index'));
         }
 
+        $contratos = count(contrato::where('ruta_id', $id)->get());
+
+        if ($contratos > 0) {
+            Flash::error('Esta Ruta aun posee contratos.');
+        }   
         $this->rutaRepository->delete($id);
 
         Flash::success('ruta deleted successfully.');

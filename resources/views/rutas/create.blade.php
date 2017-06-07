@@ -1,9 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="col-md-12 panel">   
+
     <div class="row">
         <div class="col-sm-12">
-            <h1 class="pull-left">Create New ruta</h1>
+            <h1 class="pull-left">Registrar Nueva Ruta</h1>
         </div>
     </div>
 
@@ -16,4 +18,5 @@
 
         {!! Form::close() !!}
     </div>
+</div>    
 @endsection
