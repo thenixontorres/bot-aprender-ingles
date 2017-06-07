@@ -92,3 +92,6 @@ Route::get('/logout', [
 ]);
 
 
+
+
+Route::resource('empleados', 'empleadoController');

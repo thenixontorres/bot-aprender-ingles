@@ -40,7 +40,9 @@
             <li class="nav-li">
                 <a class="nav-li text-center" href="# " id="users">Cierre</a>
             </li>
-             
+            <li class="nav-li">
+                <a class="nav-li text-center" href="{{ route('empleados.index') }}" id="giros">Empleados</a>
+              </li>         
             <li class="dropdown">
             <a href="·
             #" class="dropdown-toggle" data-toggle="dropdown" role="button">Opciones Avanzadas
