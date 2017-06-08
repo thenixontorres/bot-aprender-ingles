@@ -287,7 +287,7 @@ class contratoController extends InfyOmBaseController
         $max = 0;
         foreach ($pagos as $pago) {
            $concepto =  explode("/", $pago->concepto);
-           if ($concepto[2] < $min) {
+            if ($concepto[2] < $min) {
                 $min = $concepto[2];
             }
 
@@ -312,7 +312,6 @@ class contratoController extends InfyOmBaseController
             ['mes' => 'Diciembre', 'valor' =>'12'],
         );
                 
-
         $giros = null;
         return view('giros.index')
         ->with('giros',$giros)
@@ -331,23 +330,23 @@ class contratoController extends InfyOmBaseController
 
         $giros = array();
         $pagos = pago::all();
-
+        $i = 0;
         foreach ($pagos as $pago) {    
 
         $concepto =  explode("/", $pago->concepto);
-            if ($concepto[2] > $min) {
+            if ($concepto[2] < $min) {
                 $min = $concepto[2];
             }
 
             if ($concepto[2] > $max) {
                 $max = $concepto[2];
             }
+
             if ($concepto[1] == $mes && $concepto[2] == $ano) {
-                $giros = array_add($giros, 'pago', $pago
-                    );
+                $giros[$i] = $pago;
+                $i++;
             }
         }
-
          $meses = array(
             ['mes' => 'Enero', 'valor' =>'01'],
             ['mes' => 'Febrero', 'valor' =>'02'],
@@ -362,7 +361,6 @@ class contratoController extends InfyOmBaseController
             ['mes' => 'Noviebre', 'valor' =>'11'],
             ['mes' => 'Diciembre', 'valor' =>'12'],
         ); 
-        dd($giros);    
         return view('giros.index')
         ->with('giros',$giros)
         ->with('min',$min)

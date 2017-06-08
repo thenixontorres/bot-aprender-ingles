@@ -46,13 +46,26 @@
         <div class="col-sm-12">
             <table class="table table-responsive" id="table">
 		    <thead>
-		        <th>Numero</th>
+		    	<th>Numero de contrato</th>
+		        <th>Numero de cuota</th>
+		        <th>Tipo de Pago</th>
 		        <th>Tipo</th>
 		        <th>Titular</th>
-		        <th>Direccion</th>
 		    </thead>
 		    <tbody>
-         
+         	@foreach($giros as $giro)
+         		<tr>
+         		<td>{{ $giro->contrato->numero }}</td>
+         		<td>{{ $giro->numero_cuota }}</td>
+         		<td>{{ $giro->contrato->tiempo_pago }}</td>
+         		<td>{{ $giro->contrato->tipo_contrato }}</td>
+         		@foreach($giro->contrato->personas as $persona)
+	         		@if($persona->parentesco == "Titular")
+	         		<td>{{ $persona->nombre.' '.$persona->apellido.' '.$persona->cedula }}</td>
+	         		@endif
+         		@endforeach
+         		</tr>
+         	@endforeach
     		</tbody>
 			</table>
         </div>
