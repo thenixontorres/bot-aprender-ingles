@@ -70,7 +70,7 @@ Route::group(['middleware' => 'auth'], function () {
             'as'    =>  'contratos.buscar_giros',
     ]);
 
-    Route::get('/dropdown/{option}/', [
+    Route::get('/dropdown', [
             'uses'  =>  'municipioController@dropdown',
             'as'    =>  'dropdown',
     ]);

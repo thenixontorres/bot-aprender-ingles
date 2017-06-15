@@ -6,6 +6,22 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jqueryui/jquery-ui.structure.css') }}">
     <!--chosen -->
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/chosen/chosen.css') }}">
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('#estado_id').change(function(){
+            $.get("{!! route('dropdown') !!}",
+            { option: $(this).val() },
+            function(data) {
+                $('#municipio_id').empty();
+                $.each(data, function(key, element) {
+                    $('#municipio_id').append("<option value='" + element.id + "'>" + element.municipio + "</option>");
+                });
+            });
+        });
+    });     
+    </script>
+
 @endsection
 @section('content')
     <div class="col-md-12 panel">   
@@ -67,7 +83,7 @@
             <!-- Estado Id Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('estado_id', 'Estado:') !!}
-                <select class="form-control" name="estado_id">
+                <select class="form-control" name="estado_id" id ="estado_id">
                     @foreach($estados as $estado)
                         <option value="{{ $estado->id }}">
                              {{ $estado->estado }}   
@@ -79,7 +95,7 @@
             <!-- Municipio Id Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('municipio_id', 'Municipio:') !!}
-                <select class="form-control" name="municipio_id">
+                <select class="form-control" name="municipio_id" id="municipio_id">
                     @foreach($municipios as $municipio)
                         <option value="{{ $municipio->id }}">
                              {{ $municipio->municipio }}   

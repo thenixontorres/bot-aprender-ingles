@@ -99,9 +99,9 @@ class municipioController extends InfyOmBaseController
 
      */
 
-    public function dropdown($option){
-        $municipios = municipio::where('estado_id',$option)->get();
-        return $municipios;
+    public function dropdown(Request $request){
+        $municipios = municipio::where('estado_id',$request->option)->get();
+        return response()->json($municipios->toArray());
     }
 
     public function edit($id)

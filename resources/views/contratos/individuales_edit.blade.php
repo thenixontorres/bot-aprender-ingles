@@ -6,6 +6,22 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jqueryui/jquery-ui.structure.css') }}">
     <!--chosen -->
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/chosen/chosen.css') }}">
+
+     <script type="text/javascript">
+    $(document).ready(function(){
+        $('#estado_id').change(function(){
+            $.get("{!! route('dropdown') !!}",
+            { option: $(this).val() },
+            function(data) {
+                $('#municipio_id').empty();
+                $.each(data, function(key, element) {
+                    $('#municipio_id').append("<option value='" + element.id + "'>" + element.municipio + "</option>");
+                });
+            });
+        });
+    });     
+    </script>
+    
 @endsection
 @section('content')
 <div class="col-md-12 panel">   
