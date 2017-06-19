@@ -143,7 +143,7 @@
         <div class="col-md-2 border">Dir Cobro</div>
     </div>
     <div class="row ">
-        <div class="col-md-2 border">{!! $contrato->monto_total !!}</div>
+        <div class="col-md-2 border">{!! 'Bs: '.$contrato->monto_total !!}</div>
         <div class="col-md-1 border">
         <?php  
         if($contrato->tiempo_pago == "Quincenal"){
@@ -160,12 +160,16 @@
         $cuota_mensual = $contrato->monto_total/$cuotas;
         $cuota_mensual= number_format($cuota_mensual,'2',',',' ');
         ?>    
-        {!! $cuota_mensual !!}</div>
+        {!! 'Bs: '.$cuota_mensual !!}</div>
         <div class="col-md-2 border">{!! $contrato->created_at!!}</div>
         <div class="col-md-2 border">{!! $contrato->fecha_vencimiento !!}</div>
         <div class="col-md-1 border">{{ $i-1 }}</div>
         <div class="col-md-2 border">Casa</div>
     </div>
+    <div class="row ">
+        <div class="col-md-4 border">Monto Inicial:</div>
+        <div class="col-md-8 border">{!! 'Bs: '.$contrato->monto_inicial !!}:</div>
+    </div>    
     <br>
     <div class="row ">
         <div class="col-md-8 border">

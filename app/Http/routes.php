@@ -74,6 +74,8 @@ Route::group(['middleware' => 'auth'], function () {
             'uses'  =>  'municipioController@dropdown',
             'as'    =>  'dropdown',
     ]);
+
+    Route::resource('empleados', 'empleadoController');
     
 });
 
@@ -92,6 +94,3 @@ Route::get('/logout', [
 ]);
 
 
-
-
-Route::resource('empleados', 'empleadoController');

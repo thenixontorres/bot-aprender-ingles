@@ -1,4 +1,4 @@
-ver total de pagos en modulo giros
-anexar inicial al reporte de contratos
-modulo users
+(Listo) ver total de pagos en modulo giros
+(Listo) anexar inicial al reporte de contratos
+(Para Luego) modulo users
 agregar select dinamico al resto de los modulos
