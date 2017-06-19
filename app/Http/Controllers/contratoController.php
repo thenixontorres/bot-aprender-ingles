@@ -52,7 +52,7 @@ class contratoController extends InfyOmBaseController
         ->with('estados', $estados)
         ->with('contratos', $contratos);
     }
-
+    //Listar contratos Individuales
     public function individuales(Request $request)
     {
         $contratos = contrato::where('tipo_contrato','Individual')->get();
@@ -67,6 +67,7 @@ class contratoController extends InfyOmBaseController
         ->with('contratos', $contratos);
     }
 
+    //Listar contratos Colectivos
     public function colectivos(Request $request)
     {
         $contratos = contrato::where('tipo_contrato','Colectivo')->get();
@@ -311,9 +312,11 @@ class contratoController extends InfyOmBaseController
             ['mes' => 'Noviebre', 'valor' =>'11'],
             ['mes' => 'Diciembre', 'valor' =>'12'],
         );
-                
+                   
         $giros = null;
+        $total = null;
         return view('giros.index')
+        ->with('total', $total)
         ->with('giros',$giros)
         ->with('min',$min)
         ->with('max',$max)
@@ -361,7 +364,12 @@ class contratoController extends InfyOmBaseController
             ['mes' => 'Noviebre', 'valor' =>'11'],
             ['mes' => 'Diciembre', 'valor' =>'12'],
         ); 
+        $total = 0; 
+        foreach ($giros as $giro) {
+            $total = $total+$giro->monto;
+         } 
         return view('giros.index')
+        ->with('total', $total)
         ->with('giros',$giros)
         ->with('min',$min)
         ->with('max',$max)

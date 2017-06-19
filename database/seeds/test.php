@@ -14,7 +14,7 @@ class test extends Seeder
         DB::table('users')->insert([
         	'username' => 'test',
             'email'     => 'admin@example.com',
-        	'password' 	=> bcrypt('admin'),
+        	'password' 	=> bcrypt('admin@example.com'),
             'telefono' => '0000-000-0000',
             'cedula' => '00000000',
             'apellido' => 'admin',

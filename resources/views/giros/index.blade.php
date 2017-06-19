@@ -51,6 +51,7 @@
 		        <th>Tipo de Pago</th>
 		        <th>Tipo</th>
 		        <th>Titular</th>
+		        <th>Monto</th>
 		    </thead>
 		    <tbody>
          	@foreach($giros as $giro)
@@ -64,10 +65,18 @@
 	         		<td>{{ $persona->nombre.' '.$persona->apellido.' '.$persona->cedula }}</td>
 	         		@endif
          		@endforeach
+         		<td>{{ 'Bs: '.$giro->monto }}</td>
          		</tr>
          	@endforeach
     		</tbody>
 			</table>
+        </div>
+	</div>
+	@endif
+	@if($total != null)
+	<div class="row">
+        <div class="col-sm-12">
+            <h4 class="pull-left">Total: {{ 'Bs: '.$total}}</h4>
         </div>
 	</div>
 	@endif

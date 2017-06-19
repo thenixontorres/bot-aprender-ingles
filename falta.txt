@@ -1,3 +1,4 @@
-modulo para registrar vendedores y cobradores (ninguno accede al sistema)
-select dinamico.
-modulo rutas.
+ver total de pagos en modulo giros
+anexar inicial al reporte de contratos
+modulo users
+agregar select dinamico al resto de los modulos
