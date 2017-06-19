@@ -52,7 +52,7 @@
     <!-- Estado Id Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('estado_id', 'Estado:') !!}
-        <select class="form-control" name="estado_id">
+        <select class="form-control" name="estado_id" id="estado_id">
             @foreach($estados as $estado)
                 @if($estado->id == $persona->municipio->estado->id)
                 <option selected value="{{ $estado->id }}">
@@ -69,7 +69,7 @@
     <!-- Municipio Id Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('municipio_id', 'Municipio:') !!}
-        <select class="form-control" name="municipio_id">
+        <select class="form-control" name="municipio_id" id ="municipio_id">
             @foreach($municipios as $municipio)
                  @if($municipio->id == $persona->municipio->id)
                 <option selected value="{{ $municipio->id }}">

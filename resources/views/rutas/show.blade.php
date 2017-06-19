@@ -5,7 +5,7 @@
 
     @include('rutas.show_fields')
     <div class="form-group">
-           <a href="{!! route('rutas.index') !!}" class="btn btn-default">Back</a>
+           <a href="{!! route('rutas.index') !!}" class="btn btn-default">Volver</a>
     </div>
     </DIV>
 @endsection

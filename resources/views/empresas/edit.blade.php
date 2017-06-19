@@ -1,5 +1,21 @@
 @extends('layouts.app')
 @section('title','Editar Empresa')
+@section('css')
+ <script type="text/javascript">
+    $(document).ready(function(){
+        $('#estado_id').change(function(){
+            $.get("{!! route('dropdown') !!}",
+            { option: $(this).val() },
+            function(data) {
+                $('#municipio_id').empty();
+                $.each(data, function(key, element) {
+                    $('#municipio_id').append("<option value='" + element.id + "'>" + element.municipio + "</option>");
+                });
+            });
+        });
+    });     
+    </script>
+@endsection
 @section('content')
         <div class="col-md-12 panel">   
             <div class="row">
