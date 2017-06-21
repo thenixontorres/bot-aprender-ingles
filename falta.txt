@@ -1,4 +1,19 @@
 (Listo) ver total de pagos en modulo giros
 (Listo) anexar inicial al reporte de contratos
-(Para Luego) modulo users
-agregar select dinamico al resto de los modulos
+(Listo)agregar select dinamico al resto de los modulos
+(Lsito)footer -acomodar o quitar.
+traducion de mensajes de laravel flash::erro('hdfsh ') flash::success('mensaje')
+(Listo)formularios "required"
+
+
+29/
+
+modulo de usuarios
+contratos ->pasar a pdf
+rutas -> crear -> pdf
+pausado----------------giros->
+
+6/
+
+modulo de cierre
+reporte ->

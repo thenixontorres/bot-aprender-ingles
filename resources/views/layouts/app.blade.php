@@ -42,7 +42,6 @@
 				</div>
 			</div>
 	</div>
-		@include('layouts.elements.footer')	
 	<!--bootstrap -->
 	<script src="{{ asset('plugins/bootstrap/js/bootstrap.js') }}"></script>
 	<!--Data tables -->

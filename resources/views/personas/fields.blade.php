@@ -8,19 +8,19 @@
     <!-- Nombre Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('nombre', 'Nombre:') !!}
-        {!! Form::text('nombre', null, ['class' => 'form-control','pattern' => '[a-zA-Z ]{4,30}', 'placeholder' => 'Nombre Completo']) !!}
+        {!! Form::text('nombre', null, ['class' => 'form-control','pattern' => '[a-zA-Z ]{4,30}', 'placeholder' => 'Nombre Completo', 'required']) !!}
     </div>
 
     <!-- Apellido Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('apellido', 'Apellido:') !!}
-        {!! Form::text('apellido', null, ['class' => 'form-control','pattern' => '[a-zA-Z ]{4,30}', 'placeholder' => 'Apellido Completo']) !!}
+        {!! Form::text('apellido', null, ['class' => 'form-control','pattern' => '[a-zA-Z ]{4,30}', 'placeholder' => 'Apellido Completo', 'required']) !!}
     </div>
 
     <!-- Cedula Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('cedula', 'Cedula:') !!}
-        {!! Form::text('cedula', null, ['class' => 'form-control','pattern' => '[0-9]{7,8}', 'placeholder' => 'Solo Numeros']) !!}
+        {!! Form::text('cedula', null, ['class' => 'form-control','pattern' => '[0-9]{7,8}', 'placeholder' => 'Solo Numeros', 'required']) !!}
     </div>
 
     <!-- Sexo Field -->
@@ -39,13 +39,13 @@
     <!-- Fecha Nac Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('fecha_nac', 'Fecha de Nacimiento:') !!}
-        {!! Form::text('fecha_nac', null, ['class' => 'form-control','id' => 'fecha_nacimiento','placeholder' => 'DD/MM/AAAA']) !!}
+        {!! Form::text('fecha_nac', null, ['class' => 'form-control','id' => 'fecha_nacimiento','placeholder' => 'DD/MM/AAAA', 'required']) !!}
     </div>
 
     <!-- telefono Nac Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('telefono', 'Telefono:') !!}
-        {!! Form::text('telefono', null, ['class' => 'form-control','pattern' => '[0-9]{11}','placeholder' => 'Solo Numeros']) !!}
+        {!! Form::text('telefono', null, ['class' => 'form-control','pattern' => '[0-9]{11}','placeholder' => 'Solo Numeros', 'required']) !!}
     </div>
 
     @if ($persona->parentesco == 'Titular')
@@ -93,12 +93,12 @@
     <!-- Direccion Field -->
     <div class="form-group col-sm-12">
         {!! Form::label('direccion', 'Direccion:') !!}
-        {!! Form::textarea('direccion', null, ['class' => 'form-control','placeholder'=>'Parroquia,  Avenida, Casa.']) !!}
+        {!! Form::textarea('direccion', null, ['class' => 'form-control','placeholder'=>'Parroquia,  Avenida, Casa.', 'required']) !!}
     </div>
     <!-- observacion -->
     <div class="form-group col-sm-12">
         {!! Form::label('observacion', 'Observacion:') !!}
-        {!! Form::textarea('observacion', null, ['class' => 'form-control']) !!}
+        {!! Form::textarea('observacion', null, ['class' => 'form-control', 'required']) !!}
     </div>
     @if ($persona->parentesco == 'Titular')
     <!-- parentesco -->

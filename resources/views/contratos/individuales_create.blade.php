@@ -43,19 +43,19 @@
             <!-- Nombre Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('nombre', 'Nombre:') !!}
-                {!! Form::text('nombre', null, ['class' => 'form-control','pattern' => '[a-zA-Z ]{4,30}', 'placeholder' => 'Nombre Completo']) !!}
+                {!! Form::text('nombre', null, ['class' => 'form-control','pattern' => '[a-zA-Z ]{4,30}', 'placeholder' => 'Nombre Completo', 'required']) !!}
             </div>
 
             <!-- Apellido Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('apellido', 'Apellido:') !!}
-                {!! Form::text('apellido', null, ['class' => 'form-control','pattern' => '[a-zA-Z ]{4,30}', 'placeholder' => 'Apellido Completo']) !!}
+                {!! Form::text('apellido', null, ['class' => 'form-control','pattern' => '[a-zA-Z ]{4,30}', 'placeholder' => 'Apellido Completo', 'required']) !!}
             </div>
 
             <!-- Cedula Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('cedula', 'Cedula:') !!}
-                {!! Form::text('cedula', null, ['class' => 'form-control','pattern' => '[0-9]{7,8}', 'placeholder' => 'Solo Numeros']) !!}
+                {!! Form::text('cedula', null, ['class' => 'form-control','pattern' => '[0-9]{7,8}', 'placeholder' => 'Solo Numeros', 'required']) !!}
             </div>
 
             <!-- Sexo Field -->
@@ -71,13 +71,13 @@
             <!-- Fecha Nac Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('fecha_nac', 'Fecha de Nacimiento:') !!}
-                {!! Form::text('fecha_nac', null, ['class' => 'form-control','id' => 'fecha_nacimiento','placeholder' => 'DD/MM/AAAA']) !!}
+                {!! Form::text('fecha_nac', null, ['class' => 'form-control','id' => 'fecha_nacimiento','placeholder' => 'DD/MM/AAAA', 'required']) !!}
             </div>
 
             <!-- telefono Nac Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('telefono', 'Telefono:') !!}
-                {!! Form::text('telefono', null, ['class' => 'form-control','pattern' => '[0-9]{11}','placeholder' => 'Solo Numeros']) !!}
+                {!! Form::text('telefono', null, ['class' => 'form-control','pattern' => '[0-9]{11}','placeholder' => 'Solo Numeros', 'required']) !!}
             </div>
 
             <!-- Estado Id Field -->
@@ -108,7 +108,7 @@
             <!-- Direccion Field -->
             <div class="form-group col-sm-12">
                 {!! Form::label('direccion', 'Direccion:') !!}
-                {!! Form::textarea('direccion', null, ['class' => 'form-control','placeholder'=>'Parroquia,  Avenida, Casa.']) !!}
+                {!! Form::textarea('direccion', null, ['class' => 'form-control','placeholder'=>'Parroquia,  Avenida, Casa.', 'required']) !!}
             </div>
             <!--de la tabla planes -->
             <div class="form-group col-sm-12">
@@ -166,25 +166,25 @@
             <!-- Numero Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('numero', 'Numero de contrato:') !!}
-                {!! Form::text('numero', null, ['class' => 'form-control','pattern' => '[0-9]{1,8}', 'placeholder' => 'Solo Numeros']) !!}
+                {!! Form::text('numero', null, ['class' => 'form-control','pattern' => '[0-9]{1,8}', 'placeholder' => 'Solo Numeros', 'required']) !!}
             </div>
 
             <!-- Monto Inicial Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('monto_inicial', 'Monto Inicial:') !!}
-                {!! Form::text('monto_inicial', null, ['class' => 'form-control','pattern' => '[0-9]{1,30}', 'placeholder' => 'Solo Numeros']) !!}
+                {!! Form::text('monto_inicial', null, ['class' => 'form-control','pattern' => '[0-9]{1,30}', 'placeholder' => 'Solo Numeros', 'required']) !!}
             </div>
 
             <!-- Fecha Inicio Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('fecha_inicio', 'Fecha Inicio:') !!}
-                {!! Form::text('fecha_inicio', null, ['class' => 'form-control', 'id' => 'fecha_inicio','placeholder' => 'DD/MM/AAAA']) !!}
+                {!! Form::text('fecha_inicio', null, ['class' => 'form-control', 'id' => 'fecha_inicio','placeholder' => 'DD/MM/AAAA', 'required']) !!}
             </div>
 
             <!-- Tipo Contrato Field -->
                 {!! Form::hidden('tipo_contrato', 'Individual', ['class' => 'form-control']) !!}
             <!-- estado Field -->
-                {!! Form::hidden('estado', 'Activo', ['class' => 'form-control']) !!}    
+                {!! Form::hidden('estado', 'Activo', ['class' => 'form-control', 'required']) !!}    
 
             <!-- Clausula Id Field -->
             <div class="form-group col-sm-6">

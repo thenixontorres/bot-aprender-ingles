@@ -22,19 +22,19 @@
         <!-- Numero Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('numero', 'Numero de contrato:') !!}
-                {!! Form::text('numero', null, ['class' => 'form-control','pattern' => '[0-9]{1,8}', 'placeholder' => 'Solo Numeros']) !!}
+                {!! Form::text('numero', null, ['class' => 'form-control','pattern' => '[0-9]{1,8}', 'placeholder' => 'Solo Numeros', 'required']) !!}
             </div>
 
         <!-- Monto Inicial Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('monto_inicial', 'Monto Inicial:') !!}
-                {!! Form::text('monto_inicial', null, ['class' => 'form-control','pattern' => '[0-9]{1,30}', 'placeholder' => 'Solo Numeros']) !!}
+                {!! Form::text('monto_inicial', null, ['class' => 'form-control','pattern' => '[0-9]{1,30}', 'placeholder' => 'Solo Numeros', 'required']) !!}
             </div>
 
         <!-- Fecha Inicio Field -->
             <div class="form-group col-sm-12">
                 {!! Form::label('fecha_inicio', 'Fecha Inicio:') !!}
-                {!! Form::text('fecha_inicio', null, ['class' => 'form-control', 'id' => 'fecha_inicio','placeholder' => 'DD/MM/AAAA']) !!}
+                {!! Form::text('fecha_inicio', null, ['class' => 'form-control', 'id' => 'fecha_inicio','placeholder' => 'DD/MM/AAAA', 'required']) !!}
             </div>
 
         <!-- Tipo Contrato Field -->
