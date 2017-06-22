@@ -61,6 +61,36 @@ class personaController extends InfyOmBaseController
         return view('personas.create');
     }
 
+    public function usercreate()
+    {
+        return view('personas.usercreate');
+    }
+
+    public function userstore(Request $request)
+    {
+
+        $count = count(User::where('cedula', $request->cedula)->first());
+        if ($count>0) {
+             Flash::error('La cedula ya existe');
+            return redirect()->back();
+        }
+
+        $count = count(User::where('email', $request->email)->first());
+        if ($count>0) {
+             Flash::error('El email ya existe');
+            return redirect()->back();
+        }
+
+        $user = new User();
+        $user->fill($request->all());
+        $user->username = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->save();
+
+        Flash::success('Usuario resgistrado con exito');
+        return redirect()->route('personas.userindex');
+    }
+
     /**
      * Store a newly created persona in storage.
      *

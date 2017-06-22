@@ -1,10 +1,5 @@
 <!--de la tabla persona -->
-    <div class="form-group col-sm-12">
-        <hr>
-        <br>
-        {!! Form::label('titular', 'Datos del titular') !!}
-    </div>
-
+    
     <!-- Nombre Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('nombre', 'Nombre:') !!}
@@ -23,108 +18,27 @@
         {!! Form::text('cedula', null, ['class' => 'form-control','pattern' => '[0-9]{7,8}', 'placeholder' => 'Solo Numeros', 'required']) !!}
     </div>
 
-    <!-- Sexo Field -->
-    <div class="form-group col-sm-3">
-        {!! Form::label('sexo', 'Masculino:') !!}
-        
-        <input class="form-control radio" type="radio" name="sexo" value="Masculino" @if($persona->sexo == "Masculino") 
-        {{  'checked'  }} @endif >
-    </div>
-    <div class="form-group col-sm-3">    
-        {!! Form::label('sexo', 'Femenino:') !!} 
-        <input class="form-control radio" type="radio" name="sexo" value="Femenino" @if($persona->sexo == "Femenino") 
-        {{  'checked'  }} @endif > 
-    </div>
-
-    <!-- Fecha Nac Field -->
-    <div class="form-group col-sm-6">
-        {!! Form::label('fecha_nac', 'Fecha de Nacimiento:') !!}
-        {!! Form::text('fecha_nac', null, ['class' => 'form-control','id' => 'fecha_nacimiento','placeholder' => 'DD/MM/AAAA', 'required']) !!}
-    </div>
-
     <!-- telefono Nac Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('telefono', 'Telefono:') !!}
         {!! Form::text('telefono', null, ['class' => 'form-control','pattern' => '[0-9]{11}','placeholder' => 'Solo Numeros', 'required']) !!}
     </div>
 
-    @if ($persona->parentesco == 'Titular')
-    <!-- Estado Id Field -->
+    <!-- email  Field -->
     <div class="form-group col-sm-6">
-        {!! Form::label('estado_id', 'Estado:') !!}
-        <select class="form-control" name="estado_id" id="estado_id">
-            @foreach($estados as $estado)
-                @if($estado->id == $persona->municipio->estado->id)
-                <option selected value="{{ $estado->id }}">
-                     {{ $estado->estado }}   
-                </option>
-                @else
-                <option value="{{ $estado->id }}">
-                     {{ $estado->estado }}   
-                </option>    
-                @endif 
-            @endforeach
-        </select>
+        {!! Form::label('email', 'Email:') !!}
+        {!! Form::email('email', null, ['class' => 'form-control', 'required', 'placeholder'=>'Email de contacto']) !!}
     </div>
-    <!-- Municipio Id Field -->
+
+    <!-- contrasela  Field -->
     <div class="form-group col-sm-6">
-        {!! Form::label('municipio_id', 'Municipio:') !!}
-        <select class="form-control" name="municipio_id" id ="municipio_id">
-            @foreach($municipios as $municipio)
-                 @if($municipio->id == $persona->municipio->id)
-                <option selected value="{{ $municipio->id }}">
-                     {{ $municipio->municipio }}   
-                </option>
-                @else
-                <option value="{{ $municipio->id }}">
-                     {{ $municipio->municipio }}   
-                </option>    
-                @endif 
-            @endforeach
-        </select>
+        {!! Form::label('password', 'Password:') !!}
+        <input type="password" name="password" class="form-control" placeholder="Contraseña de acceso">
     </div>
-    @else 
-       <!-- estado_id field -->
-        {!! Form::hidden('estado_id', null, ['class' => 'form-control','placeholder'=>'estado_id']) !!}
-        <!-- municipio_id field -->
-        {!! Form::hidden('municipio_id', null, ['class' => 'form-control','placeholder'=>'municipio_id']) !!}
-    @endif
-    
-    <!-- Direccion Field -->
-    <div class="form-group col-sm-12">
-        {!! Form::label('direccion', 'Direccion:') !!}
-        {!! Form::textarea('direccion', null, ['class' => 'form-control','placeholder'=>'Parroquia,  Avenida, Casa.', 'required']) !!}
-    </div>
-    <!-- observacion -->
-    <div class="form-group col-sm-12">
-        {!! Form::label('observacion', 'Observacion:') !!}
-        {!! Form::textarea('observacion', null, ['class' => 'form-control', 'required']) !!}
-    </div>
-    @if ($persona->parentesco == 'Titular')
-    <!-- parentesco -->
-        {!! Form::hidden('parentesco', null, ['class' => 'form-control','placeholder'=>'Parentesco']) !!}
-    @else    
-    <!-- parentesco Field -->
-        <div class="form-group col-sm-12">
-            {!! Form::label('parentesco', 'Parentesco con el titular:') !!}
-            <select class="form-control" name="parentesco">
-                <option value="Madre" @if($persona->parentesco == "Madre") 
-        {{  'selected'  }} @endif >Madre</option>
-                <option value="Padre"@if($persona->parentesco == "Padre") 
-        {{  'selected'  }} @endif >Padre</option>
-                <option value="Hijo" @if($persona->parentesco == "Hijo") 
-        {{  'selected'  }} @endif > Hijo</option>
-                <option value="Hermano"@if($persona->parentesco == "Hermano") 
-        {{  'selected'  }} @endif >Hermano</option>
-                <option value="Conyuge"@if($persona->parentesco == "Conyuge") 
-        {{  'selected'  }} @endif >Conyuge</option>
-            </select>
-        </div>
-    @endif
-    
-    <!-- contrato -->
-        {!! Form::hidden('contrato_id', null, ['class' => 'form-control','placeholder'=>'Contrato.']) !!}
-<!-- Submit Field -->
+
+    <!--tipo -->
+    <input type="hidden" name="tipo" value="admin">
+   
 <div class="form-group col-sm-12">
     {!! Form::submit('Actualizar', ['class' => 'btn btn-primary']) !!}
 </div>

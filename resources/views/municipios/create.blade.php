@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('title','Municipios')
-
 @section('content')
  <div class="col-md-12 panel">   
     <div class="row">
