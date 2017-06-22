@@ -13,70 +13,101 @@
 
 
 Route::group(['middleware' => 'auth'], function () {
-  
-    Route::get('/home', [
-        'uses'  => 'homeController@index',
-        'as'    => 'home',
-    ]);
+    Route::group(['middleware' => 'admin'], function () {
+    //solo para master
+        Route::get('/personas/user/index', [
+                'uses'  => 'personaController@userIndex',
+                'as'    => 'personas.userindex',
+            ]); 
+        
+        Route::get('/personas/user/create', [
+                'uses'  => 'personaController@userCreate',
+                'as'    => 'personas.usercreate',
+            ]); 
+        
+        Route::post('/personas/user/store', [
+                'uses'  => 'personaController@userStore',
+                'as'    => 'personas.userstore',
+            ]); 
+        
+        Route::get('/personas/user/edit/{id}', [
+                'uses'  => 'personaController@userEdit',
+                'as'    => 'personas.useredit',
+            ]); 
+        
+        Route::patch('/personas/user/update', [
+                'uses'  => 'personaController@userUpdate',
+                'as'    => 'personas.userupdate',
+            ]);
 
-    Route::resource('users', 'userController');
-    Route::resource('personas', 'personaController');
-    Route::resource('empresas', 'empresaController');
-    Route::resource('clausulas', 'clausulaController');
+        Route::delete('/personas/user/destroy', [
+                'uses'  => 'personaController@userDestroy',
+                'as'    => 'personas.userdestroy',
+            ]);     
+    });      
 
-    Route::post('/clausulas/store', [
-        'uses'  => 'clausulaController@store',
-        'as'    => 'clausulas.store',
-    ]);
+        Route::get('/home', [
+            'uses'  => 'homeController@index',
+            'as'    => 'home',
+        ]);
 
-    Route::resource('pagos', 'pagoController');
-    Route::resource('planes', 'planesController');
-    Route::resource('modificacions', 'modificacionController');
-    Route::resource('contratos', 'contratoController');
-    Route::get('/individuales', [
-            'uses'  =>  'contratoController@individuales',
-            'as'    =>  'contratos.individuales',
-    ]);
-    Route::get('/individuales_create', [
-            'uses'  =>  'contratoController@individuales_create',
-            'as'    =>  'contratos.individuales_create',
-    ]);
-    Route::get('/colectivos', [
-            'uses'  =>  'contratoController@colectivos',
-            'as'    =>  'contratos.colectivos',
-    ]);
+        Route::resource('users', 'userController');
+        Route::resource('personas', 'personaController');
+        Route::resource('empresas', 'empresaController');
+        Route::resource('clausulas', 'clausulaController');
 
-    Route::get('/colectivos_create', [
-            'uses'  =>  'contratoController@colectivos_create',
-            'as'    =>  'contratos.colectivos_create',
-    ]);
+        Route::post('/clausulas/store', [
+            'uses'  => 'clausulaController@store',
+            'as'    => 'clausulas.store',
+        ]);
 
-    
-    Route::resource('estados', 'estadoController');
+        Route::resource('pagos', 'pagoController');
+        Route::resource('planes', 'planesController');
+        Route::resource('modificacions', 'modificacionController');
+        Route::resource('contratos', 'contratoController');
+        Route::get('/individuales', [
+                'uses'  =>  'contratoController@individuales',
+                'as'    =>  'contratos.individuales',
+        ]);
+        Route::get('/individuales_create', [
+                'uses'  =>  'contratoController@individuales_create',
+                'as'    =>  'contratos.individuales_create',
+        ]);
+        Route::get('/colectivos', [
+                'uses'  =>  'contratoController@colectivos',
+                'as'    =>  'contratos.colectivos',
+        ]);
 
-    Route::resource('municipios', 'municipioController');
+        Route::get('/colectivos_create', [
+                'uses'  =>  'contratoController@colectivos_create',
+                'as'    =>  'contratos.colectivos_create',
+        ]);
 
-    Route::resource('componentes', 'componenteController');
+        
+        Route::resource('estados', 'estadoController');
 
-    Route::resource('rutas', 'rutaController');
+        Route::resource('municipios', 'municipioController');
 
-    Route::get('/giros', [
-            'uses'  =>  'contratoController@giros',
-            'as'    =>  'contratos.giros',
-    ]);
+        Route::resource('componentes', 'componenteController');
 
-    Route::post('/buscar_giros', [
-            'uses'  =>  'contratoController@buscar_giros',
-            'as'    =>  'contratos.buscar_giros',
-    ]);
+        Route::resource('rutas', 'rutaController');
 
-    Route::get('/dropdown', [
-            'uses'  =>  'municipioController@dropdown',
-            'as'    =>  'dropdown',
-    ]);
+        Route::get('/giros', [
+                'uses'  =>  'contratoController@giros',
+                'as'    =>  'contratos.giros',
+        ]);
 
-    Route::resource('empleados', 'empleadoController');
-    
+        Route::post('/buscar_giros', [
+                'uses'  =>  'contratoController@buscar_giros',
+                'as'    =>  'contratos.buscar_giros',
+        ]);
+
+        Route::get('/dropdown', [
+                'uses'  =>  'municipioController@dropdown',
+                'as'    =>  'dropdown',
+        ]);
+
+        Route::resource('empleados', 'empleadoController');
 });
 
 // Login

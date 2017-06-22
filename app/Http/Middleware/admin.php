@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-class Admin
+class admin
 {
 
     protected $auth;
@@ -31,7 +31,7 @@ class Admin
     public function handle($request, Closure $next)
     {
         $tipo = $this->auth->user()->tipo;
-        if ($tipo == "Admin") 
+        if ($tipo == "master") 
         {
            return $next($request);
         }else{

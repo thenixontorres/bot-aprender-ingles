@@ -5,11 +5,9 @@
 (en proceso)traducion de mensajes de laravel 
 flash::erro('mensaje') flash::success('mensaje')
 (Listo)formularios "required"
-
+modulo de usuarios
 
 29/
-
-modulo de usuarios
 contratos -> pasar a pdf
 rutas -> crear -> pdf
 6/

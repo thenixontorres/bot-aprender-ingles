@@ -18,7 +18,7 @@ use App\Models\planes;
 use App\Models\clausula;
 use App\Models\empresa;
 use App\Models\contrato;
-
+use App\User;
 class personaController extends InfyOmBaseController
 {
     /** @var  personaRepository */
@@ -44,6 +44,13 @@ class personaController extends InfyOmBaseController
             ->with('personas', $personas);
     }
 
+    public function userIndex()
+    {
+        $users = User::all();
+
+        return view('personas.userindex')
+            ->with('users', $users);
+    }
     /**
      * Show the form for creating a new persona.
      *

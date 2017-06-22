@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('cedula');
             $table->string('apellido');
             $table->string('nombre');
-            $table->string('tipo');
+            $table->enum('tipo',['admin', 'master']);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

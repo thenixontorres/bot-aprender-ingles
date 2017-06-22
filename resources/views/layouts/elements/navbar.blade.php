@@ -44,6 +44,11 @@
             -->
             <li class="nav-li">
                 <a class="nav-li text-center" href="{{ route('empleados.index') }}" id="giros">Empleados</a>
+              </li> 
+                @if(Auth::user()->tipo == 'master')
+                <li class="nav-li">
+                <a class="nav-li text-center" href="{{ route('personas.userindex') }}" id="giros">Usuarios</a>
+                @endif
               </li>         
             <li class="dropdown">
             <a href="·
