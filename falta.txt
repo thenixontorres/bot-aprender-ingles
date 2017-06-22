@@ -2,18 +2,16 @@
 (Listo) anexar inicial al reporte de contratos
 (Listo)agregar select dinamico al resto de los modulos
 (Lsito)footer -acomodar o quitar.
-traducion de mensajes de laravel flash::erro('hdfsh ') flash::success('mensaje')
+(en proceso)traducion de mensajes de laravel 
+flash::erro('mensaje') flash::success('mensaje')
 (Listo)formularios "required"
 
 
 29/
 
 modulo de usuarios
-contratos ->pasar a pdf
+contratos -> pasar a pdf
 rutas -> crear -> pdf
-pausado----------------giros->
-
 6/
-
+giros
 modulo de cierre
-reporte ->

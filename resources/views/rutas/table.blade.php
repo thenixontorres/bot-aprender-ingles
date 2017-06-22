@@ -11,7 +11,7 @@
             <td>
                 {!! Form::open(['route' => ['rutas.destroy', $ruta->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
-                    <a href="{!! route('rutas.show', [$ruta->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                    <a target="_blank" href="{!! route('rutas.show', [$ruta->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
                     <a href="{!! route('rutas.edit', [$ruta->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
                 </div>
                 {!! Form::close() !!}

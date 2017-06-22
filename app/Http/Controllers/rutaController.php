@@ -61,7 +61,7 @@ class rutaController extends InfyOmBaseController
 
         $ruta = $this->rutaRepository->create($input);
 
-        Flash::success('ruta saved successfully.');
+        Flash::success('Ruta guardada con exito.');
 
         return redirect(route('rutas.index'));
     }
@@ -78,7 +78,7 @@ class rutaController extends InfyOmBaseController
         $ruta = $this->rutaRepository->findWithoutFail($id);
 
         if (empty($ruta)) {
-            Flash::error('ruta not found');
+            Flash::error('Ruta no encontrada.');
 
             return redirect(route('rutas.index'));
         }
@@ -98,7 +98,7 @@ class rutaController extends InfyOmBaseController
         $ruta = $this->rutaRepository->findWithoutFail($id);
 
         if (empty($ruta)) {
-            Flash::error('ruta not found');
+            Flash::error('Ruta no encontrada');
 
             return redirect(route('rutas.index'));
         }
@@ -119,14 +119,14 @@ class rutaController extends InfyOmBaseController
         $ruta = $this->rutaRepository->findWithoutFail($id);
 
         if (empty($ruta)) {
-            Flash::error('ruta not found');
+            Flash::error('Ruta no encontrada.');
 
             return redirect(route('rutas.index'));
         }
 
         $ruta = $this->rutaRepository->update($request->all(), $id);
 
-        Flash::success('ruta updated successfully.');
+        Flash::success('Ruta actualizada con exito.');
 
         return redirect(route('rutas.index'));
     }

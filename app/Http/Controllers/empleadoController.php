@@ -60,7 +60,7 @@ class empleadoController extends InfyOmBaseController
 
         $empleado = $this->empleadoRepository->create($input);
 
-        Flash::success('empleado saved successfully.');
+        Flash::success('Empleado registado con exito.');
 
         return redirect(route('empleados.index'));
     }
@@ -77,7 +77,7 @@ class empleadoController extends InfyOmBaseController
         $empleado = $this->empleadoRepository->findWithoutFail($id);
 
         if (empty($empleado)) {
-            Flash::error('empleado not found');
+            Flash::error('Empleado no encontrado');
 
             return redirect(route('empleados.index'));
         }
