@@ -35,12 +35,12 @@ Route::group(['middleware' => 'auth'], function () {
                 'as'    => 'personas.useredit',
             ]); 
         
-        Route::patch('/personas/user/update', [
+        Route::patch('/personas/user/update/{id}', [
                 'uses'  => 'personaController@userUpdate',
                 'as'    => 'personas.userupdate',
             ]);
 
-        Route::delete('/personas/user/destroy', [
+        Route::delete('/personas/user/destroy/{id}', [
                 'uses'  => 'personaController@userDestroy',
                 'as'    => 'personas.userdestroy',
             ]);     

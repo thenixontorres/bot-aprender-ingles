@@ -33,7 +33,7 @@
     <!-- contrasela  Field -->
     <div class="form-group col-sm-6">
         {!! Form::label('password', 'Password:') !!}
-        <input type="password" name="password" class="form-control" placeholder="Contraseña de acceso">
+        <input type="password" name="password" class="form-control" placeholder="Contraseña de acceso" @if(!isset($user)) required @endif >
     </div>
 
     <!--tipo -->

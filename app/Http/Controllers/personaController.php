@@ -91,6 +91,18 @@ class personaController extends InfyOmBaseController
         return redirect()->route('personas.userindex');
     }
 
+    public function useredit($id)
+    {   
+        $user = user::where('id', $id)->first();
+
+        if (empty($user)) {
+            Flash::error('Usuario no encontrado.');
+
+            return redirect()->back();
+        }
+        return view('personas.useredit')
+        ->with('user', $user);
+    }
     /**
      * Store a newly created persona in storage.
      *
@@ -98,6 +110,8 @@ class personaController extends InfyOmBaseController
      *
      * @return Response
      */
+
+
     public function store(CreatepersonaRequest $request)
     {
         $input = $request->all();
@@ -177,6 +191,39 @@ class personaController extends InfyOmBaseController
      *
      * @return Response
      */
+    public function userupdate($id, Request $request)
+    {
+        
+        $persona = User::where('id', $id)->first();
+
+        if (empty($persona)) {
+            Flash::error('Persona no encontrada.');
+
+            return redirect()->back();
+        }
+
+        $count = count(User::where('cedula', $request->cedula)->where('id', '!=', $persona->id)->first());
+        if ($count>0) {
+             Flash::error('La cedula ya existe');
+            return redirect()->back();
+        }
+        $count = count(User::where('email', $request->email)->where('id', '!=', $persona->id)->first());
+        if ($count>0) {
+             Flash::error('El email ya existe');
+            return redirect()->back();
+        }
+
+        $persona->fill($request->all());
+        if (!empty($request->password)) {
+            $personas->password = bcrypt($request->password);
+        }
+        $persona->username = $request->email;
+        $persona->save();
+
+        Flash::success('Persona actualizada con exito.');
+        return redirect(route('personas.userindex'));    
+    }
+
     public function update($id, UpdatepersonaRequest $request)
     {
         $persona = $this->personaRepository->findWithoutFail($id);
@@ -204,6 +251,23 @@ class personaController extends InfyOmBaseController
      *
      * @return Response
      */
+    public function userdestroy($id)
+    {
+        $user = user::where('id', $id)->first();
+
+        if (empty($user)) {
+            Flash::error('Usuario no encontrado.');
+
+            return redirect()->back();
+        }
+
+        $user->delete();
+
+        Flash::success('Persona borrada con exito.');
+
+        return redirect(route('personas.userindex'));
+    }
+
     public function destroy($id)
     {
         $persona = $this->personaRepository->findWithoutFail($id);
