@@ -103,7 +103,17 @@
         <div class="col-md-2 border">{!! $persona->fecha_nac !!} </div>
     </div>
         <?php $i++; ?>
-        @endforeach       
+        @endforeach
+    <div class="row">
+        <div class="col-md-12 border">Observaciones</div>
+        <?php $x=1;?>
+        @foreach($contrato->personas as $persona)
+            @if(isset($persona->observacion))
+            <div class="col-md-12 border">El beneficiario numero {{ $x.' '.$persona->nombre.' '.$persona->apellido.' '.$persona->observacion }}.</div>
+            @endif
+            <?php $x++; ?>
+        @endforeach
+    </div>           
     <br>  
     <div class="row border gray">
         <strong>

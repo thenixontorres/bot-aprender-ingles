@@ -1,7 +1,7 @@
 (Listo) Cedula y contrato primero en formulario.
-calcular monto total al modificar cuota.
+(Listo) calcular monto total al modificar cuota.
 (Listo) Parentesco otros.
-Mostrar observacion luego de los beneficiarios. "el beneficiario nro x nombre apellido"+observacion.
+(Listo) Mostrar observacion luego de los beneficiarios. "el beneficiario nro x nombre apellido"+observacion.
 asociar cobrador a ruta.
 pagos que no se han hecho.
 (Listo)rutas no mostrar contratos finalizados.
