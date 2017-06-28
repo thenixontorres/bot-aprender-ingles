@@ -118,6 +118,8 @@
         {{  'selected'  }} @endif >Hermano</option>
                 <option value="Conyuge"@if($persona->parentesco == "Conyuge") 
         {{  'selected'  }} @endif >Conyuge</option>
+                <option value="Otro"@if($persona->parentesco == "Otro") 
+        {{  'selected'  }} @endif >Otro</option>
             </select>
         </div>
     @endif

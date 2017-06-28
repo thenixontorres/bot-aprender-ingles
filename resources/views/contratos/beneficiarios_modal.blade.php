@@ -22,7 +22,7 @@
 		            <!-- Cedula Field -->
 		            <div class="form-group col-sm-6">
 		                {!! Form::label('cedula', 'Cedula:') !!}
-		                {!! Form::text('cedula', null, ['class' => 'form-control','pattern' => '[0-9]{7,8}', 'placeholder' => 'Solo Numeros']) !!}
+		                {!! Form::text('cedula', null, ['class' => 'form-control','pattern' => '[0-9]{7,8}','placeholder' => 'Solo Numeros']) !!}
 		            </div>
 
 		            <!-- Sexo Field -->
@@ -57,6 +57,7 @@
 		                	<option value="Hijo">Hijo</option>
 		                	<option value="Hermano">Hermano</option>
 		                	<option value="Conyuge">Conyuge</option>
+		                	<option value="Conyuge">Otro</option>
 		                </select>
 		            </div> 
 					<!-- Observacion Field -->

@@ -33,6 +33,19 @@
     <div class="row">
         {!! Form::open(['route' => 'contratos.store']) !!}
 
+            <!-- Numero Field -->
+            <div class="form-group col-sm-6">
+                {!! Form::label('numero', 'Numero de contrato:') !!}
+                {!! Form::text('numero', null, ['class' => 'form-control','pattern' => '[0-9]{1,8}', 'placeholder' => 'Solo Numeros', 'required']) !!}
+            </div>
+
+            <!-- Cedula Field -->
+            <div class="form-group col-sm-6">
+                {!! Form::label('cedula', 'Cedula del titular:') !!}
+                {!! Form::text('cedula', null, ['class' => 'form-control','pattern' => '[0-9]{7,8}', 'placeholder' => 'Solo Numeros', 'required']) !!}
+            </div>
+
+
             <!--de la tabla persona -->
             <div class="form-group col-sm-12">
                 <hr>
@@ -50,12 +63,6 @@
             <div class="form-group col-sm-6">
                 {!! Form::label('apellido', 'Apellido:') !!}
                 {!! Form::text('apellido', null, ['class' => 'form-control','pattern' => '[a-zA-Z ]{4,30}', 'placeholder' => 'Apellido Completo', 'required']) !!}
-            </div>
-
-            <!-- Cedula Field -->
-            <div class="form-group col-sm-6">
-                {!! Form::label('cedula', 'Cedula:') !!}
-                {!! Form::text('cedula', null, ['class' => 'form-control','pattern' => '[0-9]{7,8}', 'placeholder' => 'Solo Numeros', 'required']) !!}
             </div>
 
             <!-- Sexo Field -->
@@ -144,10 +151,10 @@
                                 $mensual = $plan->monto/6;
                                 $mensual = number_format($mensual, 2, '.', ''); 
                                 ?>
-                                <input type="text" name="cuotas" value="{{ $mensual }}"> 
+                                <input readonly name="cuotas" value="{{ $mensual }}" id="montoMensual{{$plan->id}}"> 
                             </div>
                             <div class="form-group col-sm-3">
-                                <input type="text" name="monto_total" value="{{ $plan->monto }}">
+                                <input type="text" name="monto_total" value="{{ $plan->monto }}" id="montoTotal{{$plan->id}}" onchange="dividir({{$plan->id}});">
                             </div>
                             <div class="form-group col-sm-3">
                                 <input class="form-control radio" type="radio" name="plan_id" value="{!! $plan->id !!}">
@@ -163,16 +170,11 @@
                 {!! Form::label('Contrato', 'Datos del contrato') !!}
             </div>
 
-            <!-- Numero Field -->
-            <div class="form-group col-sm-6">
-                {!! Form::label('numero', 'Numero de contrato:') !!}
-                {!! Form::text('numero', null, ['class' => 'form-control','pattern' => '[0-9]{1,8}', 'placeholder' => 'Solo Numeros', 'required']) !!}
-            </div>
-
+            
             <!-- Monto Inicial Field -->
             <div class="form-group col-sm-6">
                 {!! Form::label('monto_inicial', 'Monto Inicial:') !!}
-                {!! Form::text('monto_inicial', null, ['class' => 'form-control','pattern' => '[0-9]{1,30}', 'placeholder' => 'Solo Numeros', 'required']) !!}
+                {!! Form::text('monto_inicial', null, ['class' => 'form-control','pattern' => '[0-9]{1,30}', 'placeholder' => 'Solo Numeros', 'required', 'id'=>'monto_inicial']) !!}
             </div>
 
             <!-- Fecha Inicio Field -->
@@ -240,5 +242,11 @@
                 dateFormat: "dd/mm/yy",
             });
           });
+          
+          function dividir(id){
+            montoTotal = document.getElementById("montoTotal"+id).value;
+            mensual = montoTotal/6;
+            document.getElementById("montoMensual"+id).value =mensual;
+          };
     </script>      
 @endsection

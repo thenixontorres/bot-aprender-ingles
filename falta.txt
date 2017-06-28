@@ -1,15 +1,15 @@
-(Listo) ver total de pagos en modulo giros
-(Listo) anexar inicial al reporte de contratos
-(Listo)agregar select dinamico al resto de los modulos
-(Lsito)footer -acomodar o quitar.
-(en proceso)traducion de mensajes de laravel 
-flash::erro('mensaje') flash::success('mensaje')
-(Listo)formularios "required"
-modulo de usuarios
+(Listo) Cedula y contrato primero en formulario.
+calcular monto total al modificar cuota.
+(Listo) Parentesco otros.
+Mostrar observacion luego de los beneficiarios. "el beneficiario nro x nombre apellido"+observacion.
+asociar cobrador a ruta.
+pagos que no se han hecho.
+(Listo)rutas no mostrar contratos finalizados.
+cierre (cuanto se cobro, cuando falta por cobrar, cuantos nuevos contratos)
 
 29/
-contratos -> pasar a pdf
-rutas -> crear -> pdf
-6/
-giros
-modulo de cierre
+(lo tengo) Reporte extra con fichas de recibo (excel) -> hacer -> pasar a pdf.
+(lo tengo) contratos -> pasar a pdf.
+rutas -> pasar a pdf (tratar de mostrar pagos que se deben).
+cierre -> crear -> pasar a pdf.
+giros -> crear -> pasar a pdf.
