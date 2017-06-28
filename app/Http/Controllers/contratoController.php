@@ -21,6 +21,7 @@ use App\Models\empresa;
 use App\Models\pago;
 use App\Models\ruta;
 use Auth;
+use Carbon\Carbon;
 
 class contratoController extends InfyOmBaseController
 {
@@ -133,6 +134,7 @@ class contratoController extends InfyOmBaseController
      */
     public function store(CreatecontratoRequest $request)
     {
+        
         $input = $request->all();
         /*$planes = planes::where('id', $request->plan_id)->get();
         $plan = $planes->first();
@@ -171,6 +173,9 @@ class contratoController extends InfyOmBaseController
         $contrato->estado = 'Activo';
         $contrato->ruta_id = $request->ruta_id;
         $contrato->user_id = Auth::user()->id;
+        
+        $dateTime = date_create_from_format('d/m/Y', $request->fecha_inicio);
+        $carbon = Carbon::instance($dateTime);
         $contrato->save();
 
         $contrato_id = $contrato->id;
@@ -187,6 +192,18 @@ class contratoController extends InfyOmBaseController
             $persona->direccion = $request->direccion;
             $persona->contrato_id = $contrato_id;
             $persona->save();
+
+        //se pre-cargan los pagos bajo el status pendiente
+        for ($i=1; $i<7 ; $i++) { 
+            $pago = new pago();
+            //en este punto solo se trabaja a 6 meses
+            $pago->monto = $contrato->monto_total/6;
+            $pago->numero_cuota = $i;
+            $pago->estatus = 'pendiente';
+            $pago->concepto = $carbon->addMonths($i);
+            $pago->contrato_id = $contrato->id;
+            $pago->save();            
+        }   
 
         if ($request->tipo_contrato == 'Individual'){          
 
