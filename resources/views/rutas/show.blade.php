@@ -1,6 +1,6 @@
 @extends('layouts.doc')
 	@section('content')
-	<h1>{{ $ruta->direccion }}</h1>
+	<h1>{{ $ruta->direccion.', '.$ruta->empleado->nombre.' '.$ruta->empleado->apellido.' '.$ruta->empleado->cedula }}</h1>
 	<table class="table table-bordered">
 	<thead>
 	<th>Nº Contrato</th>

@@ -12,6 +12,7 @@ use Flash;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\contrato;
+use App\Models\empleado;
 
 class rutaController extends InfyOmBaseController
 {
@@ -45,7 +46,9 @@ class rutaController extends InfyOmBaseController
      */
     public function create()
     {
-        return view('rutas.create');
+        $empleados = empleado::where('tipo', 'Cobrador')->get();
+        return view('rutas.create')
+        ->with('empleados', $empleados);
     }
 
     /**
@@ -96,14 +99,16 @@ class rutaController extends InfyOmBaseController
     public function edit($id)
     {
         $ruta = $this->rutaRepository->findWithoutFail($id);
-
+        $empleados = empleado::where('tipo', 'Cobrador')->get();
         if (empty($ruta)) {
             Flash::error('Ruta no encontrada');
 
             return redirect(route('rutas.index'));
         }
 
-        return view('rutas.edit')->with('ruta', $ruta);
+        return view('rutas.edit')
+            ->with('ruta', $ruta)
+            ->with('empleados', $empleados);
     }
 
     /**
