@@ -60,50 +60,14 @@ class pagoController extends InfyOmBaseController
     {
         $input = $request->all();
 
-        $contrato = contrato::find($request->contrato_id);
-
-        if ($contrato->tiempo_pago == 'Mensual') {
-            $cant_cuotas = 6;
-        }elseif ($contrato->tiempo_pago == 'Quincenal') {
-            $cant_cuotas = 12;
-        }else{
-            $cant_cuotas = 24;
+        $pago = pago::where('contrato_id', $request->contrato_id)->where('estatus','pendiente')->orderBy('concepto', 'ASC')->first();
+        if (count($pago) < 1) {
+            Flash::error('Esta contrato no tiene pagos pendientes.');
+            return redirect()->back();            
         }
-
-        $monto = $contrato->monto_total/$cant_cuotas;
-
-        $cuotas_pagadas = pago::where('contrato_id', $request->contrato_id)->get();
-        $cuotas_pagadas = count($cuotas_pagadas);
-        $numero_cuota = $cuotas_pagadas+1;
-
-        if ($numero_cuota > $cant_cuotas) {
-            Flash::error('Ya este contrato a pagado todas sus cuotas.');
-            return redirect()->back();
-        }
-
-        $fecha_inicio = $contrato->fecha_inicio;
-        $fecha_inicio = explode("/", $fecha_inicio);
-        $dia_inicio = $fecha_inicio[0];
-        $mes_inicio = $fecha_inicio[1];
-        $ano_inicio = $fecha_inicio[2];
-
-        $mes = $mes_inicio+$cuotas_pagadas;
-
-        if($mes >  12){
-            $mes = $mes-12;
-            $ano_inicio = $ano_inicio+1;
-        }
-
-        $concepto =  array($dia_inicio, $mes, $ano_inicio);  
-        $concepto = implode("/", $concepto);
-
-        $pago = new pago();
-        $pago->monto = $monto;
-        $pago->numero_cuota =$numero_cuota;
         $pago->tipo_pago = $request->tipo_pago;
-        $pago->contrato_id = $request->contrato_id;
-        $pago->concepto = $concepto;
-        $pago->save();
+        $pago->estatus = 'cancelado';
+        $pago->save();        
 
         Flash::success('Pago Registrado con Exito.');
 

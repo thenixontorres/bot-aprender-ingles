@@ -38,6 +38,7 @@
             <!--contrato_id field -->
             <div class="form-group">
                  <input class="form-control" required="required" name="contrato_id" type="hidden" id="contrato_id" value="?">
+                 <input class="form-control" required="required" name="estatus" type="hidden" id="contrato_id" value="cancelado">
             </div>
             <div class="form-group">
                 {!! Form::submit('Agregar', ['class' => 'btn btn-default']) !!}

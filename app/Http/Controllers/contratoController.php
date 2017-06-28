@@ -173,9 +173,6 @@ class contratoController extends InfyOmBaseController
         $contrato->estado = 'Activo';
         $contrato->ruta_id = $request->ruta_id;
         $contrato->user_id = Auth::user()->id;
-        
-        $dateTime = date_create_from_format('d/m/Y', $request->fecha_inicio);
-        $carbon = Carbon::instance($dateTime);
         $contrato->save();
 
         $contrato_id = $contrato->id;
@@ -193,6 +190,10 @@ class contratoController extends InfyOmBaseController
             $persona->contrato_id = $contrato_id;
             $persona->save();
 
+        $dateTime = date_create_from_format('d/m/Y', $request->fecha_inicio);
+        $carbon = Carbon::instance($dateTime);
+
+        $prev = null;
         //se pre-cargan los pagos bajo el status pendiente
         for ($i=1; $i<7 ; $i++) { 
             $pago = new pago();
@@ -200,7 +201,12 @@ class contratoController extends InfyOmBaseController
             $pago->monto = $contrato->monto_total/6;
             $pago->numero_cuota = $i;
             $pago->estatus = 'pendiente';
-            $pago->concepto = $carbon->addMonths($i);
+            if ($prev == null) {
+                $prev = $carbon;
+            }
+                $next = $prev->addMonths(1);
+                $prev = $next;
+            $pago->concepto =  $next;
             $pago->contrato_id = $contrato->id;
             $pago->save();            
         }   
