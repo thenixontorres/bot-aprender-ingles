@@ -45,7 +45,8 @@ class ruta extends Model
 
 
     public $fillable = [
-        'direccion'
+        'direccion',
+        'empleado_id',
     ];
 
     //hasMany----------------------------------
@@ -54,6 +55,11 @@ class ruta extends Model
         return $this->hasMany('App\Models\contrato');
     }
 
+    //belongsTo
+    public function empleado()
+    {
+        return $this->belongsTo('App\Models\empleado');
+    }
     /**
      * The attributes that should be casted to native types.
      *
@@ -69,6 +75,7 @@ class ruta extends Model
      * @var array
      */
     public static $rules = [
-        'direccion' => 'required'
+        'direccion' => 'required',
+        'empleado_id' => 'required',
     ];
 }

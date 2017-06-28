@@ -64,6 +64,12 @@ class empleado extends Model
     protected $dates = ['deleted_at'];
 
 
+    //hasMany----------------------------------
+    public function rutas()
+    {
+        return $this->hasMany('App\Models\ruta');
+    }
+
     public $fillable = [
         'nombre',
         'apellido',
