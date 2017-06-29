@@ -151,7 +151,7 @@
         $cuota_mensual= number_format($cuota_mensual,'2',',',' ');
         ?>    
         {!! 'Bs: '.$cuota_mensual !!}</div>
-        <div class="col-md-2 border">{!! $contrato->created_at!!}</div>
+        <div class="col-md-2 border">{!! $contrato->created_at->format('d/m/Y')!!}</div>
         <div class="col-md-2 border">{!! $contrato->fecha_vencimiento !!}</div>
         <div class="col-md-2 border">Casa</div>
     </div>
