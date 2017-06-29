@@ -358,17 +358,27 @@ class contratoController extends InfyOmBaseController
         
         $mes = $request['mes'];
         $ano = $request['ano'];
+        $total = null;
         if ($request->estatus == 'todos') {
             $giros = pago::whereMonth('concepto','=', $mes)->whereYear('concepto','=',$ano)->get();
         }else{
             $giros = pago::whereMonth('concepto','=', $mes)->whereYear('concepto','=',$ano)->where('estatus', $request->estatus)->get();    
         }
         
+        foreach ($giros as $giro) {
+            $total = $total+$giro->monto;
+        }
+
+        $total = number_format($total, 2, ',','');
+        
         return view('giros.index')
         ->with('giros',$giros)
         ->with('min',$min)
         ->with('max',$max)
-        ->with('meses', $meses);
+        ->with('meses', $meses)
+        ->with('total', $total)
+        ->with('mess', $mes)
+        ->with('ano', $ano);
     }
 
     public function rutas(){

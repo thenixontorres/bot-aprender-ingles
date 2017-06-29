@@ -49,7 +49,7 @@
 	@if ($giros != null)
 	<div class="row">
         <div class="col-sm-12">
-            <h1 class="pull-left">Resultados:</h1>
+            <h1 class="pull-left">Resultados: @if($mess != null && $ano != null) {{'Mes '.$mess.', Año '.$ano }} @endif</h1>
         </div>
 	</div>
 	<div class="row">
@@ -87,6 +87,7 @@
 			</table>
         </div>
 	</div>
+	<h4>Total: {{ 'Bs: '.$total}}</h4>
 	@endif
 </div>
 @endsection
