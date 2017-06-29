@@ -37,11 +37,10 @@
             <li class="nav-li">
                 <a class="nav-li text-center" href="{{ route('contratos.giros') }}" id="giros">Giros</a>
             </li>
-            <!--
             <li class="nav-li">
-                <a class="nav-li text-center" href="# " id="users">Cierre</a>
+                <a class="nav-li text-center" href="{{ route('contratos.cierre') }}" id="giros">Cierre</a>
             </li>
-            -->
+            
             <li class="nav-li">
                 <a class="nav-li text-center" href="{{ route('empleados.index') }}" id="giros">Empleados</a>
               </li> 

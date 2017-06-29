@@ -102,6 +102,16 @@ Route::group(['middleware' => 'auth'], function () {
                 'as'    =>  'contratos.buscar_giros',
         ]);
 
+        Route::get('/cierre', [
+                'uses'  =>  'contratoController@cierre',
+                'as'    =>  'contratos.cierre',
+        ]);
+
+        Route::post('/consultar_cierre', [
+                'uses'  =>  'contratoController@consultar_cierre',
+                'as'    =>  'contratos.consultar_cierre',
+        ]);
+
         Route::get('/dropdown', [
                 'uses'  =>  'municipioController@dropdown',
                 'as'    =>  'dropdown',

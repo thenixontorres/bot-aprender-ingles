@@ -381,6 +381,91 @@ class contratoController extends InfyOmBaseController
         ->with('ano', $ano);
     }
 
+    public function cierre(){
+        $pagos = pago::orderBy('updated_at', 'DESC')->get();
+        $min = $pagos->first();
+        $min = $min->updated_at->format('Y');
+        $max = $pagos->last();
+        $max = $max->updated_at->format('Y');
+        $meses = array(
+            ['mes' => 'Enero', 'valor' =>'01'],
+            ['mes' => 'Febrero', 'valor' =>'02'],
+            ['mes' => 'Marzo', 'valor' =>'03'],
+            ['mes' => 'Abril', 'valor' =>'04'],
+            ['mes' => 'Mayo', 'valor' =>'05'],
+            ['mes' => 'Junio', 'valor' =>'06'],
+            ['mes' => 'Julio', 'valor' =>'07'],
+            ['mes' => 'Agosto', 'valor' =>'08'],
+            ['mes' => 'Septiembre', 'valor' =>'09'],
+            ['mes' => 'Octubre', 'valor' =>'10'],
+            ['mes' => 'Noviebre', 'valor' =>'11'],
+            ['mes' => 'Diciembre', 'valor' =>'12'],
+        );
+        $cierre = null;
+        return view('cierre.index')
+        ->with('cierre',$cierre)
+        ->with('min',$min)
+        ->with('max',$max)
+        ->with('meses', $meses);
+    }
+
+    public function consultar_cierre(Request $request){
+        
+        //cuanto se cobro en este mes/ano
+        $mes = $request['mes'];
+        $ano = $request['ano'];
+        $cancelados = pago::whereMonth('updated_at','=', $mes)->whereYear('updated_at','=',$ano)->where('estatus', 'cancelado')->get();
+        $total_cancelados = 0;
+        foreach ($cancelados as $cancelado) {
+            $total_cancelados = $total_cancelados+$cancelado->monto;
+        }
+        $total_cancelados = number_format($total_cancelados, 2, ',','');
+        
+        //cuanto falta por cobrar
+        $pendientes = pago::whereMonth('concepto','=', $mes)->whereYear('concepto','=',$ano)->where('estatus', 'cancelado')->get();
+        $total_pendientes = 0;
+        foreach ($pendientes as $pendiente) {
+            $total_pendientes = $total_pendientes+$pendiente->monto;
+        }
+        $total_pendientes = number_format($total_pendientes, 2, ',','');
+
+        //nuevos contratos
+        $nuevos = contrato::whereMonth('created_at','=', $mes)->whereYear('created_at','=',$ano)->get();
+        $count_nuevos = count($nuevos);
+        $pagos = pago::orderBy('updated_at', 'DESC')->get();
+        $min = $pagos->first();
+        $min = $min->updated_at->format('Y');
+        $max = $pagos->last();
+        $max = $max->updated_at->format('Y');
+        $meses = array(
+            ['mes' => 'Enero', 'valor' =>'01'],
+            ['mes' => 'Febrero', 'valor' =>'02'],
+            ['mes' => 'Marzo', 'valor' =>'03'],
+            ['mes' => 'Abril', 'valor' =>'04'],
+            ['mes' => 'Mayo', 'valor' =>'05'],
+            ['mes' => 'Junio', 'valor' =>'06'],
+            ['mes' => 'Julio', 'valor' =>'07'],
+            ['mes' => 'Agosto', 'valor' =>'08'],
+            ['mes' => 'Septiembre', 'valor' =>'09'],
+            ['mes' => 'Octubre', 'valor' =>'10'],
+            ['mes' => 'Noviebre', 'valor' =>'11'],
+            ['mes' => 'Diciembre', 'valor' =>'12'],
+        );
+        
+        return view('cierre.index')
+        ->with('min',$min)
+        ->with('max',$max)
+        ->with('meses', $meses)
+        ->with('mess', $mes)
+        ->with('ano', $ano)
+        ->with('cancelados', $cancelados)
+        ->with('pendientes', $pendientes)
+        ->with('total_cancelados', $total_cancelados)
+        ->with('total_pendientes', $total_pendientes)
+        ->with('nuevos', $nuevos)
+        ->with('count_nuevos', $count_nuevos);
+    }
+
     public function rutas(){
         $estados = estado::all();
         $municipios = municipio::all();

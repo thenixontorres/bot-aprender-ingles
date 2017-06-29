@@ -19,7 +19,7 @@ class CreatepagosTable extends Migration
             $table->string('numero_cuota');
             $table->string('tipo_pago')->nullable();
             $table->enum('estatus',['pendiente','cancelado']);
-            $table->string('concepto');
+            $table->timestamp('concepto');
             $table->integer('contrato_id')->unsigned();
             $table->foreign('contrato_id')->references('id')->on('contratos');
             $table->timestamps();

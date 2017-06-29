@@ -4,9 +4,7 @@
 (Listo) Mostrar observacion luego de los beneficiarios. "el beneficiario nro x nombre apellido"+observacion.
 (Listo) Asociar cobrador a ruta.
 (Listo)rutas no mostrar contratos finalizados.
-
-
-Giros: pagos que no se han hecho. (tomando como refrerencia pago->concepto)
+(Listo) Giros: pagos que no se han hecho. (tomando como refrerencia pago->concepto)
 
 cierre: (cuanto se cobro, cuando falta por cobrar, cuantos nuevos contratos)
 

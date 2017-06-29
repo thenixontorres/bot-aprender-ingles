@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Rutas')
+@section('title','Giros')
 @section('content')
 <div class="col-md-12 panel">   
 	<div class="row">
@@ -49,7 +49,7 @@
 	@if ($giros != null)
 	<div class="row">
         <div class="col-sm-12">
-            <h1 class="pull-left">Resultados: @if($mess != null && $ano != null) {{'Mes '.$mess.', Año '.$ano }} @endif</h1>
+            <h1 class="pull-left">Pagos con concepto: @if($mess != null && $ano != null) {{ $mess.'/'.$ano }} @endif</h1>
         </div>
 	</div>
 	<div class="row">
