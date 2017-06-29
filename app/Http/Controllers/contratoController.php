@@ -306,21 +306,11 @@ class contratoController extends InfyOmBaseController
      */
 
     public function giros(){
-        $pagos = pago::all();
-        $min = 3000;
-        $max = 0;
-        foreach ($pagos as $pago) {
-           $concepto =  explode("/", $pago->concepto);
-            if ($concepto[2] < $min) {
-                $min = $concepto[2];
-            }
-
-            if ($concepto[2] > $max) {
-                $max = $concepto[2];
-            }
-
-        }
-
+        $pagos = pago::orderBy('updated_at', 'DESC')->get();
+        $min = $pagos->first();
+        $min = $min->updated_at->format('Y');
+        $max = $pagos->last();
+        $max = $max->updated_at->format('Y');
         $meses = array(
             ['mes' => 'Enero', 'valor' =>'01'],
             ['mes' => 'Febrero', 'valor' =>'02'],
@@ -337,9 +327,7 @@ class contratoController extends InfyOmBaseController
         );
                    
         $giros = null;
-        $total = null;
         return view('giros.index')
-        ->with('total', $total)
         ->with('giros',$giros)
         ->with('min',$min)
         ->with('max',$max)
@@ -348,32 +336,12 @@ class contratoController extends InfyOmBaseController
 
     public function buscar_giros(Request $request){
         
-        $min = 3000;
-        $max = 0;
-        
-        $mes = $request['mes'];
-        $ano = $request['ano'];
-
-        $giros = array();
-        $pagos = pago::all();
-        $i = 0;
-        foreach ($pagos as $pago) {    
-
-        $concepto =  explode("/", $pago->concepto);
-            if ($concepto[2] < $min) {
-                $min = $concepto[2];
-            }
-
-            if ($concepto[2] > $max) {
-                $max = $concepto[2];
-            }
-
-            if ($concepto[1] == $mes && $concepto[2] == $ano) {
-                $giros[$i] = $pago;
-                $i++;
-            }
-        }
-         $meses = array(
+        $pagos = pago::orderBy('updated_at', 'DESC')->get();
+        $min = $pagos->first();
+        $min = $min->updated_at->format('Y');
+        $max = $pagos->last();
+        $max = $max->updated_at->format('Y');
+        $meses = array(
             ['mes' => 'Enero', 'valor' =>'01'],
             ['mes' => 'Febrero', 'valor' =>'02'],
             ['mes' => 'Marzo', 'valor' =>'03'],
@@ -386,13 +354,17 @@ class contratoController extends InfyOmBaseController
             ['mes' => 'Octubre', 'valor' =>'10'],
             ['mes' => 'Noviebre', 'valor' =>'11'],
             ['mes' => 'Diciembre', 'valor' =>'12'],
-        ); 
-        $total = 0; 
-        foreach ($giros as $giro) {
-            $total = $total+$giro->monto;
-         } 
+        );
+        
+        $mes = $request['mes'];
+        $ano = $request['ano'];
+        if ($request->estatus == 'todos') {
+            $giros = pago::whereMonth('concepto','=', $mes)->whereYear('concepto','=',$ano)->get();
+        }else{
+            $giros = pago::whereMonth('concepto','=', $mes)->whereYear('concepto','=',$ano)->where('estatus', $request->estatus)->get();    
+        }
+        
         return view('giros.index')
-        ->with('total', $total)
         ->with('giros',$giros)
         ->with('min',$min)
         ->with('max',$max)

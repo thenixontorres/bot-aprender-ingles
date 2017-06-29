@@ -21,12 +21,22 @@
 
 	        <!-- Año Field -->
 	        <div class="form-group col-sm-12">
-	            {!! Form::label('ano', 'Ano:') !!}
+	            {!! Form::label('ano', 'Año:') !!}
 	            <select class="form-control" name="ano">
 	                @while($min <= $max)
 	                	<option value="{{ $min }}">{{ $min }}</option>
 	                	<?php $min++; ?> 
 	                @endwhile		 
+	            </select>
+	        </div>
+
+	        <!-- filtro Field -->
+	        <div class="form-group col-sm-12">
+	            {!! Form::label('estatus', 'Estatus:') !!}
+	            <select class="form-control" name="estatus">
+	                	<option value="pendiente">Pendiente</option>
+	                	<option value="cancelado">Cancelado</option>
+	                	<option value="todos">Pendientes/Cancelados</option>		 
 	            </select>
 	        </div>
 	   <!-- Submit Field -->
@@ -46,37 +56,35 @@
         <div class="col-sm-12">
             <table class="table table-responsive" id="table">
 		    <thead>
-		    	<th>Numero de contrato</th>
-		        <th>Numero de cuota</th>
+		    	<th>Numero/Tipo contrato</th>
+		    	<th>Numero de cuota	</th>
+		    	<th>Monto</th>
+		    	<th>Fecha de Pago</th>
 		        <th>Tipo de Pago</th>
-		        <th>Tipo</th>
-		        <th>Titular</th>
-		        <th>Monto</th>
+		        <th>Estatus</th>
 		    </thead>
 		    <tbody>
          	@foreach($giros as $giro)
          		<tr>
-         		<td>{{ $giro->contrato->numero }}</td>
+         		<td>{{ $giro->contrato->numero.'/'.$giro->contrato->tipo_contrato }}</td>
          		<td>{{ $giro->numero_cuota }}</td>
-         		<td>{{ $giro->contrato->tiempo_pago }}</td>
-         		<td>{{ $giro->contrato->tipo_contrato }}</td>
-         		@foreach($giro->contrato->personas as $persona)
-	         		@if($persona->parentesco == "Titular")
-	         		<td>{{ $persona->nombre.' '.$persona->apellido.' '.$persona->cedula }}</td>
-	         		@endif
-         		@endforeach
-         		<td>{{ 'Bs: '.$giro->monto }}</td>
+         		<?php $monto = number_format($giro->monto, 2, ',',''); ?>
+         		<td>{{ 'Bs: '.$monto }}</td>
+         		@if($giro->estatus == 'pendiente')
+         		<td>-------</td>
+         		@else
+         		<td>{{ $giro->updated_at }}</td>
+         		@endif
+         		@if($giro->estatus == 'pendiente')
+ 				<td>-------</td>
+         		@else
+         		<td>{{ $giro->tipo_pago }}</td>
+         		@endif
+         		<td>{{ $giro->estatus }}</td>
          		</tr>
          	@endforeach
     		</tbody>
 			</table>
-        </div>
-	</div>
-	@endif
-	@if($total != null)
-	<div class="row">
-        <div class="col-sm-12">
-            <h4 class="pull-left">Total: {{ 'Bs: '.$total}}</h4>
         </div>
 	</div>
 	@endif

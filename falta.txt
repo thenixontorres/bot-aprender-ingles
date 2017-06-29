@@ -6,8 +6,9 @@
 (Listo)rutas no mostrar contratos finalizados.
 
 
-pagos que no se han hecho.
-cierre (cuanto se cobro, cuando falta por cobrar, cuantos nuevos contratos)
+Giros: pagos que no se han hecho. (tomando como refrerencia pago->concepto)
+
+cierre: (cuanto se cobro, cuando falta por cobrar, cuantos nuevos contratos)
 
 29/
 (lo tengo) Reporte extra con fichas de recibo (excel) -> hacer -> pasar a pdf.
