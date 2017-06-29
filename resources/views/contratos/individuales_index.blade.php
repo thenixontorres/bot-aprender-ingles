@@ -3,7 +3,7 @@
 @section('content')
 	<h1 class="pull-left">Contratos</h1>
     <div class="col-md-12 panel">   
-        <table class="table table-responsive" id="table">
+    <table class="table table-responsive" id="table">
     <thead>
         <th>Numero</th>
         <th>Titular</th>

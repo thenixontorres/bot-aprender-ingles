@@ -2,6 +2,23 @@
 @section('title','Contratos Individuales')
 @section('content')
 <div class="col-md-12 panel">   
+    <div class="row">
+        <div class="col-md-8">
+            <img class="img-responsive" src="{{ asset('img/logo-contrato.jpg') }}">  
+        </div>
+        <div class="col-md-4 text-center">
+            <P>TELEFONO DE EMERGENCIA</P>
+            <P>(0414)4650610-(0246)4320792-(0424)3800530</P>
+            <P>Contrato: {{ $contrato->numero}}</P>
+            <P>Codigo Cliente: {{ $contrato->numero}}</P>  
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-justify">
+            Entre SERVICIOS FUNERARIOS Y PREVISTOS VIRGEN DE COROMOT C.A Con domicilio en la Av. Monseñor Sendrea Edif Colonial Piso 1 Ofic. 11, debidamente inscrita por ante el Registro Mercantil de la Circuscripcion Judicial del Edo. Guárico bajo el Nro. 26, tomo 06-A; a quien a estos efectos de denomina "LA EMPREASA", por una parte y por la otra parte el cuidadano abajo identificado en la Cláusula primera, quien en lo sucesivo se denominará "EL TITULAR", se ha convenido a celebrar el presente convenio de protección funeraria según los datos que a continuación aparecen en forma detallada.  
+        </div>
+    </div>
+    
     <div class="row border gray">
         <strong>
         <div class="col-md-2">SECCION "A"</div>
