@@ -16,8 +16,8 @@ class CreatecontratosTable extends Migration
         Schema::create('contratos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('numero');
-            $table->string('fecha_inicio');
-            $table->string('fecha_vencimiento');
+            $table->timestamp('fecha_inicio');
+            $table->timestamp('fecha_vencimiento');
             $table->string('tipo_contrato');
             $table->integer('clausula_id')->unsigned();
             $table->foreign('clausula_id')->references('id')->on('clausulas');

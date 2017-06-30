@@ -152,7 +152,7 @@
         ?>    
         {!! 'Bs: '.$cuota_mensual !!}</div>
         <div class="col-md-2 border">{!! $contrato->created_at->format('d/m/Y')!!}</div>
-        <div class="col-md-2 border">{!! $contrato->fecha_vencimiento !!}</div>
+        <div class="col-md-2 border">{!! $contrato->fecha_vencimiento->format('d/m/Y') !!}</div>
         <div class="col-md-2 border">Casa</div>
     </div>
     <div class="row ">

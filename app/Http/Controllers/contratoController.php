@@ -141,32 +141,39 @@ class contratoController extends InfyOmBaseController
         //el monto se guarda como string para que no cambie al editar el monto del plan
         $monto_total = $plan->monto; 
         */
+        $fecha_inicio = date_create_from_format('d/m/Y', $request->fecha_inicio);
+        $fecha_inicio = Carbon::instance($fecha_inicio);
+        
+        $fecha_vencimiento = date_create_from_format('d/m/Y', $request->fecha_inicio);
+        $fecha_vencimiento = Carbon::instance($fecha_inicio);
+        $fecha_vencimiento = $fecha_vencimiento->addMonths(6); 
+        
         //calcular el mes de vencimiento
-        $fecha_inicio = $request->fecha_inicio;
-        $fecha_inicio = explode("/", $fecha_inicio);
-        $dia_inicio = $fecha_inicio[0];
-        $mes_inicio = $fecha_inicio[1];
-        $ano_fin = $fecha_inicio[2];
+        // $fecha_inicio = $request->fecha_inicio;
+        // $fecha_inicio = explode("/", $fecha_inicio);
+        // $dia_inicio = $fecha_inicio[0];
+        // $mes_inicio = $fecha_inicio[1];
+        // $ano_fin = $fecha_inicio[2];
 
-        $mes_fin = $mes_inicio+5;
+        // $mes_fin = $mes_inicio+5;
 
-        if($mes_fin >  12){
-            $mes_fin = $mes_fin-12;
-            $ano_fin = $ano_fin+1;
-        }
+        // if($mes_fin >  12){
+        //     $mes_fin = $mes_fin-12;
+        //     $ano_fin = $ano_fin+1;
+        // }
 
-        $fecha_vencimiento =  array($dia_inicio, $mes_fin, $ano_fin);  
-        $fecha_vencimiento = implode("/", $fecha_vencimiento);
+        // $fecha_vencimiento =  array($dia_inicio, $mes_fin, $ano_fin);  
+        // $fecha_vencimiento = implode("/", $fecha_vencimiento);
+
 
         //Crear el contrato 
         $contrato = new contrato();    
         $contrato->numero = $request->numero;
         $contrato->monto_inicial = $request->monto_inicial;
         $contrato->monto_total = $request->monto_total;
-        $contrato->fecha_inicio = $request->fecha_inicio;
         $contrato->fecha_vencimiento = $fecha_vencimiento;
+        $contrato->fecha_inicio = $fecha_inicio;
         $contrato->tipo_contrato = $request->tipo_contrato;
-        $contrato->fecha_inicio = $request->fecha_inicio;
         $contrato->clausula_id = $request->clausula_id;
         $contrato->plan_id = $request->plan_id;
         $contrato->tiempo_pago = 'Mensual';
@@ -190,9 +197,6 @@ class contratoController extends InfyOmBaseController
             $persona->contrato_id = $contrato_id;
             $persona->save();
 
-        $dateTime = date_create_from_format('d/m/Y', $request->fecha_inicio);
-        $carbon = Carbon::instance($dateTime);
-
         $prev = null;
         //se pre-cargan los pagos bajo el status pendiente
         for ($i=1; $i<7 ; $i++) { 
@@ -202,7 +206,7 @@ class contratoController extends InfyOmBaseController
             $pago->numero_cuota = $i;
             $pago->estatus = 'pendiente';
             if ($prev == null) {
-                $prev = $carbon;
+                $prev = $fecha_inicio;
             }
                 $next = $prev->addMonths(1);
                 $prev = $next;
@@ -240,7 +244,6 @@ class contratoController extends InfyOmBaseController
     public function show($id)
     {
         $contrato = $this->contratoRepository->findWithoutFail($id);
-
         if (empty($contrato)) {
             Flash::error('Contrato no encontrado');
 
@@ -249,6 +252,7 @@ class contratoController extends InfyOmBaseController
         $dia_ac = date('d');
         $mes_ac = date('m');
         $año_ac = date('Y');
+         
         if ($contrato->tipo_contrato == 'Individual'){
         return view('contratos.individuales_show')->with('contrato', $contrato)->with('dia_ac', $dia_ac)->with('mes_ac', $mes_ac)->with('año_ac', $año_ac);    
         }else{

@@ -32,5 +32,14 @@ class test extends Seeder
             'nombre' => 'admin',
             'tipo' => 'admin'
         ]);
+
+        DB::table('estados')->insert([
+            'estado' => 'Miranda',
+        ]);
+
+        DB::table('municipios')->insert([
+            'municipio' => 'Independiencia',
+            'estado_id' => '1',
+        ]);
     }
 }

@@ -130,8 +130,8 @@ class contrato extends Model
      */
     protected $casts = [
         'numero' => 'string',
-        'fecha_inicio' => 'timestamp',
-        'fecha_vencimiento' => 'timestamp',
+        'fecha_inicio' => 'datetime',
+        'fecha_vencimiento' => 'datetime',
         'tipo_contrato' => 'string',
         'clausula_id' => 'integer',
         'plan_id' => 'integer',
