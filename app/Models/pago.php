@@ -84,7 +84,7 @@ class pago extends Model
         'numero_cuota' => 'string',
         'tipo_pago' => 'string',
         'contrato_id' => 'integer',
-        'concepto' => 'string'
+        'concepto' => 'datetime'
     ];
 
     /**

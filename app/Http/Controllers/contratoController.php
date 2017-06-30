@@ -252,7 +252,7 @@ class contratoController extends InfyOmBaseController
         $dia_ac = date('d');
         $mes_ac = date('m');
         $año_ac = date('Y');
-         
+
         if ($contrato->tipo_contrato == 'Individual'){
         return view('contratos.individuales_show')->with('contrato', $contrato)->with('dia_ac', $dia_ac)->with('mes_ac', $mes_ac)->with('año_ac', $año_ac);    
         }else{
@@ -522,25 +522,16 @@ class contratoController extends InfyOmBaseController
         }
 
         //calcular el mes de vencimiento
-        $fecha_inicio = $request->fecha_inicio;
-        $fecha_inicio = explode("/", $fecha_inicio);
-        $dia_inicio = $fecha_inicio[0];
-        $mes_inicio = $fecha_inicio[1];
-        $ano_fin = $fecha_inicio[2];
-
-        $mes_fin = $mes_inicio+5;
-
-        if($mes_fin >  12){
-            $mes_fin = $mes_fin-12;
-            $ano_fin = $ano_fin+1;
-        }
-
-        $fecha_vencimiento =  array($dia_inicio, $mes_fin, $ano_fin);  
-        $fecha_vencimiento = implode("/", $fecha_vencimiento);
+        $fecha_inicio = date_create_from_format('d/m/Y', $request->fecha_inicio);
+        $fecha_inicio = Carbon::instance($fecha_inicio);
+        
+        $fecha_vencimiento = date_create_from_format('d/m/Y', $request->fecha_inicio);
+        $fecha_vencimiento = Carbon::instance($fecha_inicio);
+        $fecha_vencimiento = $fecha_vencimiento->addMonths(6); 
 
         $contrato->numero = $request->numero; 
         $contrato->monto_inicial = $request->monto_inicial;
-        $contrato->fecha_inicio = $request->fecha_inicio;
+        $contrato->fecha_inicio = $fecha_inicio;
         $contrato->fecha_vencimiento = $fecha_vencimiento;
         $contrato->clausula_id = $request->clausula_id;
         $contrato->estado = $request->estado;
