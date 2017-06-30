@@ -1,0 +1,25 @@
+coaches controller
+$userInfo = $this->setSemaphore($this->Session->read('Auth.User.id'), true);
+			$userType = $userInfo['name_account'];
+			$isPublic = $value['StoreLibrarie']['isPublic'];
+			//Si no esta logueado envio la imagen
+			if(empty($userType)){			
+				$value['StoreLibrarie']['url'] = $this->getVideoImg($value['StoreLibrarie']['url'], $value['StoreLibrarie']['origin']);
+			//Si esta loguado free y el video no es publico mando la imagen
+			}elseif($userType == 'Free' && $isPublic == false){
+				$value['StoreLibrarie']['url'] = $this->getVideoImg($value['StoreLibrarie']['url'], $value['StoreLibrarie']['origin']);
+			}//De resto mando el video
+
+		
+public function getVideoImg($url, $origin) {
+		$id = $this->getIDVideo($url, $origin); 
+	
+		if($origin == 'vimeo'){
+			$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$id.php"));			$data = json_decode($data);
+			$thumb = $hash[0]['thumbnail_medium']; 
+			return $thumb;
+		}elseif($origin == 'youtube'){
+			$thumb = "http://img.youtube.com/vi/".$id."/0.jpg";
+			return $thumb;
+		}
+    }
