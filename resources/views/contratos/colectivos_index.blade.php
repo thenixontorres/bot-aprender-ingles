@@ -41,6 +41,7 @@
                 {!! Form::open(['route' => ['contratos.destroy', $contrato->id], 'method' => 'delete']) !!}
                 <div class='btn-group'>
                     <a href="{!! route('contratos.show', [$contrato->id]) !!}" target='_blank' class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+                    <a href="{!! route('contratos.recibo', [$contrato->id]) !!}" target='_blank' class='btn btn-default btn-xs'><i class="glyphicon glyphicon-download"></i></a>
                     <a href="{!! route('pagos.show', [$contrato->id]) !!}" target='_blank' class='btn btn-default btn-xs'><i class="glyphicon glyphicon-euro"></i></a>
                     <a href="{!! route('contratos.edit', [$contrato->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
                 </div>

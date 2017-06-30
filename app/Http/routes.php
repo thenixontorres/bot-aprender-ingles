@@ -78,6 +78,11 @@ Route::group(['middleware' => 'auth'], function () {
                 'as'    =>  'contratos.colectivos',
         ]);
 
+        Route::get('/recibo/{id}', [
+                'uses'  =>  'contratoController@recibo',
+                'as'    =>  'contratos.recibo',
+        ]);
+
         Route::get('/colectivos_create', [
                 'uses'  =>  'contratoController@colectivos_create',
                 'as'    =>  'contratos.colectivos_create',

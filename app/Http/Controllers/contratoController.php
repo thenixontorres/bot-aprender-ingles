@@ -490,6 +490,14 @@ class contratoController extends InfyOmBaseController
         ->with('titulares',$titulares);
     }
 
+    public function recibo($id){
+        $contrato = contrato::where('id', $id)->first();
+        $titular = persona::where('contrato_id', $contrato->id)->where('parentesco', 'Titular')->first();
+            return view('contratos.recibo')
+            ->with('contrato', $contrato)
+            ->with('titular', $titular);      
+    }
+
     public function update($id, UpdatecontratoRequest $request)
     {
         $contrato = $this->contratoRepository->findWithoutFail($id);

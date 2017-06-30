@@ -4,7 +4,7 @@
 <div class="col-md-12 panel">   
     <div class="row">
         <div class="col-md-8">
-            <img class="img-responsive" src="{{ asset('img/logo-contrato.jpg') }}">  
+            <img class="img-responsive" style="min-width: 100%;" src="{{ asset('img/logo-contrato.jpg') }}">  
         </div>
         <div class="col-md-4 text-center">
             <P>TELEFONO DE EMERGENCIA</P>
