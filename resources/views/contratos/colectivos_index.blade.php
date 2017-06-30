@@ -33,7 +33,7 @@
                         {!! $empresa->nombre !!} <a href="{!! route('empresas.edit', [$empresa->id]) !!}" target="_blank" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
                 @endforeach
                 </td>
-            <td>{!! $contrato->fecha_inicio !!}</td>
+            <td>{!! $contrato->fecha_inicio->format('d/m/Y') !!}</td>
             <td>{!! $contrato->plan->plan !!}</td>
             <td>{!! $contrato->tiempo_pago !!}</td>
             <td>{!! $contrato->estado !!}</td>

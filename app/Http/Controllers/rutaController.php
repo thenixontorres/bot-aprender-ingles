@@ -81,7 +81,7 @@ class rutaController extends InfyOmBaseController
     {   
         $fecha_actual = carbon::now();
         $ruta = $this->rutaRepository->findWithoutFail($id);
-
+        
         if (empty($ruta)) {
             Flash::error('Ruta no encontrada.');
 

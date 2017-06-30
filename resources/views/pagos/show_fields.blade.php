@@ -20,9 +20,9 @@
             $monto_cuota = number_format($monto_cuota,'2',',',' ');
             ?>    
             <td>{!! 'Bs: '.$monto_cuota.'/'.$contrato->monto_total !!}</td>
-            <td>{!!  $pago->concepto !!}</td>
+            <td>{!!  $pago->concepto->format('d/m/Y') !!}</td>
             @if($pago->estatus != 'pendiente')
-            <td>{!! $pago->updated_at !!}</td>
+            <td>{!! $pago->updated_at->format('d/m/Y') !!}</td>
             @else
             <td>-----------</td>
             @endif

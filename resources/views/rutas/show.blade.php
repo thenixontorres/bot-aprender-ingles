@@ -42,7 +42,7 @@
 		    	$monto_cobrar = 0; 
 		    ?>
 		    @foreach($contrato->pagos as $pago)
-		    	@if($pago->concepto < $fecha_actual && $pago->status == 'pendiente')
+		    	@if($pago->concepto->format('d/m/Y') < $fecha_actual->format('d/m/Y') && $pago->status == 'pendiente')
 		    		<?php 
 		    			$cuota_pendientes = $cuota_pendientes+$pago->numero_cuota; 
 		    			$monto_cobrar = $monto_cobrar+$pago->monto;
