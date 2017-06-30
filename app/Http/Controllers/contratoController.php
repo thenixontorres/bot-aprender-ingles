@@ -307,6 +307,10 @@ class contratoController extends InfyOmBaseController
 
     public function giros(){
         $pagos = pago::orderBy('updated_at', 'DESC')->get();
+        if (count($pagos)<1) {
+            Flash::error('No hay pagos registrador');
+            return redirect()->back();
+        }
         $min = $pagos->first();
         $min = $min->updated_at->format('Y');
         $max = $pagos->last();
@@ -383,6 +387,11 @@ class contratoController extends InfyOmBaseController
 
     public function cierre(){
         $pagos = pago::orderBy('updated_at', 'DESC')->get();
+        if (count($pagos)<1) {
+            Flash::error('No hay pagos registrador');
+            return redirect()->back();
+        }
+        
         $min = $pagos->first();
         $min = $min->updated_at->format('Y');
         $max = $pagos->last();
