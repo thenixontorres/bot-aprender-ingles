@@ -4,7 +4,8 @@
 	<div class="col-md-12">
 		<img class="img-responsive" style="min-width: 100%" src="{{asset('img/logo-recibo.jpg')}}">
 	</div>
-	<h4>{{ 'Ruta: '.$ruta->direccion.', '.$ruta->empleado->nombre.' '.$ruta->empleado->apellido.' '.$ruta->empleado->cedula }}</h4>
+	<h4>{{ 'Ruta: '.$ruta->direccion }}</h4>
+	<h4>{{ 'Cobranza: '.$fecha_actual->format('d/m/Y') }}</h4>
 	<h4>{{ 'Cobrador: '.$ruta->empleado->nombre.' '.$ruta->empleado->apellido }}</h4>
 	<table class="table table-bordered">
 	<thead>
@@ -13,7 +14,7 @@
 	<th>Titular</th>
 	<th>Direccion</th>
 	<th>Telefono</th>
-	<th>Cuotas por Cobrar</th>
+	<th>Cuotas por cobrar</th>
 	<th>Monto</th>
 	<th>Visitado</th>
 	</thead>
@@ -35,10 +36,22 @@
 		        {{ $titular->direccion }}
 		    </td>
 		    <td>{{ $titular->telefono }}</td>
-		   	<td>--</td>
-		   	<td>--</td>
-		    <td>--</td>
-		    <td></td>
+		    <!-- cuotas por cobrar -->
+		    <?php 
+		    	$cuota_pendientes = '';
+		    	$monto_cobrar = 0; 
+		    ?>
+		    @foreach($contrato->pagos as $pago)
+		    	@if($pago->concepto < $fecha_actual && $pago->status == 'pendiente')
+		    		<?php 
+		    			$cuota_pendientes = $cuota_pendientes+$pago->numero_cuota; 
+		    			$monto_cobrar = $monto_cobrar+$pago->monto;
+		    		?>
+		    	@endif
+		    @endforeach
+		   	<td>{{ $cuota_pendientes }}</td>
+		   	<td>{{ $monto_cobrar }}</td>
+		    <td> </td>
 		    @endif
 		@endforeach	
 	</tbody>

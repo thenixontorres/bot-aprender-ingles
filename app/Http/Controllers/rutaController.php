@@ -13,6 +13,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\contrato;
 use App\Models\empleado;
+use Carbon\Carbon;
 
 class rutaController extends InfyOmBaseController
 {
@@ -77,7 +78,8 @@ class rutaController extends InfyOmBaseController
      * @return Response
      */
     public function show($id)
-    {
+    {   
+        $fecha_actual = carbon::now();
         $ruta = $this->rutaRepository->findWithoutFail($id);
 
         if (empty($ruta)) {
@@ -86,7 +88,9 @@ class rutaController extends InfyOmBaseController
             return redirect(route('rutas.index'));
         }
 
-        return view('rutas.show')->with('ruta', $ruta);
+        return view('rutas.show')
+        ->with('ruta', $ruta)
+        ->with('fecha_actual', $fecha_actual);
     }
 
     /**

@@ -5,12 +5,11 @@
 (Listo) Asociar cobrador a ruta.
 (Listo)rutas no mostrar contratos finalizados.
 (Listo) Giros: pagos que no se han hecho. (tomando como refrerencia pago->concepto)
-
-cierre: (cuanto se cobro, cuando falta por cobrar, cuantos nuevos contratos)
+(Listo) cierre: (cuanto se cobro, cuando falta por cobrar, cuantos nuevos contratos)
 
 29/
 (lo tengo) Reporte extra con fichas de recibo (excel) -> hacer -> pasar a pdf.
 (lo tengo) contratos -> pasar a pdf.
-rutas -> pasar a pdf (tratar de mostrar pagos que se deben).
+(lo tengo) rutas -> pasar a pdf (tratar de mostrar pagos que se deben).
 cierre -> crear -> pasar a pdf.
 giros -> crear -> pasar a pdf.
