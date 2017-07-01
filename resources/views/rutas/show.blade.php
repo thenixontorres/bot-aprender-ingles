@@ -42,15 +42,15 @@
 		    	$monto_cobrar = 0; 
 		    ?>
 		    @foreach($contrato->pagos as $pago)
-		    	@if($pago->concepto->format('d/m/Y') < $fecha_actual->format('d/m/Y') && $pago->status == 'pendiente')
+		    	@if($pago->concepto < $fecha_actual && $pago->estatus == 'pendiente')
 		    		<?php 
-		    			$cuota_pendientes = $cuota_pendientes+$pago->numero_cuota; 
+		    			$cuota_pendientes = $cuota_pendientes.' '.$pago->numero_cuota; 
 		    			$monto_cobrar = $monto_cobrar+$pago->monto;
 		    		?>
 		    	@endif
 		    @endforeach
 		   	<td>{{ $cuota_pendientes }}</td>
-		   	<td>{{ $monto_cobrar }}</td>
+		   	<td>{{ 'Bs: '.@number_format($monto_cobrar, '2', ',', '') }}</td>
 		    <td> </td>
 		    @endif
 		@endforeach	
