@@ -22,6 +22,7 @@ use App\Models\pago;
 use App\Models\ruta;
 use Auth;
 use Carbon\Carbon;
+use PDF;
 
 class contratoController extends InfyOmBaseController
 {
@@ -254,9 +255,25 @@ class contratoController extends InfyOmBaseController
         $año_ac = date('Y');
 
         if ($contrato->tipo_contrato == 'Individual'){
-        return view('contratos.individuales_show')->with('contrato', $contrato)->with('dia_ac', $dia_ac)->with('mes_ac', $mes_ac)->with('año_ac', $año_ac);    
+            return view('contratos.individuales_show')
+                ->with('contrato', $contrato)
+                ->with('dia_ac', $dia_ac)
+                ->with('mes_ac', $mes_ac)
+                ->with('año_ac', $año_ac);    
         }else{
-        return view('contratos.colectivos_show')->with('contrato', $contrato)->with('dia_ac', $dia_ac)->with('mes_ac', $mes_ac)->with('año_ac', $año_ac);
+            $pdf = PDF::loadView('pdfs.collective_agreement', [
+                'contrato' => $contrato,
+                'dia_ac' => $dia_ac,
+                'mes_ac' => $mes_ac,
+                'año_ac' => $año_ac
+            ]);
+
+            return $pdf->setPaper('letter')->stream('Contrato Colectivo N°:'.$contrato->numero.'.pdf');
+            /*return view('contratos.colectivos_show')
+                ->with('contrato', $contrato)
+                ->with('dia_ac', $dia_ac)
+                ->with('mes_ac', $mes_ac)
+                ->with('año_ac', $año_ac);*/
         }
     }
 

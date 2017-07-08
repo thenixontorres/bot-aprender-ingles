@@ -7,7 +7,7 @@
             <img class="img-responsive" style="min-width: 100%;" src="{{ asset('img/logo-contrato.jpg') }}">  
         </div>
         <div class="col-md-4 text-center">
-            <P >TELEFONO DE EMERGENCIA</P>
+            <P>TELEFONO DE EMERGENCIA</P>
             <P>(0414)4650610-(0246)4320792-(0424)3800530</P>
             <P>Contrato: {{ $contrato->numero}}</P>
             <P>Codigo Cliente: {{ $contrato->numero}}</P>  
