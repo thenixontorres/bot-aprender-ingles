@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Contrato Colectivo N°: {{ $contrato->numero }}</title>
+		<title>Contrato Individual N°: {{ $contrato->numero }}</title>
 		<style type="text/css">
 			body {
 				padding: 0px;
@@ -51,12 +51,12 @@
 			<tr>
 				<td colspan="2">
 					<p class="text-justify">
-						Entre SERVICIOS FUNERARIOS Y PREVISTOS VIRGEN DE COROMOT C.A Con domicilio en la Av. 
-						Monseñor Sendrea Edif Colonial Piso 1 Ofic. 11, debidamente inscrita por ante el Registro 
-						Mercantil de la Circuscripcion Judicial del Edo. Guárico bajo el Nro. 26, tomo 06-A; a quien a 
-						estos efectos de denomina "LA EMPREASA", por una parte y por la otra parte el cuidadano abajo 
-						identificado en la Cláusula primera, quien en lo sucesivo se denominará "EL TITULAR", 
-						se ha convenido a celebrar el presente convenio de protección funeraria según los datos que a 
+						Entre SERVICIOS FUNERARIOS Y PREVISTOS VIRGEN DE COROMOT C.A Con domicilio en la Av. Monseñor
+						Sendrea Edif Colonial Piso 1 Ofic. 11, debidamente inscrita por ante el Registro Mercantil de
+						la Circuscripcion Judicial del Edo. Guárico bajo el Nro. 26, tomo 06-A; a quien a estos 
+						efectos de denomina "LA EMPREASA", por una parte y por la otra parte el cuidadano abajo 
+						identificado en la Cláusula primera, quien en lo sucesivo se denominará "EL TITULAR", se ha 
+						convenido a celebrar el presente convenio de protección funeraria según los datos que a 
 						continuación aparecen en forma detallada.
 					</p>
 				</td>
@@ -141,17 +141,53 @@
 		<br>
 		<table class="bordered" cellspacing="0">
 			<tr>
-				<td>Nombre</td>
-				<td>Telefono</td>
-				<td>Direccion</td>
+				<td>N°</td>
+				<td>Beneficiarios</td>
+				<td>Cedula</td>
+				<td>Edad</td>
+				<td>Parentesco</td>
+				<td>Fecha nac</td>
 			</tr>
-			@foreach($contrato->empresas as $empresa)
+			<?php $i=1; ?>
+			@foreach($contrato->personas as $persona)
 			    <tr>
-			        <td> {!! $empresa->nombre !!} </td>
-			        <td> {!! $empresa->telefono !!} </td>
-			        <td>{!! $empresa->direccion !!} </td>
+			        <td> {!! $i !!} </td>
+			        <td> {!! $persona->nombre.' '.$persona->apellido !!} </td>
+			        <td> {!! $persona->cedula !!} </td>
+			        <?php 
+				        $fecha_nac = explode('/',$persona->fecha_nac);
+				        $dia_ac = date('d');
+				        $mes_ac = date('m');
+				        $año_ac = date('Y');
+
+				        if(($fecha_nac[1] == $mes_ac) && ($fecha_nac[1] > $dia_ac)){
+				            $año_ac = $año_ac-1;
+				        }
+
+				        if($fecha_nac[1] > $mes_ac){
+				            $año_ac = $año_ac-1;
+				        }
+
+				        $edad = $año_ac-$fecha_nac[2]; 
+			        ?>
+			        <td> {{ $edad }} </td>
+			        <td> {!! $persona->parentesco !!} </td>
+			        <td> {!! $persona->fecha_nac !!} </td>
 			    </tr>
-        	@endforeach 
+			    <?php $i++; ?>
+        	@endforeach
+        	<tr>
+        		<td colspan="6">Observaciones</td>
+        	</tr> 
+    		<?php $x=1;?>
+	        @foreach($contrato->personas as $persona)
+	            @if(isset($persona->observacion))
+		            <tr>
+		            	<td colspan="6">El beneficiario numero {{ $x.' '.$persona->nombre.' '.$persona->apellido.' '.$persona->observacion }}.</div>
+		            </tr>
+	            @endif
+	            <?php $x++; ?>
+	        @endforeach
 		</table>
 		<!-- Seccion b -->
 		<br>

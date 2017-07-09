@@ -255,11 +255,19 @@ class contratoController extends InfyOmBaseController
         $año_ac = date('Y');
 
         if ($contrato->tipo_contrato == 'Individual'){
-            return view('contratos.individuales_show')
+            $pdf = PDF::loadView('pdfs.individual_contract', [
+                'contrato' => $contrato,
+                'dia_ac' => $dia_ac,
+                'mes_ac' => $mes_ac,
+                'año_ac' => $año_ac
+            ]);
+
+            return $pdf->setPaper('letter')->stream('Contrato Individual N°:'.$contrato->numero.'.pdf');
+            /*return view('contratos.individuales_show')
                 ->with('contrato', $contrato)
                 ->with('dia_ac', $dia_ac)
                 ->with('mes_ac', $mes_ac)
-                ->with('año_ac', $año_ac);    
+                ->with('año_ac', $año_ac);*/    
         }else{
             $pdf = PDF::loadView('pdfs.collective_agreement', [
                 'contrato' => $contrato,
@@ -523,9 +531,16 @@ class contratoController extends InfyOmBaseController
     public function recibo($id){
         $contrato = contrato::where('id', $id)->first();
         $titular = persona::where('contrato_id', $contrato->id)->where('parentesco', 'Titular')->first();
-            return view('contratos.recibo')
+        
+        $pdf = PDF::loadView('pdfs.receipt', [
+            'contrato' => $contrato,
+            'titular' => $titular,
+        ]);
+
+        return $pdf->setPaper('letter', 'landscape')->stream('Recibo: '.$id.'.pdf');
+        /*return view('contratos.recibo')
             ->with('contrato', $contrato)
-            ->with('titular', $titular);      
+            ->with('titular', $titular);*/      
     }
 
     public function update($id, UpdatecontratoRequest $request)
