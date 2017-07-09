@@ -14,6 +14,7 @@ use Response;
 use App\Models\contrato;
 use App\Models\empleado;
 use Carbon\Carbon;
+use PDF;
 
 class rutaController extends InfyOmBaseController
 {
@@ -88,9 +89,16 @@ class rutaController extends InfyOmBaseController
             return redirect(route('rutas.index'));
         }
 
-        return view('rutas.show')
+        $pdf = PDF::loadView('pdfs.routes', [
+            'ruta' => $ruta,
+            'fecha_actual' => $fecha_actual,
+        ]);
+
+        return $pdf->setPaper('letter', 'landscape')->stream('Ruta: '.$id.'.pdf');
+
+        /*return view('rutas.show')
         ->with('ruta', $ruta)
-        ->with('fecha_actual', $fecha_actual);
+        ->with('fecha_actual', $fecha_actual);*/
     }
 
     /**
