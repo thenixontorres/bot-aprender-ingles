@@ -94,7 +94,7 @@ class rutaController extends InfyOmBaseController
             'fecha_actual' => $fecha_actual,
         ]);
 
-        return $pdf->setPaper('letter', 'landscape')->stream('Ruta: '.$id.'.pdf');
+        return $pdf->setPaper('letter', 'landscape')->download('Ruta: '.$id.'.pdf');
 
         /*return view('rutas.show')
         ->with('ruta', $ruta)
