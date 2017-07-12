@@ -262,7 +262,7 @@ class contratoController extends InfyOmBaseController
                 'año_ac' => $año_ac
             ]);
 
-            return $pdf->setPaper('letter')->stream('Contrato Individual N°:'.$contrato->numero.'.pdf');
+            return $pdf->setPaper('letter')->download('Contrato Individual N°:'.$contrato->numero.'.pdf');
             /*return view('contratos.individuales_show')
                 ->with('contrato', $contrato)
                 ->with('dia_ac', $dia_ac)
@@ -276,7 +276,7 @@ class contratoController extends InfyOmBaseController
                 'año_ac' => $año_ac
             ]);
 
-            return $pdf->setPaper('letter')->stream('Contrato Colectivo N°:'.$contrato->numero.'.pdf');
+            return $pdf->setPaper('letter')->download('Contrato Colectivo N°:'.$contrato->numero.'.pdf');
             /*return view('contratos.colectivos_show')
                 ->with('contrato', $contrato)
                 ->with('dia_ac', $dia_ac)
@@ -537,7 +537,7 @@ class contratoController extends InfyOmBaseController
             'titular' => $titular,
         ]);
 
-        return $pdf->setPaper('letter', 'landscape')->stream('Recibo: '.$id.'.pdf');
+        return $pdf->setPaper('letter', 'landscape')->download('Recibo: '.$id.'.pdf');
         /*return view('contratos.recibo')
             ->with('contrato', $contrato)
             ->with('titular', $titular);*/      
